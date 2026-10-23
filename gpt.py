@@ -13,6 +13,9 @@ Phases implemented here (each building on the last):
   Phase 6 — Full GPT (stacked Transformer blocks)
 """
 
+import math
+import os
+import time
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
@@ -34,6 +37,13 @@ n_embd        = 64     # embedding dimension
 n_head        = 4      # number of attention heads; each head = n_embd // n_head = 16
 n_layer       = 4      # number of stacked Transformer blocks
 dropout       = 0.0    # set > 0 (e.g. 0.2) if overfitting
+
+# ── LR schedule, regularisation, checkpointing ───────────────────────────────
+warmup_iters  = 100          # steps over which LR linearly rises to peak
+min_lr        = 3e-5         # floor for cosine decay (= learning_rate / 10)
+grad_clip     = 1.0          # max gradient norm; 0.0 = disabled
+weight_decay  = 1e-1         # AdamW weight decay (applied to non-bias params)
+checkpoint_dir = 'checkpoints'  # directory for saved model files
 
 # ② Full (GPU/MPS, ~15 min, ~1.49 val loss) — uncomment to use
 # batch_size    = 64
@@ -319,9 +329,12 @@ class Block(nn.Module):
 #   1. Token embeddings   — WHAT each token is    (vocab × n_embd lookup)
 #   2. Position embeddings — WHERE each token is  (block_size × n_embd lookup)
 #
-# Why position embeddings? Attention is inherently permutation-invariant
-# (swapping tokens gives the same attention weights). We need to inject
-# positional information so the model knows the ORDER of tokens.
+# Why position embeddings? Attention (without positional info) is
+# permutation-EQUIVARIANT — reordering the input tokens reorders the outputs
+# in the same way, but the pairwise attention weights themselves are unchanged.
+# Causal masking adds an ordering constraint, but still no sense of absolute
+# position. We inject position embeddings so the model knows WHERE each token
+# sits in the sequence, not just WHAT it is.
 #
 # Full architecture:
 #   idx (B, T)
@@ -373,7 +386,7 @@ class GPTLanguageModel(nn.Module):
 
         # Token + position embeddings
         tok_emb = self.token_embedding_table(idx)                          # (B, T, n_embd)
-        pos_emb = self.position_embedding_table(torch.arange(T, device=device))  # (T, n_embd)
+        pos_emb = self.position_embedding_table(torch.arange(T, device=idx.device))  # (T, n_embd)
         x = tok_emb + pos_emb      # (B, T, n_embd) — broadcasts B dimension
 
         # Pass through all transformer blocks
@@ -395,13 +408,19 @@ class GPTLanguageModel(nn.Module):
 
         return logits, loss
 
+    @torch.no_grad()
     def generate(self, idx, max_new_tokens):
         """
         Autoregressively generate max_new_tokens tokens.
 
         Key difference from bigram: we crop the context to block_size
         because position embeddings only go up to block_size.
+
+        @torch.no_grad() — no gradients needed during inference; saves memory.
+        model.eval() / model.train() — disables dropout during generation so
+        predictions are deterministic; matters once dropout > 0.0.
         """
+        self.eval()
         for _ in range(max_new_tokens):
             # Crop context to the last block_size tokens
             idx_cond = idx[:, -block_size:]          # (B, T) with T ≤ block_size
@@ -410,6 +429,7 @@ class GPTLanguageModel(nn.Module):
             probs  = F.softmax(logits, dim=-1)       # (B, vocab_size)
             idx_next = torch.multinomial(probs, num_samples=1)  # (B, 1)
             idx = torch.cat((idx, idx_next), dim=1)  # (B, T+1)
+        self.train()
         return idx
 
 
@@ -420,25 +440,122 @@ total_params = sum(p.numel() for p in model.parameters())
 print(f"\nModel parameters: {total_params:,}")
 # ~200K for small config | ~10M for full config
 
-# ── Training ──────────────────────────────────────────────────────────────────
-optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+# ── LR schedule: linear warmup → cosine decay ────────────────────────────────
+def get_lr(step):
+    """
+    Two-phase schedule used by GPT-2 / GPT-3:
 
-print(f"Training GPT ({n_layer} layers, {n_head} heads, n_embd={n_embd}, block_size={block_size})...\n")
+    1. Linear warmup (0 → learning_rate) over warmup_iters steps.
+       Why warmup? At init, weights are random and gradients are noisy.
+       A small LR prevents a damaging first update from sending the model
+       into a bad region it never recovers from.
+
+    2. Cosine decay (learning_rate → min_lr) for the remaining steps.
+       Cosine is smooth — it starts decaying slowly, speeds up in the middle,
+       then slows again near the end, which empirically beats linear decay.
+    """
+    if step < warmup_iters:
+        return learning_rate * (step + 1) / warmup_iters          # linear ramp
+    if step >= max_iters:
+        return min_lr
+    # Cosine interpolation between learning_rate and min_lr
+    progress = (step - warmup_iters) / (max_iters - warmup_iters) # 0.0 → 1.0
+    coeff    = 0.5 * (1.0 + math.cos(math.pi * progress))         # 1.0 → 0.0
+    return min_lr + coeff * (learning_rate - min_lr)
+
+# ── Training ──────────────────────────────────────────────────────────────────
+# Separate parameters into two groups:
+#   - weight matrices / embeddings → apply weight decay (regularisation)
+#   - biases / LayerNorm params    → no weight decay (they don't overfit)
+no_decay  = {'bias', 'weight'}   # LayerNorm.weight & .bias kept ungrouped
+decay_params    = [p for n, p in model.named_parameters()
+                   if p.dim() >= 2]          # matrices: Linear, Embedding
+nodecay_params  = [p for n, p in model.named_parameters()
+                   if p.dim() < 2]           # biases, LN scale/shift
+
+optimizer = torch.optim.AdamW(
+    [
+        {'params': decay_params,   'weight_decay': weight_decay},
+        {'params': nodecay_params, 'weight_decay': 0.0},
+    ],
+    lr=learning_rate,
+    betas=(0.9, 0.95),   # GPT-2 betas; β2=0.95 instead of 0.999 is better
+                         # for models trained for few steps (less momentum lag)
+)
+
+print(f"Training GPT ({n_layer} layers, {n_head} heads, n_embd={n_embd}, block_size={block_size})...")
+print(f"  Decay params: {sum(p.numel() for p in decay_params):,} | "
+      f"No-decay params: {sum(p.numel() for p in nodecay_params):,}\n")
+
+os.makedirs(checkpoint_dir, exist_ok=True)
+best_val_loss = float('inf')
 
 for step in range(max_iters):
 
-    if step % eval_interval == 0 or step == max_iters - 1:
-        losses = estimate_loss(model)
-        print(f"  step {step:5d}: train loss {losses['train']:.4f} | val loss {losses['val']:.4f}")
+    # ── Set LR for this step ─────────────────────────────────────────────
+    lr = get_lr(step)
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = lr
 
-    xb, yb = get_batch('train')
+    # ── Periodic evaluation ───────────────────────────────────────────────
+    if step % eval_interval == 0 or step == max_iters - 1:
+        t0 = time.time()
+        losses = estimate_loss(model)
+        t1 = time.time()
+
+        # Save best checkpoint when val loss improves
+        if losses['val'] < best_val_loss:
+            best_val_loss = losses['val']
+            ckpt = {
+                'step':      step,
+                'model':     model.state_dict(),
+                'optimizer': optimizer.state_dict(),
+                'val_loss':  best_val_loss,
+                # hyperparams — so we can reconstruct the model later
+                'config': dict(vocab_size=vocab_size, n_embd=n_embd,
+                               n_head=n_head, n_layer=n_layer,
+                               block_size=block_size, dropout=dropout),
+            }
+            torch.save(ckpt, os.path.join(checkpoint_dir, 'best.pt'))
+            saved = ' ← saved best'
+        else:
+            saved = ''
+
+        print(f"  step {step:5d}: train {losses['train']:.4f} | "
+              f"val {losses['val']:.4f} | lr {lr:.2e}{saved}")
+
+    # ── Forward pass ──────────────────────────────────────────────────────
+    t_start = time.time()
+    xb, yb  = get_batch('train')
 
     logits, loss = model(xb, yb)
     optimizer.zero_grad(set_to_none=True)
     loss.backward()
+
+    # ── Gradient clipping ─────────────────────────────────────────────────
+    # Why clip? If a batch is unusually informative, the gradient can be
+    # enormous, causing a single step to overshoot badly ("gradient spike").
+    # Clipping to norm=1.0 preserves the gradient direction but caps its
+    # magnitude — a simple, effective safeguard.
+    if grad_clip > 0.0:
+        torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
+
     optimizer.step()
 
-# ── Generation ────────────────────────────────────────────────────────────────
+    # ── Throughput (tokens/sec) ───────────────────────────────────────────
+    # Printed every 500 steps so the terminal isn't flooded.
+    if step % eval_interval == eval_interval - 1:
+        elapsed = time.time() - t_start
+        tokens_per_sec = (batch_size * block_size) / elapsed
+        print(f"          throughput: {tokens_per_sec:,.0f} tokens/sec")
+
+# ── Generation — load best checkpoint ────────────────────────────────────────
+best_ckpt_path = os.path.join(checkpoint_dir, 'best.pt')
+if os.path.exists(best_ckpt_path):
+    print(f"\nLoading best checkpoint (val loss: {best_val_loss:.4f})...")
+    ckpt = torch.load(best_ckpt_path, map_location=device)
+    model.load_state_dict(ckpt['model'])
+
 print("\n── Generated text (NanoGPT) ───────────────────────────────────────────")
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 generated = model.generate(context, max_new_tokens=500)[0].tolist()
