@@ -1,0 +1,47 @@
+
+
+Last login: Fri Oct 23 16:10:52 on ttys005
+shash@Shashanks-MacBook-Air-5 ~ % cd "/Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently Doing/NanoGPT"
+
+shash@Shashanks-MacBook-Air-5 NanoGPT % python3 gpt.py
+Using device: mps
+Dataset: 1,115,394 characters
+
+Model parameters: 211,777
+Training GPT (4 layers, 4 heads, n_embd=64, block_size=64)...
+
+  step     0: train loss 4.1701 | val loss 4.1700
+  step   500: train loss 2.3254 | val loss 2.3292
+  step  1000: train loss 2.0437 | val loss 2.0884
+  step  1500: train loss 1.8324 | val loss 1.9341
+  step  2000: train loss 1.7280 | val loss 1.8714
+  step  2500: train loss 1.6705 | val loss 1.8314
+  step  3000: train loss 1.6158 | val loss 1.7976
+  step  3500: train loss 1.5845 | val loss 1.7534
+  step  4000: train loss 1.5529 | val loss 1.7493
+  step  4500: train loss 1.5423 | val loss 1.7251
+  step  4999: train loss 1.5223 | val loss 1.7154
+
+── Generated text (NanoGPT) ───────────────────────────────────────────
+
+Upagar; deep it he with is such nie.
+
+MISTS:
+I musice than thy surpets, when I do be fear's
+To your his living thy way art deed hand.
+Awill not to an this conunt twoe!
+
+Afoldome, could strelant'scriem of to gonestrows?
+To Edward my drefits Lanc'st enemies with man:
+Let not fair's your could do upils, not thy not?
+Therefore with thou beart of a honmy!
+
+Vordengt:
+I'll that shollieves a death, fear to thee!
+
+CLIXENDIUS:
+Which it strrin'd
+We shand's in King me poersent any son,
+King to their not sen
+───────────────────────────────────────────────────────────────────────
+shash@Shashanks-MacBook-Air-5 NanoGPT % 
