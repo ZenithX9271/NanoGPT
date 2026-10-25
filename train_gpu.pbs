@@ -1,0 +1,48 @@
+#!/bin/bash
+# ─────────────────────────────────────────────────────────────────────────────
+# train_gpu.pbs — PBS job script for NanoGPT training on IITD HPC
+# ─────────────────────────────────────────────────────────────────────────────
+# Submit with:  qsub train_gpu.pbs
+# Check status: qstat -u cs1230342
+# Cancel:       qdel <job_id>
+# ─────────────────────────────────────────────────────────────────────────────
+
+#PBS -N NanoGPT
+#PBS -l select=1:ncpus=4:ngpus=1:mem=16gb
+#PBS -l walltime=02:00:00
+# Queue name — check available queues with `qstat -Q`
+# Common IITD queues: gpu, gpu_long, standard. Adjust if needed.
+#PBS -q gpu
+#PBS -o outputs/pbs_train.out
+#PBS -e outputs/pbs_train.err
+
+# ── Setup ─────────────────────────────────────────────────────────────────────
+echo "Job ID:   $PBS_JOBID"
+echo "Node:     $(hostname)"
+echo "Started:  $(date)"
+
+# Move to the directory from which qsub was called
+cd "$PBS_O_WORKDIR"
+
+# Set up internet proxy (needed for any downloads inside the job)
+export http_proxy=10.10.78.22:3128
+export ftp_proxy=10.10.78.22:3128
+export https_proxy=10.10.78.22:3128
+
+# Activate conda environment
+source ~/anaconda3/etc/profile.d/conda.sh 2>/dev/null || \
+    source /home/apps/anaconda3_2018/4.6.9/etc/profile.d/conda.sh 2>/dev/null
+conda activate zenith
+
+# Confirm GPU is visible
+echo ""
+echo "── GPU info ──────────────────────────────────────────────────────────────"
+nvidia-smi
+echo "──────────────────────────────────────────────────────────────────────────"
+echo ""
+
+# ── Run training ──────────────────────────────────────────────────────────────
+python3 gpt.py
+
+echo ""
+echo "Finished: $(date)"

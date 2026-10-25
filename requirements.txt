@@ -1,1 +1,15 @@
-torch>=2.0.0
+numpy
+
+# ── PyTorch installation ───────────────────────────────────────────────────────
+# Default (Mac MPS / CPU):
+#   pip install torch
+#
+# IITD HPC with CUDA 11.x driver (run `nvidia-smi` on a GPU node to confirm):
+#   pip install torch --index-url https://download.pytorch.org/whl/cu118
+#
+# IITD HPC with CUDA 12.x driver:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+#
+# Do NOT just run `pip install torch` on HPC — it pulls the latest CUDA 12.x
+# build which won't work if the node driver is older.
+# torch>=2.0.0
