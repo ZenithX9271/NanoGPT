@@ -221,4 +221,26 @@ __marimo__/
 .DS_Store
 
 # Model checkpoints
-checkpoints/
+checkpoints*/
+*.pt
+
+# Scratch & Backups
+dummy.py
+*.backup
+
+# Stage 5 data — large files, do NOT commit to git
+# Sync manually to HPC via rsync/scp
+data/raw/
+data/tinystories/
+data/shards/
+
+# BUT: keep these small, tracked files:
+# data/tokenizer/tokenizer.json   (~5 MB, sync to HPC via git)
+# configs/stage5.json             (tiny, tracked)
+!data/tokenizer/
+!data/tokenizer/**
+
+# PBS job logs
+logs/
+*.out
+*.err

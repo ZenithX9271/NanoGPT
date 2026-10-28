@@ -1,0 +1,63 @@
+#!/bin/bash
+#PBS -N nanogpt_s5
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=4:ngpus=1:mem=20gb:centos=haswell
+#PBS -l walltime=02:00:00
+#PBS -l software=PYTHON
+#PBS -o logs/s5_${PBS_JOBID}.out
+#PBS -e logs/s5_${PBS_JOBID}.err
+
+# ── Stage 5 PBS batch job ─────────────────────────────────────────────────────
+# Submit: qsub train_s5.pbs
+# Monitor: qstat -u $USER
+# Estimated runtime: depends on benchmark — check the benchmark output first.
+# Recommended workflow:
+#   1. Run an interactive pilot (2-hour walltime) to get benchmark numbers.
+#   2. Set WALLTIME_MINUTES = walltime_hours * 60 - 5  in configs/stage5.json.
+#   3. Set max_iters to desired step count.
+#   4. Submit this script for the full run.
+
+set -euo pipefail
+
+# ── Environment ───────────────────────────────────────────────────────────────
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
+hash -r
+
+echo "=== Stage 5 environment ==="
+command -v python
+python --version
+python -c "import torch; print('torch', torch.__version__)"
+python -c "import torch; print('CUDA available:', torch.cuda.is_available())"
+python -c "import torch; print('GPU:', torch.cuda.get_device_name(0))"
+python -c "import numpy; print('numpy', numpy.__version__)"
+echo "PBS_JOBID: ${PBS_JOBID}"
+echo "Node: $(hostname)"
+echo "============================"
+
+# ── Working directory ─────────────────────────────────────────────────────────
+# Adjust to your actual project path on the cluster
+cd $HOME/zenithX9271/NanoGPT
+
+# Make sure data and log dirs exist
+mkdir -p logs checkpoints_s5v2 data/shards/v2 data/tokenizer/v2 configs
+
+# Confirm shards and config are present before starting
+if [ ! -f "data/shards/v2/manifest.json" ]; then
+    echo "ERROR: data/shards/v2/manifest.json not found."
+    echo "Sync shards from Mac: rsync -avz data/shards/v2/ <hpc>:~/zenithX9271/NanoGPT/data/shards/v2/"
+    exit 1
+fi
+
+if [ ! -f "configs/stage5.json" ]; then
+    echo "ERROR: configs/stage5.json not found."
+    exit 1
+fi
+
+# ── Run ───────────────────────────────────────────────────────────────────────
+echo ""
+echo "Starting Stage 5 training: $(date)"
+python -u 5th_stage_gpt.py
+echo ""
+echo "Stage 5 training done: $(date)"

@@ -1,0 +1,73 @@
+{
+  "version": "v2",
+  "tokenizer": "data/tokenizer/v2/tokenizer.json",
+  "vocab_size": 8192,
+  "bos_id": 1,
+  "eos_id": 2,
+  "pad_id": 0,
+  "prompts": [
+    {
+      "text": "Once upon a time, a little fox found a blue box.",
+      "n_tokens": 14,
+      "ids": [
+        1,
+        430,
+        442,
+        261,
+        397,
+        14,
+        261,
+        398,
+        1620,
+        591,
+        261,
+        1073,
+        784,
+        16
+      ]
+    },
+    {
+      "text": "Lily wanted to help her friend, but she did not know how.",
+      "n_tokens": 15,
+      "ids": [
+        1,
+        345,
+        443,
+        268,
+        482,
+        311,
+        416,
+        14,
+        409,
+        340,
+        459,
+        390,
+        694,
+        709,
+        16
+      ]
+    },
+    {
+      "text": "Tom put his toy under the bed. Later, he looked for it and",
+      "n_tokens": 16,
+      "ids": [
+        1,
+        757,
+        574,
+        352,
+        509,
+        889,
+        265,
+        1014,
+        16,
+        5171,
+        14,
+        281,
+        516,
+        368,
+        306,
+        267
+      ]
+    }
+  ]
+}

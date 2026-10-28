@@ -1,0 +1,126 @@
+[cs1230342@vsky009 ~/zenithX9271/NanoGPT]
+$ cd ~/zenithX9271/NanoGPT && python -u 5th_stage_gpt.py 2>&1 | tee logs/stage5_full_output.txt
+Using device: cuda
+GPU: Tesla V100-PCIE-32GB
+
+Loading datasets...
+  train split: 386,680,755 tokens (386.7M) from 39 shard(s)
+  dev_val split: 2,316,856 tokens (2.3M) from 1 shard(s)
+Tokenizer decoder loaded (pure Python).
+
+==============================================================
+  STAGE 5 — ENVIRONMENT
+==============================================================
+  GPU:         Tesla V100-PCIE-32GB
+  CUDA:        11.0
+  PyTorch:     1.10.0a0+git36449ea
+  Python:      3.7.9
+  Unique params: 6,897,152  (tied weight counted once)
+  Decay params:  6,881,280  |  No-decay: 15,872
+  Weight tying:  OK
+  Config:    layers=6 embd=256 heads=8 ctx=256 drop=0.2
+  Vocab:     8,192  BOS=1 EOS=2 PAD=0
+  Max iters: 1,221  (~10M BPE tokens)
+==============================================================
+
+BENCHMARK:  50 warmup + 5 × 100 = 550 steps
+
+  Warmup done (50 steps, 8.7s).
+  Window 1/5:      77,045 tok/s  |  med 105.7ms  p95 111.9ms
+  Window 2/5:      77,474 tok/s  |  med 105.6ms  p95 107.1ms
+  Window 3/5:      77,330 tok/s  |  med 105.6ms  p95 108.0ms
+  Window 4/5:      77,368 tok/s  |  med 105.6ms  p95 107.4ms
+  Window 5/5:      77,412 tok/s  |  med 105.6ms  p95 107.0ms
+
+==============================================================
+  BENCHMARK RESULTS — STAGE 5
+==============================================================
+  Throughput (wall-clock, synced at window boundaries):
+    mean      77,326 tok/s
+    min       77,045 tok/s
+    max       77,474 tok/s
+  Step latency (CUDA event, synced per step — serialized):
+    median  105.63 ms  |  p95  107.59 ms
+  GPU:   alloc 2982.9 MiB  |  reserved 3466.0 MiB
+  RAM:   6317.8 MB (host peak)
+  Eval (200b dev_val):  5.48s  CE=3.7245  ppl=41.45
+  Checkpoint:           0.11s  38.4 MB
+  Startup to warmup:    8.7s
+  Est. remaining train: 71s  (1.2 min, 671 steps)
+==============================================================
+
+  Inspect the above before committing to the full 1,221-step run.
+  To pilot 10M tokens: set max_iters=1771 in configs/stage5.json
+
+TRAINING:  steps 550 → 1220
+
+          grad_norm 0.842 | ~76455 tok/s (single-step, no sync)
+  step  1000: train CE 3.3734 | val CE 3.3927 | ppl 29.75 | lr 6.00e-05 | tokens 8,192,000 <- best
+  step  1220: train CE 3.3257 | val CE 3.3532 | ppl 28.60 | lr 3.00e-05 | tokens 9,994,240 <- best
+
+Loaded best.pt (val CE: 3.3532)
+Total runtime: 161.2s (2.7 min)
+
+==============================================================
+  STAGE 5 GENERATION
+==============================================================
+
+  PROMPT: 'Once upon a time, a little fox found a blue box.'
+
+  -- greedy (stop: max_tokens, 300 new tokens) --
+  Once upon a time, there was a little girl named Lily. She loved to play with her friends. One day, Lily's mom said, "I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily.
+
+  -- temp=0.7 top_k=50 (stop: eos, 156 new tokens) --
+  Once upon a time there was a little girl named Lily. She was very excited and wanted to climb it. 
+  One day, Lily saw a little girl named Lily's mom. She said, "I have to play." The girl was so happy and said, "Let's go to do it!" 
+  Timmy's mom told her mom a new toy. Timmy said, "Let's go away?" Her mom smiled and said, "I'm very nice place. I'll do you for you, but be careful with your toys."
+  Lily was happy and decided to go home. She was sad because she had to the park and they said, "Sure, you can't be safe." "You're so much fun! We can play with it again.
+
+  -- temp=1.0 (stop: eos, 156 new tokens) --
+  Once upon a time there was a little bit interesting boat. Everyone was very excited and it loved to see how fit. One day, special if he saw something else.
+  He saw something tiny, interesting up, he Rabbit. The city was so scared and unique. He had such a big and ride on the pond. The leaves again. The frog was happy.
+  The girl took the acorns and away the people near the knife. She knew she had a long place. When the bear ignored it. The elephant with the animals. The girl felt hairy man. Its old next morning, she noticed the tiger to find her parents and he didn't agree. 
+  Mom was wrong, and his family, so brave and it would be afraid of his pet it again.
+
+  PROMPT: 'Lily wanted to help her friend, but she did not know how.'
+
+  -- greedy (stop: max_tokens, 300 new tokens) --
+  Once upon a time, there was a little girl named Lily. She loved to play with her friends. One day, Lily's mom said, "I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily.
+
+  -- temp=0.7 top_k=50 (stop: eos, 156 new tokens) --
+  Once upon a time there was a little girl named Lily. She was very excited and wanted to climb it. 
+  One day, Lily saw a little girl named Lily's mom. She said, "I have to play." The girl was so happy and said, "Let's go to do it!" 
+  Timmy's mom told her mom a new toy. Timmy said, "Let's go away?" Her mom smiled and said, "I'm very nice place. I'll do you for you, but be careful with your toys."
+  Lily was happy and decided to go home. She was sad because she had to the park and they said, "Sure, you can't be safe." "You're so much fun! We can play with it again.
+
+  -- temp=1.0 (stop: eos, 156 new tokens) --
+  Once upon a time there was a little bit interesting boat. Everyone was very excited and it loved to see how fit. One day, special if he saw something else.
+  He saw something tiny, interesting up, he Rabbit. The city was so scared and unique. He had such a big and ride on the pond. The leaves again. The frog was happy.
+  The girl took the acorns and away the people near the knife. She knew she had a long place. When the bear ignored it. The elephant with the animals. The girl felt hairy man. Its old next morning, she noticed the tiger to find her parents and he didn't agree. 
+  Mom was wrong, and his family, so brave and it would be afraid of his pet it again.
+
+  PROMPT: 'Tom put his toy under the bed. Later, he looked for it and'
+
+  -- greedy (stop: max_tokens, 300 new tokens) --
+  Once upon a time, there was a little girl named Lily. She loved to play with her friends. One day, Lily's mom said, "I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily. I'm sorry, Lily.
+
+  -- temp=0.7 top_k=50 (stop: eos, 156 new tokens) --
+  Once upon a time there was a little girl named Lily. She was very excited and wanted to climb it. 
+  One day, Lily saw a little girl named Lily's mom. She said, "I have to play." The girl was so happy and said, "Let's go to do it!" 
+  Timmy's mom told her mom a new toy. Timmy said, "Let's go away?" Her mom smiled and said, "I'm very nice place. I'll do you for you, but be careful with your toys."
+  Lily was happy and decided to go home. She was sad because she had to the park and they said, "Sure, you can't be safe." "You're so much fun! We can play with it again.
+
+  -- temp=1.0 (stop: eos, 156 new tokens) --
+  Once upon a time there was a little bit interesting boat. Everyone was very excited and it loved to see how fit. One day, special if he saw something else.
+  He saw something tiny, interesting up, he Rabbit. The city was so scared and unique. He had such a big and ride on the pond. The leaves again. The frog was happy.
+  The girl took the acorns and away the people near the knife. She knew she had a long place. When the bear ignored it. The elephant with the animals. The girl felt hairy man. Its old next morning, she noticed the tiger to find her parents and he didn't agree. 
+  Mom was wrong, and his family, so brave and it would be afraid of his pet it again.
+
+  Full output saved → checkpoints_s5/generation_output.txt
+==============================================================
+
+Stage 5 training complete.
+  best val CE:  3.3532  ppl: 28.60
+  To evaluate:  python evaluate_stage5.py
+[cs1230342@vsky009 ~/zenithX9271/NanoGPT]
+$ 

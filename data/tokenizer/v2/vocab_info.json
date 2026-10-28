@@ -1,0 +1,28 @@
+{
+  "version": "v2",
+  "trained_utc": "2026-10-27T10:56:01.847039+00:00",
+  "tokenizer_lib": "tokenizers==0.22.2",
+  "vocab_size": 8192,
+  "requested_vocab": 8192,
+  "special_tokens": {
+    "<pad>": 0,
+    "<bos>": 1,
+    "<eos>": 2
+  },
+  "training_source": "data/tinystories/v2/train.jsonl",
+  "training_stories": 1792647,
+  "tokenizer_sha256": "99055f35c77392e4df4486685b60fee1de1d95e2c373c26f487cf9944746d038",
+  "round_trips_passed": true,
+  "length_stats": {
+    "sample_size": 5000,
+    "median": 186,
+    "p90": 343,
+    "p95": 437,
+    "max": 1016,
+    "frac_gt_256": 0.1736,
+    "frac_gt_512": 0.0272
+  },
+  "pre_tokenizer": "ByteLevel(add_prefix_space=False, use_regex=True)",
+  "trainer": "BpeTrainer(vocab_size=8192)",
+  "attention_policy": "Stories concatenated with BOS/EOS. Causal attention may cross story boundaries. Document offsets stored for future isolation."
+}

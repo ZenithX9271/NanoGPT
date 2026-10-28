@@ -1,0 +1,244 @@
+[cs1230342@vsky009 ~/zenithX9271/NanoGPT]
+$ python -u 4th_stage_gpt.py
+Using device: cuda
+GPU: Tesla V100-PCIE-32GB
+Dataset: 1,115,394 characters
+
+==============================================================
+  STAGE 4 — ENVIRONMENT
+==============================================================
+  GPU:       Tesla V100-PCIE-32GB
+  CUDA:      11.0
+  cuDNN:     None
+  PyTorch:   1.10.0a0+git36449ea
+  Python:    3.7.9
+  Platform:  Linux-3.10.0-1160.el7.x86_64-x86_64-with-centos-7.9.2009-Core
+  Model:     4,833,345 params  (4,817,408 decay | 15,937 no-decay)
+  Config:    batch=32 block=256 n_embd=256 n_head=8 n_layer=6 dropout=0.2
+  Data:      input.txt 1,115,394 chars | vocab 65
+  Token budget: 40,960,000 tokens (40M)
+  Note: Stage 3 processed 10.24M tokens; Stage 4 processes 40.96M
+        (4× more, due to 4× longer context at same batch/iters)
+==============================================================
+
+BENCHMARK:  50 warmup + 5 windows × 100 steps = 550 steps
+
+  Warmup done (50 steps, 7.4s).
+
+  Window 1/5:      85,330 tok/s  |  step med 95.6ms  p95 97.9ms
+  Window 2/5:      85,423 tok/s  |  step med 95.7ms  p95 97.5ms
+  Window 3/5:      85,114 tok/s  |  step med 95.7ms  p95 98.9ms
+  Window 4/5:      85,319 tok/s  |  step med 95.8ms  p95 97.6ms
+  Window 5/5:      85,292 tok/s  |  step med 95.8ms  p95 97.7ms
+
+==============================================================
+  BENCHMARK RESULTS — STAGE 4
+==============================================================
+  Throughput (window clock, sync at boundaries only):
+    mean       85,296 tok/s
+    min        85,114 tok/s
+    max        85,423 tok/s
+    var           0.4%  (max-min)/mean
+  Step latency (CUDA-event, synced per step — serialized):
+    median  95.70 ms
+    p95     97.74 ms
+  GPU memory:
+    allocated  1992.3 MiB
+    reserved   2314.0 MiB
+  Host RAM:          1917.0 MB
+  Eval (200b x2):    9.38s  train 2.1421  val 2.1963
+  Checkpoint:        0.13s  30.5 MB
+  Startup to warmup: 7.4s
+  Tokens processed:  4,505,600
+  Est. remaining training time: 427s  (7.1 min)
+==============================================================
+
+TRAINING:  steps 550 → 4999
+
+          grad_norm 0.845 | approx 85650 tok/s (single-step, no sync)
+  step  1000: train 1.7885 | val 1.9173 | lr 2.78e-04 | tokens 8,192,000 <- best
+          grad_norm 1.017 | approx 83641 tok/s (single-step, no sync)
+  step  1500: train 1.6004 | val 1.7760 | lr 2.49e-04 | tokens 12,288,000 <- best
+          grad_norm 0.915 | approx 85715 tok/s (single-step, no sync)
+  step  2000: train 1.4818 | val 1.6741 | lr 2.12e-04 | tokens 16,384,000 <- best
+          grad_norm 0.949 | approx 86146 tok/s (single-step, no sync)
+  step  2500: train 1.4020 | val 1.6160 | lr 1.69e-04 | tokens 20,480,000 <- best
+          grad_norm 0.889 | approx 85445 tok/s (single-step, no sync)
+  step  3000: train 1.3502 | val 1.5807 | lr 1.27e-04 | tokens 24,576,000 <- best
+          grad_norm 0.910 | approx 85732 tok/s (single-step, no sync)
+  step  3500: train 1.3141 | val 1.5500 | lr 8.78e-05 | tokens 28,672,000 <- best
+          grad_norm 0.962 | approx 86155 tok/s (single-step, no sync)
+  step  4000: train 1.2888 | val 1.5365 | lr 5.68e-05 | tokens 32,768,000 <- best
+          grad_norm 0.938 | approx 86349 tok/s (single-step, no sync)
+  step  4500: train 1.2745 | val 1.5252 | lr 3.69e-05 | tokens 36,864,000 <- best
+  step  4999: train 1.2663 | val 1.5147 | lr 3.00e-05 | tokens 40,951,808 <- best
+          grad_norm 0.991 | approx 85026 tok/s (single-step, no sync)
+
+Loading Stage 4 best checkpoint (val loss: 1.5147)...
+
+Total runtime: 579.1s (9.7 min)
+
+==============================================================
+  STAGE 4 GENERATED TEXT
+  (Stage 3 best val: ~1.73 | Stage 4 target: lower)
+==============================================================
+
+  PROMPT: Empty (newline)
+  >>> '\n'
+
+  -- temp=0.7  top_k=50  (focused) --
+  
+  
+  DUKE VINCENTIO:
+  O this better to me, death.
+  
+  ISABELLA:
+  I will play the news?
+  
+  ANGELO:
+  No, now sir, beseech your heads, there should bear
+  You shall be look of your guest doth your dreams.
+  
+  LUCIO:
+  And 
+
+  -- temp=1.0  top_k=None (standard) --
+  
+  My crowns, and by me! away!
+  Here is by the accound tower, may not look;
+  And yet that not ready me, I know the word:
+  And to this dead?
+  
+  Nurse:
+  Chaito, of the house?
+  
+  VOLUMNIA:
+  And to two thou ship a ki
+
+  -- temp=1.2  top_k=None (creative) --
+  
+  Both ourses of Buckingham. Why, servy, hastBancoked,
+  What as he counting, he give himself, my life take
+  A son, cheers to fight-brother, sport shame,
+  Spare-of aand underwated reasys to bed: how shall
+  I
+
+
+  PROMPT: King speaks
+  >>> 'KING:\n'
+
+  -- temp=0.7  top_k=50  (focused) --
+  KING:
+  And dear not what thy heart?
+  
+  LUCENTIO:
+  God lords, and shall be so deserve me all.
+  
+  LORD WILLOUGHBY:
+  My lord, well thus brother is to the fair man.
+  
+  LEONTES:
+  Well, good to the word; but therefore, the
+
+  -- temp=1.0  top_k=None (standard) --
+  KING:
+  I must shall have tortanty, and rest'd me
+  Have rickle it to a Cupour bloody free;
+  And thinks me, my body commass cursed me;
+  Six my heart, boy, how 'twas and banished,
+  She's greet between that he mean'
+
+  -- temp=1.2  top_k=None (creative) --
+  KING:
+  He fildness crumph-shine, earth exputates.
+  
+  KING EDWARD IV:
+  No. Viends for Ratclam, and name frane Warwick!
+  I bring York your fear ways that Hermies:
+  My wring of Eure!
+  
+  CARLIS:
+  Why, pain opens i' the 
+
+
+  PROMPT: Dialogue opener
+  >>> 'ROMEO:\nWhat light through '
+
+  -- temp=0.7  top_k=50  (focused) --
+  ROMEO:
+  What light through me to this consul.
+  
+  ROMEO:
+  Thy father's drawn, my son gracious life,
+  Believe the life of perform'd of thy trid,
+  And bear the like noble lordship of this death.
+  
+  ROMEO:
+  Let's not be well-moved of the b
+
+  -- temp=1.0  top_k=None (standard) --
+  ROMEO:
+  What light through my good she with is word a state?
+  Accaused Lord Henry Clarence, let's a traitor state follow?
+  Our to-noble blood and these hours!
+  O all childned venzy they day need York,
+  And punish'd in a tother, I d
+
+  -- temp=1.2  top_k=None (creative) --
+  ROMEO:
+  What light through to!
+  
+  ROMEO:
+  Oh, grandam, back? one of Gloucester, tideth;
+  I mayst sorrow I will requaitors doth man:
+  Yet Edward, sir, por Claence?
+  What of our Laurd Axer.
+  
+  ROMEO:
+  Come, our good pressens'd! Come, is c
+
+
+  PROMPT: Verse start
+  >>> 'To be, or not to be'
+
+  -- temp=0.7  top_k=50  (focused) --
+  To be, or not to be truth, nor more are gone,
+  And in execute the severe in my duke in the
+  That nature me as your deads storm: the more of my short
+  Have might done.
+  
+  LEONTES:
+  If the content stoop your own lords,
+  Which th
+
+  -- temp=1.0  top_k=None (standard) --
+  To be, or not to because it by in a pleasure,
+  I am her blood naturely to the bow-corn?
+  
+  HASTINGS:
+  I will not balad cannot this father.
+  
+  GRUMIO:
+  She may shall pass'd with me of us.
+  
+  ISABELLA:
+  And when the business 'twice
+
+  -- temp=1.2  top_k=None (creative) --
+  To be, or not to be eyes,
+  And I should the hugword keeps his under person,
+  On laughter's power, into me save into Narence:
+  For she must be, then, and by they supposed them;
+  And and as they shall be, not reder thee:
+  For 
+
+==============================================================
+
+Stage 3 baseline val loss: ~1.73 (212K params, block_size=64)
+Stage 4 final   val loss:  1.5147 (4,833,345 params, block_size=256)
+
+To load Stage 4 model for further generation:
+  ckpt = torch.load('checkpoints_s4/best.pt', map_location='cuda')
+  model.load_state_dict(ckpt['model'])
+[cs1230342@vsky009 ~/zenithX9271/NanoGPT]
+$ 

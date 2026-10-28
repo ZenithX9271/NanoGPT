@@ -1,0 +1,64 @@
+{
+  "_comment": "Stage 5: TinyStories + byte-level BPE. Edit paths for your environment.",
+
+  "model": {
+    "n_layer":    6,
+    "n_embd":     256,
+    "n_head":     8,
+    "block_size": 256,
+    "dropout":    0.2,
+    "weight_tying": true,
+    "_note": "vocab_size is read from data.vocab_size; not hardcoded here."
+  },
+
+  "training": {
+    "batch_size":    32,
+    "max_iters":     12207,
+    "_token_budget": "12207 steps × 8192 tok/step ≈ 100M BPE-token positions",
+    "_pilot_iters":  1221,
+    "_pilot_note":   "Set max_iters=1221 (~10M tokens) for a pilot before committing to 100M",
+    "eval_interval": 500,
+    "eval_iters":    200,
+    "learning_rate": 3e-4,
+    "warmup_iters":  100,
+    "warmup_iters_v2": 500,
+    "_warmup_note":  "v2 uses warmup_iters_v2=500 (longer schedule for 100M token run)",
+    "min_lr":        3e-5,
+    "grad_clip":     1.0,
+    "weight_decay":  0.1,
+    "betas":         [0.9, 0.95],
+    "seed":          1337
+  },
+
+
+  "benchmark": {
+    "warmup_steps":  50,
+    "windows":       5,
+    "window_steps":  100
+  },
+
+  "data": {
+    "shard_dir":      "data/shards/v2",
+    "tokenizer_path": "data/tokenizer/v2/tokenizer.json",
+    "vocab_size":     8192,
+    "pad_id":         0,
+    "bos_id":         1,
+    "eos_id":         2,
+    "_id_note": "Actual IDs assigned during tokenizer training. Verify against vocab_info.json."
+  },
+
+  "checkpointing": {
+    "checkpoint_dir":    "checkpoints_s5",
+    "walltime_minutes":  null,
+    "margin_seconds":    300
+  },
+
+  "generation": {
+    "max_new_tokens": 300,
+    "prompts": [
+      "Once upon a time, a little fox found a blue box.",
+      "Lily wanted to help her friend, but she did not know how.",
+      "Tom put his toy under the bed. Later, he looked for it and"
+    ]
+  }
+}
