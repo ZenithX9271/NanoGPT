@@ -1,280 +1,363 @@
-# NanoGPT Project Master Handoff & Technical Context (Stages 1 – 5)
+# NanoGPT Project Master Handoff & Technical Context — Stages 1–5
 
-> **Document Purpose:** This document is the comprehensive master record and engineering handoff for Shashank's NanoGPT project. It details the complete architecture, dataset evolution, training protocols, HPC cluster benchmarks, debugging milestones, directory structure, and current status from initial concept through Stage 5. Use this document as the prompt/context for any subsequent chats, architectural discussions, or future scaling stages (e.g., Stage 6 scaling, fine-tuning, or KV caching).
+Corrected on **29 October 2026**, using current source, checkpoint metadata, data
+manifests, Git history and independent local checks. This document separates the
+trained results from functionality still needing repair. Documentation corrections
+do not change model weights, code or historical output files.
 
----
+## 1. Project identity and working approach
 
-## 1. Executive Summary & Working Philosophy
+- **Author:** Shashank, IIT Delhi.
+- **Goal:** Understand and build decoder-only language models incrementally, inspired
+  by Andrej Karpathy's *Let's build GPT* and nanoGPT, while improving generated text.
+- **GitHub:** `git@github.com:ZenithX9271/NanoGPT.git`, branch `main`.
+- **Canonical local repository:**
+  `/Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently Doing/NanoGPT`.
+- **Historical copies:** the nested `NanoGPT` and `NanoGPT_From VM` folders inside
+  sibling `NanoGPT_Codex` are older snapshots, not the current reorganized repository.
 
-- **Author & Engineer:** Shashank (IIT Delhi)
-- **Goal:** Progressively build, train, measure, and deeply understand decoder-only Transformer language models from absolute scratch (inspired by Andrej Karpathy's *nanoGPT* and *Let's build GPT*), scaling from a 4K-parameter character bigram to a 10.6M-parameter Byte-Level BPE model trained on 100M tokens of TinyStories.
-- **Repository:** `git@github.com:ZenithX9271/NanoGPT.git` (Branch: `main`)
-- **Key Principles:**
-  1. *Pedagogical & Architectural Clarity:* Every building block (scaled dot-product attention, multi-head projection, feed-forward networks, pre-LayerNorm, residual stream, weight tying, learning rate schedules) is implemented explicitly in PyTorch without high-level wrapper libraries (like HuggingFace transformers or Lightning).
-  2. *Hardware-Conscious Engineering:* Development, prompt encoding, and verification occur on local Apple Silicon Mac (`mps`/`cpu`); heavy compute runs on IIT Delhi HPC clusters (NVIDIA Tesla V100 32GB via PBS workload manager).
-  3. *Empirical Verification:* No milestone is declared complete without measurable outputs: loss curves, token-throughput benchmarks, validation perplexity, generation samples, and rigorous unit testing (52/52 passing tests).
+The audited base commit was `0d5094e987c853da92cbf6146efc17c7fbff6a35`; an actual
+GitHub query confirmed it matched remote `main`. Read access was checked; pushing
+was not tested. The audit and these documentation corrections did not push changes.
 
----
+Keep the implementation understandable: explicit manual causal attention,
+feed-forward layers, pre-LayerNorm, residuals and learned positional embeddings.
+Improve language quality through bounded experiments, without an indefinite
+infrastructure detour. Do not change architecture or start Stage 6 solely because
+this handoff has been corrected.
 
-## 2. Hardware Environments & Toolchains
+## 2. Hardware and software evidence
 
-| Component | Local Mac Environment | IIT Delhi HPC Cluster (`vsky009`) |
-| :--- | :--- | :--- |
-| **System** | Apple Silicon MacBook Air (macOS) | CentOS Linux cluster node |
-| **Processor / GPU** | Apple Silicon (MPS / CPU) | NVIDIA Tesla V100-PCIE-32GB |
-| **Environment** | Python 3.9+, PyTorch, Tokenizers | Python 3.7 (`apps/pytorch/1.10.0/gpu/intelpython3.7`), CUDA 11.0 |
-| **Batch Scheduler** | Interactive shell | PBS (Portable Batch System) job queue (`qsub`) |
-| **Primary Role** | Data preparation, BPE training, unit tests, CPU evaluation | Full-scale pretraining (100M tokens), CUDA event benchmarking |
+| Environment | Verified context | Limits of verification |
+| --- | --- | --- |
+| Local Mac | Audit used Python 3.9.6, PyTorch 2.8.0, Tokenizers 0.22.2, CPU | New checks were not HPC/CUDA or MPS benchmarks |
+| IIT Delhi HPC | Historical K40 training and V100-PCIE-32GB runs; Python 3.7.9, PyTorch 1.10.0a0+git36449ea, CUDA 11.0 | No new allocation, PBS submission or throughput measurement in this audit |
+| A100 | Access was being discussed | Access is not confirmed; progress must not depend on it |
 
----
+Working historical cluster setup:
 
-## 3. Project Roadmap & Architectural Progression
-
-```
-┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
-│  STAGE 1: Bigram Model │ ───> │ STAGE 2: 1-Head GPT    │ ───> │ STAGE 3: Cluster GPT   │
-│  • Character-level     │      │ • First Self-Attention │      │ • 4L / 64W / 4H        │
-│  • 4,225 parameters    │      │ • 211,777 parameters   │      │ • 211,777 parameters   │
-│  • Zero context memory │      │ • Causal mask + MLP    │      │ • Cosine LR, PBS wall  │
-│  • Val Loss: 2.47      │      │ • Val Loss: 1.71 (Mac) │      │ • 65K tok/s on V100    │
-└────────────────────────┘      └────────────────────────┘      └────────────────────────┘
-                                                                             │
-                                                                             ▼
-┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
-│ STAGE 5 v2: TinyStories│ <─── │ STAGE 5 Pilot: Flawed  │ <─── │ STAGE 4: Scaled GPT    │
-│ • Byte-Level BPE (8192)│      │ • First TinyStories run│      │ • 6L / 256W / 8H       │
-│ • 10.6M parameters     │      │ • Boundary leakage bug │      │ • 4.8M parameters      │
-│ • JSONL + uint16 shards│      │ • Prompt fallback bug  │      │ • Dropout 0.2, ctx 256 │
-│ • 100M tokens trained  │      │ • Missed 100M snapshot │      │ • Val Loss: 1.49       │
-│ • Best Val CE: 2.1361  │      │ • Val CE: ~2.4         │      │ • Trained on K40/V100  │
-└────────────────────────┘      └────────────────────────┘      └────────────────────────┘
+```bash
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
 ```
 
----
+Use FP32 and manual causal attention with the legacy stack. SDPA and
+`torch.compile` are not APIs provided by PyTorch 1.10. Modern attention kernels or
+mixed precision require separate capability and correctness validation; do not
+upgrade the working shared environment or enable them automatically. Available
+hardware and queue rules must be confirmed for each run.
 
-## 4. Deep Dive: Stages 1 Through 5
+`requirements.txt` has only NumPy as an active dependency. It does not recreate the
+tested local environment or install PyTorch/Tokenizers. Its commented generic CUDA
+wheel suggestions are not the established IITD module setup. Tokenizer artifact
+metadata records Tokenizers **0.22.2**, despite older preparation comments mentioning
+0.20.3.
 
-### Stage 1: Bigram Character Baseline
-- **Location:** [`stage_1_bigram/model.py`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_1_bigram/model.py)
-- **Data:** Tiny Shakespeare (`input.txt`, 1,115,394 characters, 65 unique characters).
-- **Core Concept:** A static lookup table predicting token $t_{i+1}$ given solely token $t_i$, with zero memory of preceding history.
-- **Model:** `nn.Embedding(vocab_size, vocab_size)` $\to$ `(65, 65)`.
-- **Parameters:** 4,225.
-- **Results:**
-  - Initial loss: **4.73** (close to theoretical uniform random $-\ln(1/65) \approx 4.17$).
-  - Plateaued at **~2.47** validation loss.
-  - Output: Unstructured character noise (`MARI he avayokis erceller thour d...`).
+## 3. Verified stage progression
 
----
+| Stage | Current model | Parameters | Recorded result |
+| --- | --- | ---: | --- |
+| 1 | Character bigram, 65 x 65 table | 4,225 | Final logged validation CE 2.4911; plateau ~2.49 |
+| 2 | 4 layers, width 64, 4 heads, context 64 | 211,777 | Historical Mac log validation CE 1.7154 |
+| 3 | Same model capacity; cluster-oriented trainer | 211,777 | V100 log validation CE 1.7423; local checkpoint ~1.7566 |
+| 4 | 6 layers, width 256, 8 heads, context 256, dropout 0.2 | 4,833,345 | Checkpoint/log validation CE 1.514656 |
+| 5 | 6 layers, width 256, 8 heads, context 256 BPE tokens, tied embeddings | 6,897,152 | Best saved development CE 2.136093 at 98.304M processed positions |
 
-### Stage 2: Introducing Self-Attention (Minimal GPT)
-- **Location:** [`stage_2_gpt_minimal/model.py`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_2_gpt_minimal/model.py)
-- **Core Concept:** Introduces learned token embeddings, learned positional embeddings, causal scaled dot-product self-attention, and multi-layer perceptrons (MLP).
-- **Architecture:**
-  - Embedding width: 64, Layers: 4, Attention heads: 4 (head dimension 16).
-  - Context length ($T$): 64 characters.
-  - Pre-LayerNorm residual blocks:
-    $$x = x + \text{Attention}(\text{LayerNorm}(x))$$
-    $$x = x + \text{FFN}(\text{LayerNorm}(x))$$
-  - Causal masking using lower-triangular matrix (`tril`) with $-\infty$ mask before Softmax.
-- **Parameters:** 211,777.
-- **Results:** Val loss dropped to **1.71** on Mac MPS; model learned genuine English words, character names, and theatrical dialogue format.
+CE means cross-entropy, not accuracy. Do not compare raw character CE on Shakespeare
+with BPE CE on TinyStories, or rank models across these datasets using CE alone.
 
----
+### Stage 1: character bigram
 
-### Stage 3: Cluster-Grade Production Engine
-- **Location:** [`stage_3_gpt_shakespeare/model.py`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_3_gpt_shakespeare/model.py)
-- **Core Concept:** Production-hardening the Stage 2 architecture for PBS batch execution on HPC clusters without altering model capacity.
-- **Engineering Upgrades:**
-  1. *Cosine Annealing LR:* 100-step linear warmup to $3 \times 10^{-4}$, decaying to $3 \times 10^{-5}$.
-  2. *Gradient Clipping:* Norm capped at $1.0$.
-  3. *Weight Decay Splitting:* 0.1 weight decay on 2D matrices (embeddings, linear weights); 0.0 on 1D biases and LayerNorms.
-  4. *Atomic Checkpointing:* Writing to `.pt.tmp` before renaming to `.pt` preventing corrupted files during unexpected termination.
-  5. *PBS Walltime Safety:* Calculates time left and gracefully exits with `latest.pt` 5 minutes prior to job kill.
-  6. *CUDA Event Benchmarking:* Measured real forward/backward/optimizer step latencies.
-- **V100 Benchmark Results:**
-  - Sustained throughput: **65,093 tokens/sec** ($\pm 1.9\%$).
-  - Step latency: Median 31.10 ms, p95 33.82 ms.
-  - Final validation loss: **1.74** (5,000 steps finished in 3.2 minutes).
+Current path: `stage_1_bigram/model.py`; historical name: `bigram.py`.
 
----
+Tiny Shakespeare contains 1,115,394 characters and 65 unique characters. The
+trainable `nn.Embedding(65, 65)` gives next-character logits conditioned on the
+current character only. It has one-character conditioning, with no earlier-history
+context; it is not a fixed table or completely memoryless. Block size 8 groups
+training positions but does not give this model eight-character conditioning.
 
-### Stage 4: Scaled Shakespeare GPT
-- **Location:** [`stage_4_gpt_scaled/model.py`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_4_gpt_scaled/model.py)
-- **Core Concept:** Scale model capacity by $\approx 23\times$ while introducing regularization (dropout) to prevent overfitting on the small Shakespeare corpus.
-- **Architecture Changes:**
-  - Embedding width: $64 \to 256$
-  - Layers: $4 \to 6$
-  - Heads: $4 \to 8$ (head dimension: $256 / 8 = 32$)
-  - Context length ($T$): $64 \to 256$ characters
-  - Dropout: $0.0 \to 0.2$
-- **Parameters:** **4,801,601** parameters.
-- **Results:**
-  - Validation loss reached **~1.49** (significant improvement over Stage 3's 1.74).
-  - Configurable generation: added temperature and top-$k$ sampling. Output produced coherent poetic stanzas with realistic Shakespearean vocabulary.
+Initial CE is approximately 4.73. The uniform baseline is `ln(65) ≈ 4.17`;
+random nonuniform logits need not achieve that baseline. The saved output is largely
+unintelligible character sequences. A complete 3,000-update CPU rerun reproduced
+every saved evaluation line.
 
----
+### Stage 2: small Transformer
 
-### Stage 5: TinyStories, Byte-Level BPE & 100M-Token Training
-- **Location:** [`stage_5_tinystories/`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_5_tinystories)
-- **Motivation:** Transition from Shakespeare character prediction to grammatical English story comprehension and generation using synthetic stories (Eldan & Li, *TinyStories*).
+Current path: `stage_2_gpt_minimal/model.py`; historical name: `gpt.py`.
 
-#### A. Pilot Run (v1) & Post-Mortem Flaw Analysis
-In the initial pilot run (~1,221 steps, ~10M tokens), three severe engineering flaws were uncovered:
-1. *Prompt Degeneration Bug:* In generation, all distinct prompts (`"Once upon a time, a little fox..."`, `"Lily wanted to help..."`, `"Tom put his toy..."`) generated the *exact same text* word-for-word. Root cause: The cluster lacked the `tokenizers` library, causing the script to silently discard prompt strings and fall back to unconditional `[BOS]` generation.
-2. *Story Boundary Leakage:* Stories were stored separated by raw `\n---\n`. Attention windows crossed story boundaries without explicit token demarcations.
-3. *Missed 100M Snapshot:* The loop snapshot condition checked at the top of the step while the token counter updated at the bottom. At step 12,206, the loop exited immediately when hitting 100M, never writing `snapshot_100M.pt`.
+The current architecture has token and learned position embeddings, four causal
+attention heads of dimension 16, and four pre-LayerNorm residual blocks. Each FFN
+is `Linear(64, 256) → ReLU → Linear(256, 64)`, followed by final LayerNorm and a
+character output projection. Batch 32, context 64, dropout 0.0.
 
-#### B. Complete Overhaul (Stage 5 v2)
-1. **Data Pipeline (`pipeline/`):**
-   - [`prepare_data.py`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_5_tinystories/pipeline/prepare_data.py): Converts raw data to structured JSONL records: `{"id": int, "text": str}`. Deduplicated across splits using MD5 content hashing:
-     - Train: 1,792,647 stories
-     - Dev_Val: 10,995 stories
-     - Test: 10,995 stories (held out)
-   - [`train_tokenizer.py`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_5_tinystories/pipeline/train_tokenizer.py): Trains a custom **8,192-vocab Byte-Level BPE** tokenizer with special tokens `<pad>=0`, `<bos>=1`, `<eos>=2`.
-   - [`build_token_shards.py`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_5_tinystories/pipeline/build_token_shards.py): Encodes JSONL into compact `uint16` binary shards with strict `<bos>` prepend and `<eos>` append on every individual story. Total: 386,725,632 train tokens.
-   - [`encode_prompts_mac.py`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_5_tinystories/pipeline/encode_prompts_mac.py): Pre-encodes prompt strings into explicit token ID lists stored in `configs/prompt_ids.json`. Eliminates runtime tokenizer dependency on the HPC cluster.
-2. **Architecture:**
-   - Vocabulary: 8,192 (Byte-Level BPE)
-   - Width: 256, Layers: 6, Heads: 8, Block size: 256
-   - **Weight Tying:** `lm_head.weight = token_embedding_table.weight` (reduces memory and ties input representation with output logit scoring).
-   - Total Parameters: **10,612,736**.
-3. **Training Protocol:**
-   - 12,207 steps $\times$ 32 batch size $\times$ 256 block size $\approx$ **100,000,000 tokens**.
-   - Warmup: 500 steps; Cosine decay: $3 \times 10^{-4} \to 3 \times 10^{-5}$; Weight decay: 0.1; Dropout: 0.2.
-   - Pure-Python BPE decoder embedded directly in model script for dependency-free text generation on clusters.
-   - Suppresses `<pad>` (0) and `<bos>` (1) during generation so the model never hallucinates control tokens.
-4. **Final Results:**
-   - **Validation Cross-Entropy: 2.1361** (Perplexity: **~8.47**) at step 12,000 (~98.3M tokens).
-   - Generates coherent, grammatically correct, multi-paragraph children's stories with consistent characters and narrative resolution.
-   - All 52 unit tests in [`stage_5_tinystories/tests/test_stage5.py`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/stage_5_tinystories/tests/test_stage5.py) pass on CPU/Mac without mocks or fallback models.
+The present Stage 2 and Stage 3 model-class ASTs are identical. The Stage 2 source
+also contains cluster benchmarking/training features; it is not a preserved
+single-head implementation. Earlier versions remain in Git. The historical Mac
+output records CE 1.7154, but that does not prove the later cluster script reproduces
+the same historical trajectory.
 
----
+### Stage 3: cluster training machinery
 
-## 5. Current Clean Repository Directory Structure
+Current paths: `stage_3_gpt_shakespeare/model.py` and `model_gpu_variant.py`.
 
+Model capacity remains 211,777 parameters. Training adds a 100-update LR warmup,
+cosine decay from 3e-4 toward 3e-5, gradient clipping at norm 1.0, and AdamW groups
+with decay 0.1 on 2D weights and 0.0 on 1D parameters. Clipping limits gradient
+norms; it does not guarantee training stability. Main training requires CUDA.
+
+Temporary-file writes followed by `os.replace` reduce exposure to partial checkpoint
+files; they are not a guarantee against all storage failures. Walltime exit logic
+exists but `WALLTIME_MINUTES=None` disables it by default. A configured exit and a
+saved optimizer do not demonstrate restart correctness: no tested resume/RNG path
+is implemented.
+
+Historical V100 report:
+
+| Metric | Reported value |
+| --- | ---: |
+| Mean throughput | 65,093 processed character positions/s |
+| Window range divided by mean | 1.9%; not statistical variance or ±1.9% |
+| CUDA-event latency | Median 31.10 ms; p95 33.82 ms |
+| Peak PyTorch GPU allocated / reserved | 48.0 / 62.0 MiB |
+| Logged tokens at last evaluation | 10,237,952 |
+| Total reported runtime | 195.0 s |
+| Last logged train / validation CE | 1.5695 / 1.7423 |
+
+Benchmarking uses 50 warmup plus five 100-update windows; these are actual training
+updates. The measured loop also synchronizes every step for latency, and scalar
+reads add synchronization. Its throughput describes that instrumented workload,
+not a separate free-running boundaries-only benchmark. The reported checkpoint
+probe saves model state without optimizer state, so it is not full-checkpoint cost.
+Single-step unsynchronized throughput prints are not validated budgets. Allocated
+GPU memory is not total process/device memory or proof that scaling will be cheap.
+
+The locally saved Stage 3 checkpoint records CE approximately 1.7566, not 1.7423.
+The checkpoint and log are unreconciled run evidence; both cannot be asserted to
+represent the same verified best state. The checkpoint loads with the expected shapes.
+
+### Stage 4: scaled Shakespeare model
+
+Current path: `stage_4_gpt_scaled/model.py`.
+
+Width grows from 64 to 256, layers from four to six, heads from four to eight,
+and context from 64 to 256 characters. Dropout becomes 0.2. Parameter count is
+**4,833,345**, about 22.8 times Stage 3. Dropout is regularization, not proof that
+overfitting is prevented.
+
+Both saved Stage 4 checkpoint metadata and the training log support development
+CE **1.5146560669**, not 1.49. The checkpoints record step 4999 and 40,951,808
+processed positions; do not describe `latest.pt` as a verified post-loop final state.
+Temperature/top-k sampling is implemented. Shakespeare-like format and vocabulary
+improve, while semantic coherence still requires qualitative evaluation.
+
+### Stage 5: TinyStories and byte-level BPE
+
+Current model path: `stage_5_tinystories/model.py`; configuration:
+`stage_5_tinystories/configs/stage5.json`.
+
+The source is the original TinyStories text dataset associated with Ronen Eldan
+and Yuanzhi Li's *TinyStories: How Small Can Language Models Be and Still Speak
+Coherent English?* The project's `v2` names the revised local JSONL pipeline; it
+does not establish use of the separate GPT-4-only TinyStories V2 corpus.
+
+**Pilot and correction history:**
+
+- The archived pilot checkpoints record 1,220 completed updates, 9,994,240
+  positions and CE **3.353233**, not ~2.4. The run configured 1,221 updates.
+- Without a tokenizer, the old generation path silently substituted BOS for
+  different prompts. Current saved prompt IDs avoid that dependency and match the
+  tokenizer exactly. The current evaluator rejects missing required prompt data.
+- The old `\n---\n` storage delimiter also occurred inside 22 stories, fragmenting
+  records. JSONL fixes that ambiguity. BOS/EOS existed previously: the flaw was not
+  the complete absence of boundary tokens.
+- A post-loop 100M snapshot check was added, but its configured threshold is still
+  unreachable: 12,207 × 8,192 = **99,999,744**, short of 100M. Snapshot naming and
+  final-state accounting are not fully fixed.
+
+**Prepared data:** normalized case/whitespace fingerprints are used for duplicate
+checks, with official validation data split into development and test sets.
+
+| Split | Stories | Stored token positions |
+| --- | ---: | ---: |
+| Train | 1,792,647 | 386,680,799 |
+| Development | 10,995 | 2,316,856 |
+| Test | 10,995 | 2,315,362 |
+
+The custom byte-level BPE has 8,192 entries, trained on training text only. IDs are
+PAD=0, BOS=1, EOS=2. Each story receives BOS/EOS before encoding into uint16 shards.
+Windows sample concatenated stories and may attend across document boundaries;
+there is no document-isolated attention mask. The loader reads and concatenates
+shards as int64 in host RAM; it is not a memory-mapped loader.
+
+**Model:** six blocks, width 256, eight heads of dimension 32, learned absolute
+positions, context 256 BPE tokens, manual causal attention, ReLU FFN, pre-LayerNorm,
+dropout 0.2 and FP32. `lm_head.weight` shares the token-embedding weights, and the
+output projection is bias-free. Unique parameters: **6,897,152**.
+
+**Training:** batch 32 gives 8,192 processed positions/update. Nominal schedule
+12,207 updates; v2 warmup 500; LR 3e-4 toward 3e-5; AdamW weight decay 0.1;
+gradient clipping 1.0. A pure-Python decoder and pre-encoded prompt IDs support
+cluster generation without Tokenizers. PAD/BOS are suppressed in generated positions;
+EOS can terminate generation.
+
+## 4. Selected checkpoint and exact saved contents
+
+Root `best_model.pt` is byte-identical to `stage_5_tinystories/checkpoints/best.pt`.
+SHA256:
+
+```text
+2c6d16739cdf7128921a9cc0876793067651debc29484602ac2ce51cf86211ce
 ```
+
+| Stage 5 checkpoint | Completed updates | Processed positions | Saved development CE |
+| --- | ---: | ---: | ---: |
+| snapshot_10M.pt | 1,221 | 10,002,432 | 3.164195 |
+| snapshot_25M.pt | 3,052 | 25,001,984 | 2.596292 |
+| snapshot_50M.pt | 6,104 | 50,003,968 | 2.302775 |
+| best.pt | 12,000 | 98,304,000 | 2.136093 |
+| latest.pt | 12,000 | 98,304,000 | 2.136093 |
+| snapshot_100M.pt | 12,000 | 98,304,000 | 2.136093 |
+
+The last three have identical model weights and optimizer update counters. Preserve
+these artifacts, but do not assert that `latest.pt` or `snapshot_100M.pt` contains
+12,207 completed updates or a final 100M-token state. Code repairs cannot recover
+missing historical final weights. The accepted baseline is the honest 98.304M
+state; no retraining is required solely to obtain a round number.
+
+Its saved CE 2.1360926628 corresponds to perplexity ~8.47. Independent CPU
+evaluation gave CE 2.1482 / perplexity 8.57 on a different development sample.
+Outputs contain readable grammar and story fragments, but also repetition, entity
+drift and failures to retain prompt facts. Consistent multi-paragraph coherence,
+reasoning and instruction following have not been established.
+
+Processed positions are sampled with replacement. The 386.7M stored training
+positions do not imply that a 98.3M-position run covered a known unique fraction.
+
+## 5. Repository layout and evidence locations
+
+```text
 NanoGPT/
-├── best_model.pt                      ← Champion Model: Stage 5 best checkpoint (10.6M params, val CE 2.1361)
-├── README.md                          ← Main user documentation & stage overview
-├── LICENSE                            ← MIT License
-├── requirements.txt                   ← Dependencies (torch, numpy, tokenizers)
-├── docs_stage1_to_3.md                ← Mathematical notes & derivations for early stages
-├── input.txt                          ← Tiny Shakespeare corpus (1.1M characters)
-│
-├── stage_1_bigram/
-│   ├── model.py                       ← Static lookup bigram model
-│   └── output/run_output.txt          ← Stage 1 training output
-│
-├── stage_2_gpt_minimal/
-│   ├── model.py                       ← 1-head self-attention GPT
-│   ├── checkpoints/                   ← Directory for Stage 2 saved weights
-│   └── output/run_output.txt          ← Stage 2 training output
-│
-├── stage_3_gpt_shakespeare/
-│   ├── model.py                       ← 4L/64W multi-head Shakespeare GPT + HPC hardening
-│   ├── model_gpu_variant.py           ← Alternative GPU/MPS benchmark configuration
-│   ├── shakespeare_input.txt          ← Self-contained Shakespeare dataset
-│   ├── checkpoints/
-│   │   └── best.pt                    ← Stage 3 best model (~212K params)
-│   └── output/run_output.txt          ← Benchmark results (65K tok/s)
-│
-├── stage_4_gpt_scaled/
-│   ├── model.py                       ← 6L/256W Shakespeare GPT (4.8M parameters)
-│   ├── train_gpu.pbs                  ← PBS submission script for K40/V100
-│   ├── checkpoints/
-│   │   ├── best.pt                    ← Stage 4 best model (val loss ~1.49)
-│   │   └── latest.pt                  ← Final step snapshot
-│   └── output/run_output.txt          ← Scaled run training log
-│
+├── PROJECT_HANDOFF_STAGES_1_TO_5.md
+├── README.md
+├── docs_stage1_to_3.md
+├── requirements.txt                # Only numpy active
+├── input.txt
+├── best_model.pt                   # Selected Stage 5 baseline
+├── stage_1_bigram/                 # model.py; output/run_output.txt
+├── stage_2_gpt_minimal/             # model.py; historical output/run_output.txt
+├── stage_3_gpt_shakespeare/         # model.py, model_gpu_variant.py, corpus, checkpoint, output
+├── stage_4_gpt_scaled/              # model.py, stale train_gpu.pbs, checkpoints, output
 ├── stage_5_tinystories/
-│   ├── model.py                       ← Production 10.6M GPT + 100M token schedule
-│   ├── evaluate.py                    ← Perplexity scoring & fixed-prompt generation
-│   ├── configs/
-│   │   ├── stage5.json                ← Hyperparameter & path configuration
-│   │   └── prompt_ids.json            ← Pre-encoded prompt token IDs
-│   ├── checkpoints/
-│   │   ├── best.pt                    ← Step 12,000 champion weights (val CE 2.1361)
-│   │   ├── latest.pt                  ← Step 12,206 final weights
-│   │   ├── snapshot_10M.pt            ← 10M token training snapshot
-│   │   ├── snapshot_25M.pt            ← 25M token training snapshot
-│   │   ├── snapshot_50M.pt            ← 50M token training snapshot
-│   │   ├── snapshot_100M.pt           ← 100M token training snapshot
-│   │   └── eval_outputs/              ← Generated story evaluation logs
-│   ├── checkpoints_pilot/
-│   │   ├── best.pt                    ← Archived v1 pilot checkpoint
-│   │   ├── latest.pt
-│   │   └── generation_output.txt
-│   ├── pipeline/
-│   │   ├── prepare_data.py            ← Raw text → cleaned JSONL splits
-│   │   ├── train_tokenizer.py         ← BPE tokenizer training script
-│   │   ├── build_token_shards.py      ← JSONL → binary uint16 shards with BOS/EOS
-│   │   └── encode_prompts_mac.py      ← Tokenizer runner for prompt_ids.json
-│   ├── hpc/
-│   │   ├── train.pbs                  ← PBS batch submission script for V100
-│   │   └── logs/                      ← PBS output/error logs
-│   ├── tests/
-│   │   └── test_stage5.py             ← 52-test verification suite (Mac/CPU compatible)
-│   └── output/
-│       └── run_output.txt             ← Stage 5 v2 100M-token training log
-│
+│   ├── model.py
+│   ├── evaluate.py
+│   ├── configs/                    # stage5.json; prompt_ids.json
+│   ├── checkpoints/               # Table above; generation_all_stages.txt; evaluation outputs
+│   ├── checkpoints_pilot/         # Archived v1 pilot
+│   ├── pipeline/                  # prepare_data.py; train_tokenizer.py;
+│   │                             # build_token_shards.py; encode_prompts_mac.py
+│   ├── hpc/train.pbs
+│   ├── tests/test_stage5.py
+│   └── output/run_output.txt       # OLD pilot log, not full v2 run
 └── data/
-    ├── raw/                           ← Raw TinyStories files (git-ignored)
-    ├── tinystories/v2/                ← Cleaned train.jsonl, dev_val.jsonl, test.jsonl
-    ├── tokenizer/v2/                  ← tokenizer.json & vocab_info.json
-    └── shards/v2/                     ← train_*.bin, dev_val_*.bin, manifest.json
+    ├── raw/
+    ├── tinystories/v2/             # JSONL splits and provenance
+    ├── tokenizer/v2/               # tokenizer.json and vocab_info.json
+    └── shards/v2/                  # 41 shards and manifest.json
 ```
 
----
+Model checkpoints, raw/prepared text, shards and PBS logs are ignored by Git and
+must be transferred separately. Tokenizer/configuration files are tracked. The
+best checkpoint metadata and `generation_all_stages.txt` provide later-run evidence;
+`stage_5_tinystories/output/run_output.txt` is not that run's complete training log.
 
-## 6. How to Run & Verify
+## 6. Checks actually executed
 
-### A. Run Unit Tests (Mac / CPU)
-Tests all components (tokenizer roundtrips, shard integrity, weight tying, causal masking, finite gradients, small-batch overfit, prompt distinctness, generation suppression, checkpoint reload, and split isolation):
+The audit used local CPU, not a new cluster run:
+
+1. All **52 production-model Stage 5 tests passed**, with no inline dummy-model fallback.
+2. Evaluator main completed against root `best_model.pt`: CPU, microbatch 4 rather
+   than default 32, 500 development windows × 256 positions, all three prompts and
+   all nine generation settings. Outputs went to a temporary directory.
+3. Full Stage 1 3,000-update rerun reproduced all saved evaluation lines.
+4. Stage 2–4 actual model definitions passed parameter-count, CE, causal masking,
+   reference-attention and finite-gradient checks; available checkpoints loaded strictly.
+5. Full JSONL counts, tokenizer and all 41 shard hashes/ranges/lengths passed;
+   BOS/EOS counts matched story counts. Saved prompt IDs matched tokenizer encoding.
+6. Full normalized cross-split fingerprint checks found no overlap. This is not a
+   near-duplicate guarantee. The test split was inspected for integrity, not scored
+   for model selection.
+7. Ten Python files parsed with Python 3.7 grammar; two failed. Syntax parsing
+   alone is not an execution test under IITD's legacy PyTorch build.
+
+No new HPC training, PBS execution, CUDA throughput validation or final-test-set
+model scoring was performed. Passing the model suite does not verify all entry points.
+
+## 7. Current commands and unresolved implementation gaps
+
+From the repository root, with dependencies and artifacts already available:
+
 ```bash
-cd NanoGPT
 python3 stage_5_tinystories/tests/test_stage5.py
-```
-*(Expected: 52 passed, 0 failed)*
-
-### B. Evaluate Checkpoints
-```bash
-# Evaluate champion model at root:
-python3 stage_5_tinystories/evaluate.py --checkpoint best_model.pt
-
-# Evaluate Stage 5 best checkpoint:
-python3 stage_5_tinystories/evaluate.py --checkpoint stage_5_tinystories/checkpoints/best.pt
-```
-
-### C. Run Shakespeare Models Locally
-```bash
-# Stage 1:
+python3 stage_5_tinystories/evaluate.py --checkpoint best_model.pt --split dev_val --n_chunks 500
 python3 stage_1_bigram/model.py
-
-# Stage 3:
-python3 stage_3_gpt_shakespeare/model.py
 ```
 
-### D. Submit Stage 5 Training to HPC Cluster
-```bash
-# On IIT Delhi cluster node:
-qsub stage_5_tinystories/hpc/train.pbs
-```
+The evaluator selects CUDA/MPS/CPU automatically, uses default microbatch 32, and
+saves generated stories in the Stage 5 evaluation-output directory. The CPU audit
+overrides above are not CLI options. Stage 3's main training entry point requires
+CUDA and is not a Mac/CPU quickstart.
 
----
+**Preparation paths currently fail after reorganization:**
 
-## 7. Next Potential Improvements (Ideas for Future Chats)
+- `pipeline/train_tokenizer.py`: `_root` used before definition; even `--help` fails.
+- `pipeline/build_token_shards.py`: path helper interrupts a try/except; `IndentationError`.
+- `pipeline/encode_prompts_mac.py`: misplaced helper; `SyntaxError`, plus early `_root` use.
 
-When starting future conversations, you can use this document as your baseline and explore:
-1. **Architectural Enhancements (Modern LLM Standard):**
-   - Rotary Position Embeddings (RoPE) replacing absolute learned embeddings.
-   - SwiGLU activations replacing ReLU in the FFN.
-   - RMSNorm replacing standard LayerNorm.
-   - KV Caching (`past_key_values`) for fast $O(1)$ token-by-token autoregressive inference.
-2. **Model Scaling (Stage 6):**
-   - Scaling up to 30M – 80M parameters (e.g., width 512, layers 8–12).
-   - FlashAttention integration (`torch.nn.functional.scaled_dot_product_attention`).
-   - Mixed-precision training (FP16 / BF16 with gradient scaler).
-3. **Data Scaling & Blending:**
-   - Expanding from TinyStories to larger corpora (e.g., OpenWebText or FineWeb-Edu subsets).
-   - Instruction Fine-Tuning (SFT) on prompt-completion story instructions.
+These are source regressions, not evidence that the audited pre-existing artifacts
+are corrupt. Do not present the preparation sequence as runnable until repaired.
+
+**Training and cluster gaps:**
+
+- No explicit resume path or saved/restored RNG/sampler state. A stored optimizer
+  is not evidence of uninterrupted-versus-resumed equivalence, especially with dropout.
+- Evaluation and snapshot generation consume/reset the shared training RNG.
+- Final checkpoint code mixes step indices with completed-update counts and
+  passes best validation loss as latest-state loss. The 100M threshold misses the
+  configured schedule as described above.
+- Walltime safety is disabled by default and needs coverage of startup,
+  evaluation, generation and checkpoint overhead. A checkpoint on exit has not
+  been demonstrated as a correct resumable walltime workflow.
+- Stage 4's `train_gpu.pbs` activates outdated Conda and calls removed root `gpt.py`.
+- Stage 5's PBS uses the correct module and new model path, but its requested
+  root `logs/` output differs from the created `hpc/logs/` directory. Confirm path
+  handling and PBS variable expansion on the cluster before submission.
+- Current per-step-synchronized throughput and model-only save probes cannot
+  establish free-running throughput or full resumable-checkpoint overhead.
+
+Documentation changes record these gaps; they do not implement the repairs.
+
+## 8. Git history and continuation direction
+
+| Commit | Project milestone |
+| --- | --- |
+| 4e730fc | Initial bigram |
+| b0546f0, 36e12ea | Small Transformer and updates |
+| 248a37d | Cluster benchmark/PBS work and V100 output |
+| 6dbfef8, f4dc45a | Early stage-name renames |
+| ceeb37a | Stage 4–5 scripts, pipeline, tests and results |
+| d89b411 | Stage-directory reorganization; introduced preparation startup regressions |
+| 0d5094e | Original comprehensive handoff, subsequently corrected |
+
+Next bounded implementation work: repair preparation startup, checkpoint/resume
+accounting, RNG isolation and cluster run paths. Then compare the current Stage 5
+baseline against a measured continuation experiment using fixed development prompts,
+multiple seeds, prompt-memory checks and an explicit LR/compute budget. Do not
+enlarge the model just to mask provenance errors or treat old throughput as a
+validated budget for a new configuration.
+
+Later goals remain broader pretraining, narrow SFT, preference learning,
+reasoning/tools/agents, pruning, quantization and distillation, gated by evaluation
+and measured compute. RoPE, SwiGLU, RMSNorm or larger models are optional experiments,
+not established improvements here. KV caching avoids recomputing old keys/values;
+attention over a growing history still costs work, so per-token decoding is not
+O(1) in history length. No fixed speedup, runtime or future validation score is promised.

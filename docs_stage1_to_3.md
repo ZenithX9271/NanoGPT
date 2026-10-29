@@ -1,111 +1,160 @@
-# NanoGPT: Start to Stage-3 (Project Master Summary)
+# NanoGPT: Stages 1–3 — Architecture and Historical Results
 
-## 📌 1. Repository & Infrastructure Overview
-- **GitHub Repository:** `git@github.com:ZenithX9271/NanoGPT.git` (Branch: `main`)
-- **Dataset:** Tiny Shakespeare (`input.txt`) — 1,115,394 characters
-- **Vocabulary:** Character-level tokenization with **65 unique characters** (`\n`, space, symbols, digits, lowercase `a-z`, uppercase `A-Z`).
-- **Hardware Targets:**
-  1. Local Development: Apple Silicon Mac (`mps` GPU backend)
-  2. Production Training: IIT Delhi HPC Cluster (`vsky009`, NVIDIA Tesla V100 32GB GPU via PBS scheduler)
+Corrected against current source, saved logs and checkpoint metadata on
+**29 October 2026**. These notes retain the early-stage derivations; Stages 4–5
+have already been implemented and are covered in the main handoff and README.
 
----
+## 1. Repository, data and history
 
-## 🏛️ 2. Architectural Progression Overview
+- GitHub: `git@github.com:ZenithX9271/NanoGPT.git`, branch `main`.
+- Tiny Shakespeare: `input.txt`, 1,115,394 characters, 65 unique characters.
+- Tokenization: character-to-integer encoding and inverse decoding.
+- Historical local runs used Apple Silicon/MPS. Cluster runs used IIT Delhi GPUs,
+  including K40 and V100; the reported Stage 3 benchmark is from a V100-PCIE-32GB.
+- The present Stage 2 and Stage 3 model classes are identical; Stage 2's current
+  script also includes cluster training machinery. Historical output is retained,
+  but the directory name does not mean it contains a single-head minimal model.
 
+| Stage | Current source | Historical filename | Parameters |
+| --- | --- | --- | ---: |
+| 1 | stage_1_bigram/model.py | bigram.py | 4,225 |
+| 2 | stage_2_gpt_minimal/model.py | gpt.py | 211,777 |
+| 3 | stage_3_gpt_shakespeare/model.py | 3rd_stage_gpt.py | 211,777 |
+
+Earlier versions remain in Git history. The current Stage 3 training entry point
+requires CUDA; it is not directly runnable as a Mac/CPU training command.
+
+## 2. Stage 1: character bigram
+
+```python
+self.token_embedding_table = nn.Embedding(vocab_size, vocab_size)  # 65 x 65
 ```
-STAGE 1: Bigram Model           STAGE 2: Full Transformer (GPT)          STAGE 3: Cluster-Grade Engine
-  [bigram.py]                     [gpt.py]                                 [3rd_stage_gpt.py]
-  • Static 65x65 lookup table     • Positional + Token Embeddings          • Warmup + Cosine Decay LR
-  • 0 context memory              • Causal Self-Attention (Q, K, V)        • Gradient Clipping + Weight Decay
-  • 4,225 params                  • Multi-Head Attention (4 heads)         • PBS Walltime & Atomic Checkpoints
-  • Val Loss: ~2.47 (Plateau)     • 4-Block Residuals + LayerNorm          • CUDA Event Benchmarking
-                                  • 211,777 params                         • V100 GPU Run: 65,093 tok/s
-                                  • Val Loss: 1.71 on Mac MPS              • Val Loss: 1.74 (3.2 min runtime)
+
+This is a trainable table of next-character logits conditioned on the current
+character. It has one-character conditioning and no earlier-history context.
+Batching eight positions together does not make predictions depend on an
+eight-character prefix. Parameters: `65 × 65 = 4,225`.
+
+Initial CE is approximately 4.73, whereas a uniform predictor has CE
+`-ln(1/65) ≈ 4.17`. Random nonuniform logits need not equal the uniform baseline.
+The final logged validation CE is **2.4911**, with a plateau around **2.49**.
+It learns local character transitions but cannot model longer dependencies;
+generation remains mostly unintelligible.
+
+A full 3,000-update CPU rerun reproduced every saved evaluation line during the
+audit. This verifies the preserved bigram result, not Transformer training on HPC.
+
+## 3. Stage 2: causal Transformer
+
+Configuration: batch 32, context 64 characters, width 64, four heads, four blocks,
+dropout 0.0. Unique parameters: **211,777**. The historical Mac output ends at
+validation CE **1.7154**; the later current cluster script has not been shown to
+reproduce the same historical trajectory.
+
+### Token and position embeddings
+
+```python
+tok_emb = self.token_embedding_table(idx)  # (B, T, 64)
+pos_emb = self.position_embedding_table(torch.arange(T, device=device))  # (T, 64)
+x = tok_emb + pos_emb
 ```
 
----
+The position vectors are learned absolute embeddings, not rotary embeddings.
 
-## 🔬 3. Stage-by-Stage Deep Dive
+### Causal attention
 
-### Stage 1: Bigram Baseline (`bigram.py`)
-- **Concept:** Simplest possible language model. It predicts the next character purely based on the current character.
-- **Model Definition:**
-  ```python
-  self.token_embedding_table = nn.Embedding(vocab_size, vocab_size) # (65, 65)
-  ```
-- **Context Window ($T$):** 8 tokens (though mathematically unused by the model).
-- **Parameters:** 4,225
-- **Training Progression:**
-  - Starts at loss **4.73** (near theoretical random uniform baseline: $-\ln(1/65) \approx 4.17$).
-  - Plateaued at **~2.47** because English letter transitions cannot be predicted with zero memory of previous letters.
-- **Generated Output:** Incoherent character soup with basic punctuation (`MARI he avayokis erceller thour d...`).
-
----
-
-### Stage 2: Introducing Self-Attention & Transformers (`gpt.py`)
-- **Concept:** Replaces blind lookup with **learned, data-dependent inter-token communication** across a 64-character context window.
-- **Key Modules Implemented:**
-  1. **Token + Positional Embeddings:**
-     ```python
-     tok_emb = self.token_embedding_table(idx)             # (B, T, n_embd)
-     pos_emb = self.position_embedding_table(torch.arange(T, device=device)) # (T, n_embd)
-     x = tok_emb + pos_emb                                 # (B, T, n_embd)
-     ```
-  2. **Causal Self-Attention (`Head`):**
-     - Three linear weight matrices: $W_Q, W_K, W_V$ (each shape: `n_embd x head_size`).
-     - Scaled dot-product: $\text{wei} = (Q \cdot K^T) / \sqrt{d_k}$.
-     - Causal masking: Future positions filled with $-\infty$ using `torch.tril`, then normalized with `F.softmax`.
-     - Value aggregation: $\text{out} = \text{wei} \cdot V$.
-  3. **Multi-Head Attention (`MultiHeadAttention`):**
-     - 4 parallel heads running on slices of 16 dimensions (`head_size = 64 // 4 = 16`).
-     - Concatenated side-by-side: $4 \times 16 = 64$ dimensions.
-     - Blended together via linear projection matrix $W_{\text{proj}}$.
-  4. **Feed-Forward Network (`FeedForward`):**
-     - Per-token MLP: $\text{Linear}(64 \to 256) \to \text{ReLU} \to \text{Linear}(256 \to 64)$.
-  5. **Pre-LayerNorm & Residual Stream:**
-     - $x = x + \text{Attention}(\text{LayerNorm}(x))$
-     - $x = x + \text{MLP}(\text{LayerNorm}(x))$
-  6. **Stacked Architecture:** 4 sequential blocks $\to$ final LayerNorm $\to$ `lm_head` linear layer $(64 \to 65)$.
-- **Configuration (Small Baseline):**
-  - `batch_size = 32`, `block_size = 64`, `n_embd = 64`, `n_head = 4`, `n_layer = 4`, `dropout = 0.0`.
-  - **Parameters:** 211,777.
-  - **Mac MPS Output:** Val loss dropped to **1.71**, producing real words and structured play dialogue.
-
----
-
-### Stage 3: Cluster-Grade Production Engine (`3rd_stage_gpt.py` & `train_gpu.pbs`)
-- **Concept:** Production hardening for high-performance computing (HPC) clusters (IIT Delhi PBS workload manager).
-- **HPC Upgrades Implemented:**
-  1. **Strict Hardware Assertion:** Fails loudly if CUDA is missing, preventing accidental CPU execution on allocated GPU nodes.
-  2. **Learning Rate Schedule (`get_lr`):** 100-step linear warmup followed by smooth cosine decay down to `min_lr = 3e-5`.
-  3. **Gradient Clipping:** `torch.nn.utils.clip_grad_norm_(1.0)` to eliminate exploding gradients.
-  4. **Weight Decay Grouping:** 0.1 weight decay on 2D parameter tensors (weights, embeddings); 0.0 on 1D tensors (biases, LayerNorm).
-  5. **PBS Walltime Margin:** Detects remaining walltime and automatically saves `latest.pt` 5 minutes before PBS issues `SIGKILL`.
-  6. **Atomic Checkpointing:** Writes to `.pt.tmp` then renames to `.pt` (`latest.pt` and `best.pt`) to prevent file corruption.
-  7. **Dual-Path Benchmarking:**
-     - Windowed wall-clock timing with CUDA sync at boundaries (measures sustained real-world throughput).
-     - Per-step CUDA event timing (measures precise latency percentiles: median, p95).
-
----
-
-## 📊 4. IIT Delhi HPC Tesla V100 Benchmark Results
+Each head projects the full 64-dimensional input into query, key and value vectors
+of dimension 16. The heads do not simply partition the input into fixed slices.
 
 ```text
-==============================================================
-  BENCHMARK & TRAINING REPORT (vsky009 - Tesla V100-PCIE-32GB)
-==============================================================
-  PyTorch:            1.10.0a0+git36449ea | CUDA 11.0
-  Model Parameters:   211,777 (209,024 decay | 2,753 no-decay)
-  Throughput (mean):  65,093 tokens/second (variance 1.9%)
-  Step Latency:       Median: 31.10 ms | p95: 33.82 ms
-  Peak VRAM Used:     Allocated: 48.0 MiB | Reserved: 62.0 MiB (<0.2% of 32GB!)
-  Total Tokens:       10,237,952 tokens
-  Total Runtime:      195.0s (3.2 minutes)
-  Final Loss:         Train: 1.5695 | Validation: 1.7423
-==============================================================
+scores = (Q @ K.transpose(-2, -1)) / sqrt(16)
+scores[future_positions] = -infinity
+weights = softmax(scores, dim=-1)
+out = weights @ V
 ```
 
-### Sample Output from Stage 3 Model:
+A lower-triangular mask allows a position to attend to itself and earlier tokens.
+Four independently learned head outputs concatenate into 64 dimensions, followed
+by a learned output projection.
+
+### Feed-forward and residual blocks
+
+Each position uses an FFN:
+
+```text
+Linear(64, 256) → ReLU → Linear(256, 64)
+```
+
+Each of four blocks computes:
+
+```text
+x = x + Attention(LayerNorm(x))
+x = x + FFN(LayerNorm(x))
+```
+
+A final LayerNorm and `Linear(64, 65)` produce character logits. Historical samples
+show improved words, punctuation and dialogue format; reliable semantic coherence
+has not been established.
+
+## 4. Stage 3: cluster-oriented training machinery
+
+The model has the same capacity as Stage 2. Training support includes:
+
+1. CUDA-required startup to detect missing GPU allocation.
+2. A 100-update linear LR warmup toward 3e-4, then cosine decay toward 3e-5.
+3. Gradient clipping at norm 1.0, limiting norms rather than guaranteeing stability.
+4. AdamW decay 0.1 on 2D weights/embeddings and 0.0 on 1D biases/LayerNorm parameters.
+5. Checkpoint writes through temporary files and `os.replace`, reducing partial-file
+   exposure rather than guaranteeing protection from every storage failure.
+6. Configurable walltime exits; **disabled by default** (`WALLTIME_MINUTES=None`).
+7. CUDA-event latency and window wall-clock timing of actual training updates.
+
+These features do not constitute a fully validated production/resume engine.
+There is no implemented and tested restart path restoring optimizer and RNG/sampler
+state. Stored optimizer state alone does not prove resumability. Evaluation uses
+the shared RNG, and final-update/checkpoint accounting still needs repair.
+
+## 5. Historical V100 benchmark: what it does and does not establish
+
+Reported environment: Python 3.7.9, IITD PyTorch 1.10.0a0+git36449ea, CUDA 11.0,
+Tesla V100-PCIE-32GB. Historical module setup:
+
+```bash
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
+```
+
+| Reported metric | Value |
+| --- | ---: |
+| Model parameters | 211,777; 209,024 decay / 2,753 no-decay |
+| Warmup and timed updates | 50 + 5 × 100 |
+| Mean throughput | 65,093 processed positions/s |
+| Min / max window throughput | 64,285 / 65,505 positions/s |
+| Range divided by mean | 1.9%, not statistical variance or ±1.9% |
+| Step median / p95 | 31.10 / 33.82 ms |
+| Peak PyTorch GPU allocated / reserved | 48.0 / 62.0 MiB |
+| Logged tokens at last evaluation | 10,237,952 |
+| Total reported runtime | 195.0 s |
+| Last logged train / validation CE | 1.5695 / 1.7423 |
+
+The wall-clock windows include per-step CUDA synchronization used to read latency
+events. Scalar reads add synchronization too. Consequently this is throughput of
+an instrumented training loop, not an independent boundaries-only throughput test.
+The benchmark's model-only save probe does not measure full optimizer-bearing
+checkpoint overhead. Single-step unsynchronized prints are approximate indicators.
+These historical figures have not been remeasured on HPC by the local audit.
+
+PyTorch allocated memory excludes other GPU process/runtime overhead. Low allocated
+memory is not proof that a proposed larger model or token budget is affordable.
+New configurations need their own measured benchmark and evaluation/save overhead.
+
+The saved Stage 3 checkpoint reports validation CE **approximately 1.7566**, while
+the historical log reports **1.7423**. Both load/log evidence exist, but they have
+not been reconciled to the same run. Do not describe the checkpoint as verified
+to achieve the log's score.
+
+Historical generated sample:
+
 ```text
 Clown:
 Stridl'd and is not the acter bure up:
@@ -116,48 +165,39 @@ MEXENIO:
 I away, my fears, to zorn heaow,
 From find you vail; I long egrivel:
 In cintlatiHer drove to her in preace.
-
-WARWICK:
-Nand tear.
-How my no my speak; and thew you lord.
-I came at is I will
-the the call leong-not what evils, when, bout wasches,
-We stoong of his but than nonrupted so;
-Ange the flown yould of while Prive my of.
 ```
 
----
+This demonstrates learned theatrical structure while showing substantial spelling
+and semantic errors.
 
-## 🎯 5. Roadmap for the Next Session (Stage 4 & Beyond)
+## 6. What was actually verified locally
 
-With 32 GB of VRAM on the Tesla V100 and only 48 MiB currently used, the next steps are:
+The audit used CPU with Python 3.9.6/PyTorch 2.8.0. It reproduced Stage 1's entire
+run and checked Stage 2–4 actual model definitions for parameter counts, CE,
+causality, reference-attention equivalence, finite gradients and available strict
+checkpoint loading. Definitions were exercised without launching CUDA-only main
+training loops. No new cluster throughput, PBS execution or exact training-resume
+equivalence was demonstrated.
 
-1. **Scale to Full GPT Architecture (~10.7M Parameters):**
-   - Activate the full config in `gpt.py`:
-     ```python
-     batch_size    = 64     # 2x batch
-     block_size    = 256    # 4x context window
-     max_iters     = 5000
-     n_embd        = 384    # 6x embedding dimension
-     n_head        = 6      # 6 attention heads
-     n_layer       = 6      # 6 transformer blocks
-     dropout       = 0.2    # regularization
-     ```
-   - Target Val Loss: $\approx \mathbf{1.48}$ (much higher coherence and grammar).
-   - Expected runtime on V100: ~12 to 15 minutes.
+## 7. Subsequent implemented stages and future work
 
-2. **PyTorch Native FlashAttention:**
-   - Replace manual `q @ k.T` and `tril` masking with:
-     ```python
-     out = F.scaled_dot_product_attention(q, k, v, is_causal=True, dropout_p=dropout if self.training else 0.0)
-     ```
-   - Avoids materializing the $O(T^2)$ attention matrix in VRAM, giving a 2–3× speedup.
+Stage 4 already uses **six layers, width 256, eight heads, context 256 characters**
+and dropout 0.2: **4,833,345 parameters**, saved CE **1.514656**. The previously
+proposed width-384 model, 12–15-minute runtime and target CE 1.48 were speculative,
+not the implemented configuration or measured result.
 
-3. **Mixed Precision Training (AMP):**
-   - Wrap forward pass in `torch.cuda.amp.autocast(dtype=torch.float16)` using `GradScaler()` for Tensor Core acceleration.
+Stage 5 already uses TinyStories, an 8,192-token BPE and tied embeddings:
+**6,897,152 parameters**, best saved development CE **2.136093** after **98.304M**
+processed BPE positions. The handoff documents checkpoint names, pipeline startup
+failures and the continuation work still needed.
 
-4. **Pre-tokenized Binary Shards:**
-   - Pre-tokenize `input.txt` to `train.bin` and `val.bin` using `numpy.memmap` (eliminates CPU data-loader overhead).
+Keep FP32/manual attention on the existing legacy cluster stack. PyTorch 1.10 does
+not provide `F.scaled_dot_product_attention` or `torch.compile`. Any future SDPA or
+FlashAttention backend, mixed precision, memory mapping, DDP, architectural changes
+or KV cache is an optional experiment requiring its own implementation and validation.
+There is no established 2–3× speedup here. KV caching avoids recomputing prior
+keys/values but attention cost still grows with the retained history.
 
-5. **Multi-GPU Distributed Data Parallel (DDP):**
-   - Scale training across multiple cluster GPUs using `torchrun --nproc_per_node=N`.
+Further training and model scaling require quality evaluation and a budget based
+on measured processed positions/s for that configuration, including evaluation and
+checkpoint overhead. Raw CE across character/BPE tokenizers is not directly comparable.
