@@ -7,9 +7,17 @@ purely based on the current character. No memory, no context.
 This is our baseline before we build the full Transformer.
 """
 
+import os
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+
+# ── Project root ──────────────────────────────────────────────────────────────
+_HERE      = os.path.dirname(os.path.abspath(__file__))
+_PROJ_ROOT = os.path.dirname(_HERE)
+
+def _root(*parts):
+    return os.path.join(_PROJ_ROOT, *parts)
 
 # ── Reproducibility ──────────────────────────────────────────────────────────
 torch.manual_seed(1337)
@@ -26,7 +34,9 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f"Using device: {device}")
 
 # ── Dataset ───────────────────────────────────────────────────────────────────
-with open('input.txt', 'r', encoding='utf-8') as f:
+_local_input = os.path.join(_HERE, 'shakespeare_input.txt')
+_input_path  = _local_input if os.path.exists(_local_input) else ('input.txt' if os.path.exists('input.txt') else _root('input.txt'))
+with open(_input_path, 'r', encoding='utf-8') as f:
     text = f.read()
 
 print(f"Dataset: {len(text):,} characters")

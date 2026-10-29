@@ -28,8 +28,8 @@ SPECIAL_TOKENS = ["<pad>", "<bos>", "<eos>"]
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
 parser = argparse.ArgumentParser()
-parser.add_argument("--data-dir",  default=os.path.join("data", "tinystories", "v2"))
-parser.add_argument("--out-dir",   default=os.path.join("data", "tokenizer", "v2"))
+parser.add_argument("--data-dir",  default=_root("data", "tinystories", "v2"))
+parser.add_argument("--out-dir",   default=_root("data", "tokenizer", "v2"))
 args, _ = parser.parse_known_args()
 
 TRAIN_JSONL = os.path.join(args.data_dir, "train.jsonl")
@@ -162,6 +162,16 @@ def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     tokenizer.save(TOK_OUT)
     from tokenizers import Tokenizer as _T2
+
+# ── Project root ──────────────────────────────────────────────────────────────
+_HERE      = os.path.dirname(os.path.abspath(__file__))
+_STAGE_DIR = os.path.dirname(_HERE)          # stage_5_tinystories/
+_PROJ_ROOT = os.path.dirname(_STAGE_DIR)     # NanoGPT/
+
+def _root(*parts):
+    """Join path parts relative to the project root."""
+    return os.path.join(_PROJ_ROOT, *parts)
+
     t2 = _T2.from_file(TOK_OUT)
     sample = "Once upon a time, in a land far away, there lived a brave knight."
     assert tokenizer.encode(sample).ids == t2.encode(sample).ids, \

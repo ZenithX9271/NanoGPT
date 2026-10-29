@@ -1,98 +1,164 @@
-# NanoGPT — From Zero to Hero
+# NanoGPT — Shashank's Language Model Training Journey
 
-> Following **Andrej Karpathy's** [Let's build GPT: from scratch, in code, spelled out](https://www.youtube.com/watch?v=kCc8FmEb1nY) — Video 7 of the *Neural Networks: Zero to Hero* playlist.
-
----
-
-## 🗺️ Roadmap
-
-We build the model **incrementally**, exactly as taught in the video:
-
-| Phase | File | Description |
-|-------|------|-------------|
-| 1 | `bigram.py` | Bigram Language Model — baseline, no context |
-| 2 | `gpt.py` | Self-Attention → Multi-Head → FFN → Residuals → LayerNorm → Full GPT |
+A from-scratch implementation of GPT-style language models, following Karpathy's
+course and progressively scaling up. Each stage is self-contained and builds on
+the previous one.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 NanoGPT/
-├── input.txt        # Tiny Shakespeare dataset (~1.1MB)
-├── bigram.py        # Phase 1: Bigram baseline
-├── gpt.py           # Phase 2–6: Full NanoGPT transformer
-├── requirements.txt
-└── README.md
+│
+├── best_model.pt                 ← Champion model: Stage 5 best checkpoint (10.6M params, val CE 2.1361)
+│
+├── stage_1_bigram/               ← Stage 1: Bigram character model
+│   ├── model.py                  #   Baseline: predict next char from current char only
+│   └── output/run_output.txt     #   Training log
+│
+├── stage_2_gpt_minimal/          ← Stage 2: First Transformer
+│   ├── model.py                  #   Single self-attention head, small MLP
+│   └── output/run_output.txt     #   Training log
+│
+├── stage_3_gpt_shakespeare/      ← Stage 3: Multi-head GPT on Shakespeare
+│   ├── model.py                  #   4 layers, width 64, 4 heads, ctx 64, ~212K params
+│   ├── model_gpu_variant.py      #   GPU-adapted version (K40 benchmark)
+│   ├── shakespeare_input.txt     #   Training corpus (tiny Shakespeare)
+│   ├── checkpoints/              #   Stage 3 model checkpoints
+│   │   └── best.pt               #   Best Stage 3 checkpoint (~212K params)
+│   └── output/run_output.txt     #   Training log + benchmark results
+│
+├── stage_4_gpt_scaled/           ← Stage 4: Scaled-up Shakespeare GPT
+│   ├── model.py                  #   6 layers, width 256, 8 heads, ctx 256, ~4.8M params
+│   ├── train_gpu.pbs             #   PBS job script (IITD HPC, K40)
+│   ├── checkpoints/              #   Stage 4 model checkpoints
+│   │   ├── best.pt               #   Best Stage 4 checkpoint (~4.8M params, val loss ~1.49)
+│   │   └── latest.pt             #   Final step snapshot
+│   └── output/run_output.txt     #   Training log + generation samples
+│
+├── stage_5_tinystories/          ← Stage 5: BPE + TinyStories (100M tokens)
+│   ├── model.py                  #   Same 6L/256W architecture, 8192-vocab BPE tokenizer
+│   ├── evaluate.py               #   Perplexity + generation evaluation script
+│   ├── configs/
+│   │   ├── stage5.json           #   All hyperparameters in one place
+│   │   └── prompt_ids.json       #   Pre-encoded prompt token IDs (Mac → HPC)
+│   ├── checkpoints/              #   Stage 5 v2 checkpoints & training snapshots
+│   │   ├── best.pt               #   Best checkpoint (step 12,000, val CE 2.1361)
+│   │   ├── latest.pt             #   Final step 12,206 snapshot
+│   │   ├── snapshot_10M.pt       #   10M tokens snapshot
+│   │   ├── snapshot_25M.pt       #   25M tokens snapshot
+│   │   ├── snapshot_50M.pt       #   50M tokens snapshot
+│   │   ├── snapshot_100M.pt      #   100M tokens snapshot
+│   │   └── eval_outputs/         #   Evaluated stories output folder
+│   ├── checkpoints_pilot/        #   Stage 5 v1 pilot run archives (preserved)
+│   │   ├── best.pt
+│   │   └── latest.pt
+│   ├── pipeline/                 #   One-time data preparation (run on Mac)
+│   │   ├── prepare_data.py       #   Download TinyStories → clean JSONL records
+│   │   ├── train_tokenizer.py    #   Train 8192-token byte-level BPE tokenizer
+│   │   ├── build_token_shards.py #   Encode stories → uint16 binary shards
+│   │   └── encode_prompts_mac.py #   Pre-encode prompts (saves configs/prompt_ids.json)
+│   ├── hpc/                      #   HPC job scripts and logs
+│   │   ├── train.pbs             #   PBS job script (IITD HPC, V100)
+│   │   └── logs/                 #   PBS stdout/stderr logs from HPC runs
+│   ├── tests/
+│   │   └── test_stage5.py        #   52-check test suite (runs on Mac/CPU)
+│   └── output/
+│       └── run_output.txt        #   Training log from the 100M-token HPC run
+│
+├── data/                         ← Shared datasets and tokenizer artifacts
+│   ├── raw/                      #   Raw TinyStories .txt files (download separately)
+│   ├── tinystories/v2/           #   Cleaned JSONL splits (train / dev_val / test)
+│   ├── tokenizer/v2/             #   Trained BPE tokenizer (tokenizer.json)
+│   └── shards/v2/                #   Binary token shards (train_*.bin, manifest.json)
+│
+├── input.txt                     ← Tiny Shakespeare dataset for local Stages 1–4 runs
+├── docs_stage1_to_3.md           ← Notes and derivations for Stages 1–3
+├── requirements.txt              ← Python dependencies
+└── LICENSE
 ```
 
 ---
 
-## 🧠 Key Concepts (per Phase)
+## Stages at a Glance
 
-### Phase 1 — Bigram Model
-- **Tokenisation**: character-level (65 unique chars in Shakespeare)
-- **Embedding table**: shape `(vocab_size, vocab_size)` — row `i` = logits for next token after `i`
-- **No context**: each prediction depends only on the *current* token
-- **Loss**: cross-entropy. At init, expected loss ≈ `ln(65)` ≈ **4.17**
+| Stage | Model | Params | Dataset | Key idea | Checkpoints |
+|-------|-------|--------|---------|----------|-------------|
+| 1 | Bigram | ~100 | Shakespeare | Predict next token from current char only | — |
+| 2 | 1-head GPT | ~10K | Shakespeare | First self-attention, small MLP | — |
+| 3 | 4L/64W GPT | 212K | Shakespeare | Multi-head, residuals, LayerNorm | `stage_3_gpt_shakespeare/checkpoints/` |
+| 4 | 6L/256W GPT | 4.8M | Shakespeare | Larger capacity, dropout, longer ctx | `stage_4_gpt_scaled/checkpoints/` |
+| 5 | 6L/256W GPT | 10.6M | TinyStories (100M tokens) | BPE tokenizer, structured data pipeline | `stage_5_tinystories/checkpoints/` |
 
-### Phase 2 — Self-Attention (the core idea)
-- Tokens **communicate** with each other via Query, Key, Value projections
-- Attention scores: `wei = Q @ K.T / sqrt(head_size)`
-- **Causal masking**: future tokens are masked out (decoder-only)
-- `V` (Value) = the actual information aggregated, weighted by attention scores
-
-### Phase 3 — Multi-Head Attention
-- Run `n_heads` attention heads in **parallel**, each with smaller `head_size`
-- Concatenate outputs → project back to `n_embd`
-- Gives the model multiple "communication channels"
-
-### Phase 4 — Feed-Forward Network
-- Applied **per-token**, independently: `FFN(x) = Linear → ReLU → Linear`
-- Expands dimension by 4× internally (as in the original Transformer paper)
-- Lets tokens "think" after communicating via attention
-
-### Phase 5 — Residual Connections + Layer Norm
-- **Residual**: `x = x + sublayer(x)` — allows gradients to flow directly
-- **LayerNorm**: normalises across the embedding dimension (not batch)
-- Applied *before* the sublayer (Pre-LN, slight deviation from original paper — common in practice)
-
-### Phase 6 — Full Transformer (NanoGPT)
-- Stack `n_layer` blocks, each = `MultiHeadAttention + FFN` with residuals
-- Add `Dropout` for regularisation
-- Train on Shakespeare, generate infinite Shakespeare! 🎭
+**Champion model:** [`best_model.pt`](file:///Users/shash/Library/CloudStorage/OneDrive-IITDelhi/Currently%20Doing/NanoGPT/best_model.pt) at the project root is the overall best model across all stages (Stage 5 v2 at step 12,000, 100M tokens seen, val CE 2.1361, ~8.47 perplexity).
 
 ---
 
-## 🚀 Quick Start
+## Quickstart
 
+### Run Stage 3 (Mac / CPU)
 ```bash
-# Install dependencies
-pip install torch
+cd NanoGPT
+python3 stage_3_gpt_shakespeare/model.py
+```
 
-# Phase 1: Run the Bigram baseline
-python bigram.py
+### Run Stage 5 tests (Mac / CPU)
+```bash
+cd NanoGPT
+python3 stage_5_tinystories/tests/test_stage5.py
+```
 
-# Phase 2: Run the full NanoGPT
-python gpt.py
+### Evaluate the Champion Model
+```bash
+cd NanoGPT
+# Evaluates the root champion model:
+python3 stage_5_tinystories/evaluate.py --checkpoint best_model.pt
+
+# Or evaluates Stage 5's best checkpoint:
+python3 stage_5_tinystories/evaluate.py
+```
+
+### Prepare Stage 5 data (Mac, one-time)
+```bash
+cd NanoGPT
+python3 stage_5_tinystories/pipeline/prepare_data.py
+python3 stage_5_tinystories/pipeline/train_tokenizer.py
+python3 stage_5_tinystories/pipeline/build_token_shards.py
+python3 stage_5_tinystories/pipeline/encode_prompts_mac.py
+```
+
+### Train Stage 5 on HPC (V100)
+```bash
+# Copy NanoGPT/ to HPC, then:
+qsub stage_5_tinystories/hpc/train.pbs
 ```
 
 ---
 
-## 📊 Expected Results
+## Checkpoint Details
 
-| Model | Train Loss | Val Loss |
-|-------|-----------|---------|
-| Bigram (3k steps) | ~2.50 | ~2.51 |
-| NanoGPT (5k steps, CPU) | ~1.80 | ~1.98 |
-| NanoGPT (5k steps, GPU) | ~1.48 | ~1.49 |
+### Champion Checkpoint (Root)
+- **`best_model.pt`**: Step 12,000 | Val CE: 2.1361 | ~98.3M tokens trained. The best language model trained from scratch in this repository.
 
-> Losses are approximate. Run on M1/M2 Mac? Use `device = 'mps'` in `gpt.py` for a nice speedup!
+### Stage 5 Checkpoints (`stage_5_tinystories/checkpoints/`)
+| File | Step | Val CE | Tokens seen | Description |
+|------|------|--------|-------------|-------------|
+| `snapshot_10M.pt`  | ~1,220  | — | 10M  | Early language patterns |
+| `snapshot_25M.pt`  | ~3,050  | — | 25M  | Basic grammar & vocabulary |
+| `snapshot_50M.pt`  | ~6,100  | — | 50M  | Coherent sentence structures |
+| `best.pt`          | 12,000  | 2.1361 | ~98.3M | Lowest validation cross-entropy |
+| `snapshot_100M.pt` | 12,000  | 2.1361 | 100M | Final schedule completion snapshot |
+| `latest.pt`        | 12,206  | —      | 100M | Final training step snapshot |
 
 ---
 
-## 📝 Notes
+## Requirements
 
-- The mathematical trick for efficient attention is: instead of explicit averaging, use **matrix multiplication with a lower-triangular mask** (tril + softmax).
-- "Attention is all you need" (Vaswani et al., 2017) is the foundational paper.
-- Karpathy's original repo: [github.com/karpathy/nanoGPT](https://github.com/karpathy/nanoGPT)
+```
+torch>=1.10
+numpy
+tokenizers    # for data prep and tests on Mac
+```
+
+Install: `pip install -r requirements.txt`

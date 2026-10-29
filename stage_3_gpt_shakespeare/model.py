@@ -23,6 +23,13 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+# ── Project root ──────────────────────────────────────────────────────────────
+_HERE      = os.path.dirname(os.path.abspath(__file__))
+_PROJ_ROOT = os.path.dirname(_HERE)
+
+def _root(*parts):
+    return os.path.join(_PROJ_ROOT, *parts)
+
 # ── Reproducibility ──────────────────────────────────────────────────────────
 torch.manual_seed(1337)
 
@@ -44,7 +51,7 @@ warmup_iters   = 100          # steps over which LR linearly rises to peak
 min_lr         = 3e-5         # floor for cosine decay (= learning_rate / 10)
 grad_clip      = 1.0          # max gradient norm; 0.0 = disabled
 weight_decay   = 1e-1         # AdamW weight decay (applied to weight matrices)
-checkpoint_dir = 'checkpoints'
+checkpoint_dir = _root('stage_3_gpt_shakespeare', 'checkpoints')
 
 # ── Walltime safety margin ────────────────────────────────────────────────────
 # Set to your PBS walltime so the script saves latest.pt and exits cleanly
@@ -93,7 +100,9 @@ print("GPU: {}".format(torch.cuda.get_device_name(0)))
 # print("Using device: {}".format(device))
 
 # ── Dataset ───────────────────────────────────────────────────────────────────
-with open('input.txt', 'r', encoding='utf-8') as f:
+_local_input = os.path.join(_HERE, 'shakespeare_input.txt')
+_input_path  = _local_input if os.path.exists(_local_input) else ('input.txt' if os.path.exists('input.txt') else _root('input.txt'))
+with open(_input_path, 'r', encoding='utf-8') as f:
     text = f.read()
 
 print("Dataset: {:,} characters".format(len(text)))

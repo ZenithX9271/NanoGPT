@@ -42,9 +42,19 @@ import re
 import sys
 from datetime import datetime, timezone
 
+# ── Project root ──────────────────────────────────────────────────────────────
+_HERE      = os.path.dirname(os.path.abspath(__file__))
+_STAGE_DIR = os.path.dirname(_HERE)          # stage_5_tinystories/
+_PROJ_ROOT = os.path.dirname(_STAGE_DIR)     # NanoGPT/
+
+def _root(*parts):
+    """Join path parts relative to the project root."""
+    return os.path.join(_PROJ_ROOT, *parts)
+
+
 # ── Paths ─────────────────────────────────────────────────────────────────────
-RAW_DIR   = os.path.join("data", "raw")
-OUT_DIR   = os.path.join("data", "tinystories", "v2")
+RAW_DIR   = _root("data", "raw")
+OUT_DIR   = _root("data", "tinystories", "v2")
 TRAIN_RAW = os.path.join(RAW_DIR, "TinyStories-train.txt")
 VALID_RAW = os.path.join(RAW_DIR, "TinyStories-valid.txt")
 

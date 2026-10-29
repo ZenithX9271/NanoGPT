@@ -48,7 +48,7 @@
   },
 
   "checkpointing": {
-    "checkpoint_dir":    "checkpoints_s5",
+    "checkpoint_dir":    "stage_5_tinystories/checkpoints",
     "walltime_minutes":  null,
     "margin_seconds":    300
   },

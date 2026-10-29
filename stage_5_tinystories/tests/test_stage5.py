@@ -32,20 +32,21 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, ROOT)
+ROOT      = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # stage_5_tinystories/
+PROJ_ROOT = os.path.dirname(ROOT)                                         # NanoGPT/
+sys.path.insert(0, PROJ_ROOT)
 
 CONFIG_PATH = os.path.join(ROOT, "configs", "stage5.json")
 
-# ── Load production model from 5th_stage_gpt.py ──────────────────────────────
-# 5th_stage_gpt.py is safe to import on CPU: the CUDA assertion and smoke test
+# ── Load production model from stage_5_tinystories/model.py ──────────────────
+# model.py is safe to import on CPU: the CUDA assertion and smoke test
 # now live inside `if __name__ == "__main__":` and do not execute on import.
 # Module-level device falls back to "cpu" when CUDA is unavailable.
 
 import importlib.util
 
 spec    = importlib.util.spec_from_file_location(
-    "_s5", os.path.join(ROOT, "5th_stage_gpt.py"))
+    "_s5", os.path.join(ROOT, "model.py"))
 _s5_mod = importlib.util.module_from_spec(spec)
 try:
     spec.loader.exec_module(_s5_mod)
@@ -99,7 +100,7 @@ def test_config():
 
 # ── 1. Tokenizer ──────────────────────────────────────────────────────────────
 def test_tokenizer():
-    tok_path = os.path.join(ROOT, "data", "tokenizer", "v2", "tokenizer.json")
+    tok_path = os.path.join(PROJ_ROOT, "data", "tokenizer", "v2", "tokenizer.json")
     if not os.path.exists(tok_path):
         print("  [SKIP] tokenizer v2 not found (run train_tokenizer.py first)")
         return
@@ -143,7 +144,7 @@ def test_tokenizer():
 # ── 2. JSONL shards ───────────────────────────────────────────────────────────
 def test_shards():
     import numpy as np
-    mf_path = os.path.join(ROOT, "data", "shards", "v2", "manifest.json")
+    mf_path = os.path.join(PROJ_ROOT, "data", "shards", "v2", "manifest.json")
     if not os.path.exists(mf_path):
         print("  [SKIP] v2 shards not found (run build_token_shards.py first)")
         return
@@ -156,7 +157,7 @@ def test_shards():
     eos_id = mf["special_ids"]["eos"]
 
     # Count consistency: story counts should match provenance
-    prov_path = os.path.join(ROOT, "data", "tinystories", "v2", "provenance.json")
+    prov_path = os.path.join(PROJ_ROOT, "data", "tinystories", "v2", "provenance.json")
     if os.path.exists(prov_path):
         with open(prov_path) as f:
             prov = json.load(f)
@@ -172,7 +173,7 @@ def test_shards():
     for split in ["train", "dev_val"]:
         if split not in mf["splits"]: continue
         first = mf["splits"][split]["shards"][0]["file"]
-        path  = os.path.join(ROOT, "data", "shards", "v2", first)
+        path  = os.path.join(PROJ_ROOT, "data", "shards", "v2", first)
         arr   = np.fromfile(path, dtype=np.uint16)
 
         check("{} dtype uint16".format(split), arr.dtype == np.uint16)
@@ -188,7 +189,7 @@ def test_shards():
 
     # JSONL story count agrees with shard story count
     for split in ["train", "dev_val"]:
-        jsonl = os.path.join(ROOT, "data", "tinystories", "v2", "{}.jsonl".format(split))
+        jsonl = os.path.join(PROJ_ROOT, "data", "tinystories", "v2", "{}.jsonl".format(split))
         if os.path.exists(jsonl) and split in mf["splits"]:
             with open(jsonl) as f:
                 jsonl_count = sum(1 for l in f if l.strip())
@@ -279,7 +280,7 @@ def test_overfit():
 
 # ── 7. Prompt encoding distinctness ───────────────────────────────────────────
 def test_prompt_distinctness():
-    tok_path = os.path.join(ROOT, "data", "tokenizer", "v2", "tokenizer.json")
+    tok_path = os.path.join(PROJ_ROOT, "data", "tokenizer", "v2", "tokenizer.json")
     if not os.path.exists(tok_path):
         print("  [SKIP] tokenizer not found")
         return
@@ -381,8 +382,8 @@ def test_checkpoint_tying():
 # ── 10. Split isolation ────────────────────────────────────────────────────────
 def test_split_isolation():
     import hashlib, re
-    dev_path   = os.path.join(ROOT, "data", "tinystories", "v2", "dev_val.jsonl")
-    train_path = os.path.join(ROOT, "data", "tinystories", "v2", "train.jsonl")
+    dev_path   = os.path.join(PROJ_ROOT, "data", "tinystories", "v2", "dev_val.jsonl")
+    train_path = os.path.join(PROJ_ROOT, "data", "tinystories", "v2", "train.jsonl")
     if not (os.path.exists(dev_path) and os.path.exists(train_path)):
         print("  [SKIP] JSONL files not found (run prepare_tinystories.py first)")
         return

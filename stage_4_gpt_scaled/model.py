@@ -32,6 +32,13 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+# ── Project root ──────────────────────────────────────────────────────────────
+_HERE      = os.path.dirname(os.path.abspath(__file__))
+_PROJ_ROOT = os.path.dirname(_HERE)
+
+def _root(*parts):
+    return os.path.join(_PROJ_ROOT, *parts)
+
 # ── Reproducibility ──────────────────────────────────────────────────────────
 torch.manual_seed(1337)
 
@@ -62,7 +69,7 @@ warmup_iters   = 100
 min_lr         = 3e-5          # learning_rate / 10
 grad_clip      = 1.0
 weight_decay   = 1e-1
-checkpoint_dir = 'checkpoints_s4'   # separate from Stage 3's checkpoints/
+checkpoint_dir = _root('stage_4_gpt_scaled', 'checkpoints')
 
 # ── Walltime safety margin ────────────────────────────────────────────────────
 # Set WALLTIME_MINUTES = <PBS walltime>. Script saves latest.pt and exits
@@ -78,8 +85,7 @@ BM_WINDOW_STEPS = 100
 BM_TOTAL        = BM_WARMUP + BM_WINDOWS * BM_WINDOW_STEPS  # 550
 
 # ── Stage 3 baseline (for comparison in the generation section) ──────────────
-# Change these paths if Stage 3 checkpoint is in a different location.
-STAGE3_CHECKPOINT = os.path.join('checkpoints', 'best.pt')
+STAGE3_CHECKPOINT = _root('stage_3_gpt_shakespeare', 'checkpoints', 'best.pt')
 STAGE3_N_EMBD     = 64
 STAGE3_N_HEAD     = 4
 STAGE3_N_LAYER    = 4
@@ -104,7 +110,8 @@ print("GPU: {}".format(torch.cuda.get_device_name(0)))
 # print("Using device: {}".format(device))
 
 # ── Dataset ───────────────────────────────────────────────────────────────────
-with open('input.txt', 'r', encoding='utf-8') as f:
+_input_path = 'input.txt' if os.path.exists('input.txt') else _root('input.txt')
+with open(_input_path, 'r', encoding='utf-8') as f:
     text = f.read()
 
 print("Dataset: {:,} characters".format(len(text)))

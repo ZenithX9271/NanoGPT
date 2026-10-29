@@ -41,7 +41,7 @@ echo "============================"
 cd $HOME/zenithX9271/NanoGPT
 
 # Make sure data and log dirs exist
-mkdir -p logs checkpoints_s5v2 data/shards/v2 data/tokenizer/v2 configs
+mkdir -p stage_5_tinystories/hpc/logs stage_5_tinystories/checkpoints data/shards/v2 data/tokenizer/v2 stage_5_tinystories/configs
 
 # Confirm shards and config are present before starting
 if [ ! -f "data/shards/v2/manifest.json" ]; then
@@ -50,14 +50,14 @@ if [ ! -f "data/shards/v2/manifest.json" ]; then
     exit 1
 fi
 
-if [ ! -f "configs/stage5.json" ]; then
-    echo "ERROR: configs/stage5.json not found."
+if [ ! -f "stage_5_tinystories/configs/stage5.json" ]; then
+    echo "ERROR: stage_5_tinystories/configs/stage5.json not found."
     exit 1
 fi
 
 # ── Run ───────────────────────────────────────────────────────────────────────
 echo ""
 echo "Starting Stage 5 training: $(date)"
-python -u 5th_stage_gpt.py
+python -u stage_5_tinystories/model.py
 echo ""
 echo "Stage 5 training done: $(date)"

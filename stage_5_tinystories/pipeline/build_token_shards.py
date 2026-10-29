@@ -25,10 +25,10 @@ from datetime import datetime, timezone
 import numpy as np
 
 # ── Paths (v2) ────────────────────────────────────────────────────────────────
-DATA_DIR     = os.path.join("data", "tinystories", "v2")
-TOK_PATH     = os.path.join("data", "tokenizer", "v2", "tokenizer.json")
-TOK_INFO     = os.path.join("data", "tokenizer", "v2", "vocab_info.json")
-SHARD_DIR    = os.path.join("data", "shards", "v2")
+DATA_DIR     = _root("data", "tinystories", "v2")
+TOK_PATH     = _root("data", "tokenizer", "v2", "tokenizer.json")
+TOK_INFO     = _root("data", "tokenizer", "v2", "vocab_info.json")
+SHARD_DIR    = _root("data", "shards", "v2")
 
 SHARD_TOKENS = 10_000_000   # ~20 MB per shard as uint16
 
@@ -55,6 +55,16 @@ def sha256_bytes(b):
 def load_tokenizer():
     try:
         from tokenizers import Tokenizer
+
+# ── Project root ──────────────────────────────────────────────────────────────
+_HERE      = os.path.dirname(os.path.abspath(__file__))
+_STAGE_DIR = os.path.dirname(_HERE)          # stage_5_tinystories/
+_PROJ_ROOT = os.path.dirname(_STAGE_DIR)     # NanoGPT/
+
+def _root(*parts):
+    """Join path parts relative to the project root."""
+    return os.path.join(_PROJ_ROOT, *parts)
+
     except ImportError:
         sys.exit("ERROR: pip install tokenizers==0.20.3")
 

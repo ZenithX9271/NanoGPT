@@ -17,12 +17,12 @@ import json
 import os
 import sys
 
-TOK_PATH = os.path.join("data", "tokenizer", "v2", "tokenizer.json")
-OUT_PATH = os.path.join("configs", "prompt_ids.json")
+TOK_PATH = _root("data", "tokenizer", "v2", "tokenizer.json")
+OUT_PATH = _root("stage_5_tinystories", "configs", "prompt_ids.json")
 
 # ── Prompts ────────────────────────────────────────────────────────────────────
 # Loaded from stage5.json; override here if you want different prompts.
-CONFIG_PATH = os.path.join("configs", "stage5.json")
+CONFIG_PATH = _root("stage_5_tinystories", "configs", "stage5.json")
 with open(CONFIG_PATH) as f:
     _cfg = json.load(f)
 
@@ -45,6 +45,16 @@ if not os.path.exists(TOK_PATH):
 
 try:
     from tokenizers import Tokenizer
+
+# ── Project root ──────────────────────────────────────────────────────────────
+_HERE      = os.path.dirname(os.path.abspath(__file__))
+_STAGE_DIR = os.path.dirname(_HERE)          # stage_5_tinystories/
+_PROJ_ROOT = os.path.dirname(_STAGE_DIR)     # NanoGPT/
+
+def _root(*parts):
+    """Join path parts relative to the project root."""
+    return os.path.join(_PROJ_ROOT, *parts)
+
 except ImportError:
     sys.exit("ERROR: pip install tokenizers==0.20.3")
 

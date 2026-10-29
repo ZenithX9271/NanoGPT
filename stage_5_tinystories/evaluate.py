@@ -19,8 +19,15 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+# ── Project root ──────────────────────────────────────────────────────────────
+_HERE      = os.path.dirname(os.path.abspath(__file__))
+_PROJ_ROOT = os.path.dirname(_HERE)
+
+def _root(*parts):
+    return os.path.join(_PROJ_ROOT, *parts)
+
 # ── Paths ─────────────────────────────────────────────────────────────────────
-CONFIG_PATH = os.path.join("configs", "stage5.json")
+CONFIG_PATH = _root("stage_5_tinystories", "configs", "stage5.json")
 
 if not os.path.exists(CONFIG_PATH):
     sys.exit("ERROR: {} not found.".format(CONFIG_PATH))
@@ -28,14 +35,14 @@ if not os.path.exists(CONFIG_PATH):
 with open(CONFIG_PATH) as f:
     _cfg = json.load(f)
 
-SHARD_DIR   = _cfg["data"].get("shard_dir", "data/shards/v2")
-TOK_PATH    = _cfg["data"].get("tokenizer_path", "data/tokenizer/v2/tokenizer.json")
+SHARD_DIR   = _root("data", "shards", "v2")
+TOK_PATH    = _root("data", "tokenizer", "v2", "tokenizer.json")
 vocab_size  = _cfg["data"]["vocab_size"]
 BOS_ID      = _cfg["data"]["bos_id"]
 EOS_ID      = _cfg["data"]["eos_id"]
 PAD_ID      = _cfg["data"]["pad_id"]
 
-PROMPT_IDS_PATH = os.path.join("configs", "prompt_ids.json")
+PROMPT_IDS_PATH = _root("stage_5_tinystories", "configs", "prompt_ids.json")
 
 n_layer    = _cfg["model"]["n_layer"]
 n_embd     = _cfg["model"]["n_embd"]
@@ -43,7 +50,7 @@ n_head     = _cfg["model"]["n_head"]
 block_size = _cfg["model"]["block_size"]
 dropout    = _cfg["model"]["dropout"]
 
-checkpoint_dir = "checkpoints_s5v2"   # v2 run dir; override with --checkpoint
+checkpoint_dir = _root("stage_5_tinystories", "checkpoints")
 
 EVAL_BATCH  = 32    # batch size for loss evaluation
 EVAL_CHUNKS = 500   # number of random windows to score
@@ -242,7 +249,7 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description="Stage 5 evaluation")
     parser.add_argument("--checkpoint", default=os.path.join(checkpoint_dir, "best.pt"),
-                        help="Path to checkpoint (default: checkpoints_s5/best.pt)")
+                        help="Path to checkpoint (default: stage_5_tinystories/checkpoints/best.pt or best_model.pt)")
     parser.add_argument("--split", default="dev_val",
                         choices=["dev_val", "test"],
                         help="Evaluation split. Use 'test' only for FINAL evaluation.")

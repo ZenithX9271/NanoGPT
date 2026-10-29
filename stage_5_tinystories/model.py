@@ -35,8 +35,18 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+# ── Project root (two levels up from stage_5_tinystories/model.py) ───────────
+# All data, checkpoint, and config paths are anchored to the repo root so the
+# script works regardless of which directory you launch it from.
+_HERE      = os.path.dirname(os.path.abspath(__file__))
+_PROJ_ROOT = os.path.dirname(_HERE)   # NanoGPT/
+
+def _root(*parts):
+    """Join path parts relative to the project root."""
+    return os.path.join(_PROJ_ROOT, *parts)
+
 # ── Config ────────────────────────────────────────────────────────────────────
-CONFIG_PATH = os.path.join("configs", "stage5.json")
+CONFIG_PATH = _root("stage_5_tinystories", "configs", "stage5.json")
 if not os.path.exists(CONFIG_PATH):
     sys.exit("ERROR: {} not found.".format(CONFIG_PATH))
 with open(CONFIG_PATH) as f:
@@ -63,15 +73,15 @@ betas         = tuple(_cfg["training"]["betas"])  # (0.9, 0.95)
 SEED          = _cfg["training"]["seed"]          # 1337
 
 # Data (v2 paths)
-SHARD_DIR  = os.path.join("data", "shards", "v2")
-TOK_PATH   = os.path.join("data", "tokenizer", "v2", "tokenizer.json")
+SHARD_DIR  = _root("data", "shards", "v2")
+TOK_PATH   = _root("data", "tokenizer", "v2", "tokenizer.json")
 vocab_size = _cfg["data"]["vocab_size"]           # 8192
 PAD_ID     = _cfg["data"]["pad_id"]               # 0
 BOS_ID     = _cfg["data"]["bos_id"]               # 1
 EOS_ID     = _cfg["data"]["eos_id"]               # 2
 
-# Prompt IDs file (prepared on Mac with encode_prompts_mac.py)
-PROMPT_IDS_PATH = os.path.join("configs", "prompt_ids.json")
+# Prompt IDs file (prepared on Mac with pipeline/encode_prompts_mac.py)
+PROMPT_IDS_PATH = _root("stage_5_tinystories", "configs", "prompt_ids.json")
 
 # Benchmark
 BM_WARMUP       = _cfg["benchmark"]["warmup_steps"]   # 50
@@ -79,8 +89,8 @@ BM_WINDOWS      = _cfg["benchmark"]["windows"]        # 5
 BM_WINDOW_STEPS = _cfg["benchmark"]["window_steps"]   # 100
 BM_TOTAL        = BM_WARMUP + BM_WINDOWS * BM_WINDOW_STEPS
 
-# Checkpointing (v2 dir — preserves pilot in checkpoints_s5/)
-checkpoint_dir   = "checkpoints_s5v2"
+# Checkpointing (saved to stage_5_tinystories/checkpoints/; best model mirrored to root best_model.pt)
+checkpoint_dir   = _root("stage_5_tinystories", "checkpoints")
 WALLTIME_MINUTES = _cfg["checkpointing"]["walltime_minutes"]
 MARGIN_SECONDS   = _cfg["checkpointing"]["margin_seconds"]
 
@@ -729,6 +739,10 @@ if __name__ == "__main__":
             if val_ce < best_val_loss:
                 best_val_loss = val_ce
                 atomic_save(ckpt, os.path.join(checkpoint_dir, "best.pt"))
+                try:
+                    atomic_save(ckpt, _root("best_model.pt"))
+                except Exception:
+                    pass  # Non-critical if root is read-only
                 tag = " <- best"
             else:
                 tag = ""
