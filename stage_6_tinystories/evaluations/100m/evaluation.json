@@ -1,0 +1,66 @@
+{
+  "checkpoint": "/home/cse/btech/cs1230342/zenithX9271/NanoGPT/stage_6_tinystories/runs/s6a/review_u12208_additional_100007936.pt",
+  "checkpoint_sha256": "da3d6c48a6292cbb75818a894d11a40f651c45aa9a90455d15e8ed957d5424a4",
+  "runtime": {
+    "python": "3.7.9",
+    "torch": "1.10.0a0+git36449ea",
+    "numpy": "1.18.5",
+    "cuda": "11.0",
+    "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-centos-7.9.2009-Core",
+    "device": "cuda:0",
+    "gpu": "Tesla V100-PCIE-32GB",
+    "threads": 2,
+    "precision": "float32",
+    "attention": "manual causal",
+    "cublas_workspace_config": ":4096:8"
+  },
+  "evaluation_spec": {
+    "seed": 2026,
+    "windows": 4096,
+    "train_windows": 512,
+    "batch_size": 16,
+    "prompts": "stage_6_tinystories/configs/evaluation_prompts.json",
+    "generation_seeds": [
+      1337,
+      2027,
+      3407
+    ],
+    "max_new_tokens": 300,
+    "temperature": 0.7,
+    "top_k": 50
+  },
+  "data_identity": {
+    "manifest_sha256": "89c9df839572ef6a1890caf4b1144229090b8ced8b4ea2c66ed5dd090e17c9a7",
+    "tokenizer_sha256": "99055f35c77392e4df4486685b60fee1de1d95e2c373c26f487cf9944746d038",
+    "prompts_sha256": "f1c83474faa2b56d670055d6da373a1460eccc007db296bcf509f44f5737429c"
+  },
+  "generation_complete": true,
+  "scored_split": "dev_val",
+  "note": "Repetition/EOS are diagnostics; grammar, consistency and prompt retention need human ratings.",
+  "evaluation": {
+    "stage6_updates": 12208,
+    "tokens": 198311936,
+    "additional_tokens": 100007936,
+    "seed": 2026,
+    "context": 256,
+    "batch_size": 16,
+    "train": {
+      "ce": 1.9976016469299793,
+      "scored_tokens": 131072,
+      "perplexity": 7.371355767857412
+    },
+    "dev_val": {
+      "ce": 2.048689952120185,
+      "scored_tokens": 1048576,
+      "perplexity": 7.757731446756759
+    }
+  },
+  "evaluation_seconds": 24.918857941403985,
+  "status": "complete",
+  "generated_samples": 159,
+  "expected_samples": 159,
+  "eos_fraction": 0.9433962264150944,
+  "mean_repeated_4gram_fraction": 0.03350927463062824,
+  "mean_new_tokens": 146.35849056603774,
+  "total_seconds": 438.790688065812
+}

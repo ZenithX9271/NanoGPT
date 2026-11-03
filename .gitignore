@@ -1,3 +1,6 @@
+# Local recovery backups
+/.stage6_cleanup_backup/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

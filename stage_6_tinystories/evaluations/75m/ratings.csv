@@ -1,0 +1,676 @@
+prompt_id,kind,seed,prompt,continuation,stop,new_tokens,repeated_4gram_fraction,grammar_0_to_4,character_consistency_0_to_4,prompt_facts_0_to_4,ending_0_to_4
+dev_01952,development_prefix,1337,"Once upon a time, there was a mom. She had a special book. The book was a novel. The novel was very tough. The mom wanted"," to read it all day.
+The mom and dad went to the library. The book was nice. They read the book. The read the book. It was very interesting.
+After the book was done, the mom and dad read the books together. They read the book. The book was very tall. They read the book again. The mom and dad were happy. They read the book together.",eos,82,0.12658227848101267,,,,
+dev_01952,development_prefix,2027,"Once upon a time, there was a mom. She had a special book. The book was a novel. The novel was very tough. The mom wanted"," to read it.
+The mom was always very careful. She told her to read the novel. The little girl was very excited. She read the novel. It was very smart.
+The next day, the mom told her to read the novel. The little girl listened to the bookcase. She read the novel. It was very yummy.
+The little girl read the novel. She read it every day. She listened to it.
+The story teaches us a valuable lesson: it is important to be careful when you get lost.",eos,108,0.1523809523809524,,,,
+dev_01952,development_prefix,3407,"Once upon a time, there was a mom. She had a special book. The book was a novel. The novel was very tough. The mom wanted"," to try it. So, they started to read the novel together.
+At first, the girl was scared. She did not know what to do. She thought about what to say, and she did not know what to do. Finally, she had an idea. She took the novel and opened it. It was so much fun!
+The girl was happy. She opened the novel and saw lots of wonderful things. She felt so lucky to be able to have such a good friend. She was so happy that she could play in the novel.",eos,111,0.03703703703703709,,,,
+dev_05236,development_prefix,1337,"Once there was a family of three that liked to have fun and always sang together. They loved to make music. One day, the father decided to bury"," a piece of paper. He took a small piece and carefully placed it in his pocket.
+When the family came back, they looked at the paper. It was a beautiful picture of a bear, a bear, and a bear. The child was so excited that he decided to take the piece home.
+When they got home, the mother brought a big piece of paper. It was different from the bear, but it was beautiful. The child smiled and hugged the bear. 
+The mother was so proud of her too. She said, ""You did a great job! How amazing is it?"" The child smiled and said, ""It's my pleasure, Mama!""",eos,136,0.022556390977443663,,,,
+dev_05236,development_prefix,2027,"Once there was a family of three that liked to have fun and always sang together. They loved to make music. One day, the father decided to bury"," a toy car by the river. He got a lot of work and started to sort the car into different cars and trucks.
+The father was very proud of his work and said, ""You can help me clean the car!""
+The father smiled and said, ""Yes, that's a great idea!""
+The father set off with his family, but then the father said, ""I'm going to make the car really heavy!""
+The father said, ""That's a great idea!""
+The father smiled and said, ""That sounds great! Let's make it!""
+So the father and the father worked together to sort the car. They used their hands to make the car even better. When they were finished, the dad said, ""Thank you for helping me, Papa!""
+The father smiled and said, ""That was a good job. Now we can make it even better!""",eos,182,0.13407821229050276,,,,
+dev_05236,development_prefix,3407,"Once there was a family of three that liked to have fun and always sang together. They loved to make music. One day, the father decided to bury"," a note in the garden. The note was so pretty, it made the family very happy and excited.
+The family was very happy and excited to find their note. They put it in a box and put it back in the garden. The note was now filled with a little box. Everyone was very proud of the note and thanked the father for the note.
+The end.",eos,77,0.06756756756756754,,,,
+dev_08235,development_prefix,1337,Once upon a time there was a bear named Glad. He was always so full of excitement each day. He wanted to explore the world around him,".
+One day, Glladl said to his friends, ""Let's go to the park with me!""
+So Gllayd decided to go for a walk. He said, ""I'll find a swing!""
+So he went to the park and he saw a swing. He wanted to climb down again.
+He was so happy he started to swing. He ran away as fast as he could.
+Gl caught up the swing. He laughed and ran as fast as he could. Everyone was so excited to see him.
+When he reached the park, the bear thanked Gl for his help and they left. Glor was happy he had found a great fun day at the park.",eos,149,0.020547945205479423,,,,
+dev_08235,development_prefix,2027,Once upon a time there was a bear named Glad. He was always so full of excitement each day. He wanted to explore the world around him,". One day he found a big rock. He was so excited! He picked up the rock and ran to it.
+But when he got back to his home, he saw that it was still very cold. He wanted to go home, but he was too scared to reach it. So he decided to take a deep breath. He grabbed the rock from the rock and ran away.
+He was safe in the rock. He was proud of himself for being so brave, and so he decided to go home. As he walked, he saw the sun and the clouds that night sky was filled with leaves. Gadlor was so excited to go home, he hugged his rock tight and felt so proud of himself.",eos,146,0.020979020979020935,,,,
+dev_08235,development_prefix,3407,Once upon a time there was a bear named Glad. He was always so full of excitement each day. He wanted to explore the world around him,". 
+One day, Glor was walking in the forest when he saw a little girl. She had a basket full of presents. Gloror was so excited that he wanted to have the presents. 
+Glor was curious and decided to take the presents. He opened the door and he found a big, soft, warm blanket. Gor was so excited, he ran inside to see what was inside. 
+He smiled as he watched the presents he found. Glor was so happy that he started to laugh. He was so grateful for Gororor and he was so happy to be back.
+The day was much fun for Gen. He had his best birthday and he couldn't wait to have a party with it.",eos,157,0.01948051948051943,,,,
+dev_08387,development_prefix,1337,"Once upon a time, there was a little girl named Lily. One day, she found a mysterious box in her backyard. She opened it and saw a"," very tiny, pretty necklace. She was so happy to find it.
+Lily's mom took her to the park to show her the special necklace. She was so happy to see it. She put it up and said, ""Wow, look at this necklace!"" Her mom smiled and said, ""That's a great necklace, Lily. I'm so happy we found it!""
+After they finished, Lily's mom said, ""Lily, you're very brave and brave. Now let's go home and show it to you!"" Lily was excited to see her mom and her next adventure.",eos,119,0.0431034482758621,,,,
+dev_08387,development_prefix,2027,"Once upon a time, there was a little girl named Lily. One day, she found a mysterious box in her backyard. She opened it and saw a"," shiny toy car. She was so happy and played with it all day long. As she was playing, she accidentally accidentally knocked over the car. The car broke into pieces and she couldn't play anymore. 
+Lily felt sad and missed her toy car. She wished she had never played with it again. The end.",eos,65,0.016129032258064502,,,,
+dev_08387,development_prefix,3407,"Once upon a time, there was a little girl named Lily. One day, she found a mysterious box in her backyard. She opened it and saw a"," beautiful vase. It was so pretty and had lots of buttons on it. Lily took the vase everywhere.
+Suddenly, Lily's mom called her inside to get some candy. Lily didn't want to eat the candy, so she went to her room and started eating the candy. But then, she saw that the vase was broken. She was sad because she didn't have any candy to eat.
+Lily learned that sometimes things can be hard to be fixed, but it's important to listen to her mom and not eat things that don't belong to us. From then on, Lily always asked her mom for help when she wanted to eat some candy.",eos,132,0.0,,,,
+dev_10607,development_prefix,1337,"Once upon a time, there were two friends. They liked to do things together. One day, they had a new idea. They decided to join the"," other children and all started to play.
+The first friend was very happy. He wanted to join them too. So he said, “Let’s play a game!"" But the first friend said, “No! We can't do it.” They both started to fight.
+They both started to fight. They pulled and pushed and shouted. The other friend shouted, “Stop fighting. You are naughty!”
+The other friend was very sad. They tried to help. But no one could do it.
+Finally, a two friends found the second friend. They decided to play together. They had a lot of fun and were never upset again!",eos,132,0.015503875968992276,,,,
+dev_10607,development_prefix,2027,"Once upon a time, there were two friends. They liked to do things together. One day, they had a new idea. They decided to join the"," party. They would run and jump and play games. They laughed and had so much fun!
+They all had a lot of fun! They laughed and laughed until the sun went down and it was time to go home.
+At the end of the day, the friends were so happy to go home. They hugged each other and went to bed, dreaming of the fun party they would do with the party.",eos,83,0.012499999999999956,,,,
+dev_10607,development_prefix,3407,"Once upon a time, there were two friends. They liked to do things together. One day, they had a new idea. They decided to join the"," fun game.
+So, they started to play the game. They laughed and raced around and had so much fun!
+The friends had a lot of fun. They even played games, and even made lots of friends. They loved to play and build.
+The friends shared the game with each other and shared the game. They were very happy. When it was time to go, they said goodbye and went home, happy that they had fun.",eos,91,0.011363636363636354,,,,
+dev_01682,development_prefix,1337,"Once upon a time, there was a little girl named Lily who loved to play in the forest. One day, she found a pine tree and sat down"," in the sun. She was so happy and forgot about the pine tree.
+As she ate, she heard a voice. It was her mom. ""Lily, you are so pretty!"" said her mom. ""Yes, I'm sure you are safe,"" said Lily. ""I'm glad you're safe here.""",eos,64,0.016393442622950838,,,,
+dev_01682,development_prefix,2027,"Once upon a time, there was a little girl named Lily who loved to play in the forest. One day, she found a pine tree and sat down"," to eat it. She was so happy and played with the pine tree all day.
+Suddenly, a little bird came and started to chase Lily around. She caught a big tree and ran away. The pine tree was very tall and had a very special picture of Lily. She was so happy and grateful to the bird for her thoughtful gift.
+From that day on, Lily made sure to keep her safe and tidy, even when she was scared. She even picked another pine tree to keep the pine tree safe in her nest. The end.",eos,110,0.028037383177570097,,,,
+dev_01682,development_prefix,3407,"Once upon a time, there was a little girl named Lily who loved to play in the forest. One day, she found a pine tree and sat down",". She was very happy and couldn't wait to play with it. Suddenly, she heard a noise. It was her friend, Mark. Mark wanted to play with Lily, but she was scared.
+Mark wanted to make Lily happy. He jumped and jumped until she got dizzy. He sat next to Lily and said, ""I'm sleepy, I'm glad you were safe. Let's go home and have some fun.""
+Lily smiled and said, ""That sounds like fun!"" Mark smiled and said, ""I love playing in the forest!"" And from that day on, Mark and Lily became the best of friends and often playing in the forest.",eos,132,0.03875968992248058,,,,
+dev_03659,development_prefix,1337,Jack looked out of his window and wondered what was in the garage next door. He knew there was something special inside because he could hear loud noises coming from," outside the house.
+Jack asked his mom, ""What is this box?"" His mom answered, ""It's a box. Let's open it.""
+Jack opened the box and saw the box. It was full of toys and toys. He was so excited! He had never seen anything like it before. He knew that it would be time to go inside.
+He ran inside and saw a mysterious box. It was a box with a key inside. Jack opened it and inside was a surprise. Inside was a box with two treats inside. It was a mysterious box! Jack was amazed. He put the treats inside and he was excited to see what was inside.
+When he opened the box, he saw that it was a surprise inside. It was a toy toy car! Jack was so excited! He couldn't wait to see it.
+So, Jack and his mom went inside the box and got a present. It was a beautiful toy car with a bow on it. Jack and his mom had a new toy car for the little car.
+The little car drove around the room and had lots of fun! Jack was very happy with his new toy car and he was always happy to have it back.",eos,247,0.03688524590163933,,,,
+dev_03659,development_prefix,2027,Jack looked out of his window and wondered what was in the garage next door. He knew there was something special inside because he could hear loud noises coming from," inside.
+Jack followed the sound and he saw a car driving down a street. He was so excited and he ran to it.
+Jack asked his mom if he could go on an adventure. His mom said yes.
+Jack was so excited and he went on his journey. He looked around the house and saw many wonderful things. He saw trees, trees, and even a pond.
+When he arrived at his destination, Jack was so happy. He had found a new home and he was ready to explore the world.",eos,107,0.019230769230769273,,,,
+dev_03659,development_prefix,3407,Jack looked out of his window and wondered what was in the garage next door. He knew there was something special inside because he could hear loud noises coming from," inside.
+Max started to explore, but then he saw something that made him feel scared and he remembered how he was. He was curious about what it was. He reached out to touch the wheel.
+Suddenly, the wheel stopped and Max was scared. He didn't know what to do. He did not know what to do, so he asked his mom what it was.
+His mom saw his tears and said, ""Max, you must be scared of the wheel. It's not a bad wheel.""
+Max was very excited to hear this. He knew he didn't know what to do. He said, ""Mom, I'm stuck. Can you help me?""
+His mom smiled and said, ""Of course you can help. Let's make it look nice.""
+So they made a big, thick wheel and it was used to push the wheel out of the garage. After a few minutes, the wheel was as strong as Max and his mom were able to touch it.
+Max was so happy! He couldn't wait to tell his mom all about it!",eos,220,0.03686635944700456,,,,
+dev_09850,development_prefix,1337,"Once upon a time, there was a little girl named Lily who loved playing outside. She would run around in the grass and pick flowers. One day,"," she found a pretty flower on the ground. She picked it up and showed it to her mom. 
+""Mommy, look at this flower!"" Lily said. ""It's so pretty!"" 
+Her mom smiled and said, ""Yes, you can have it. But you must be careful with it."" 
+Lily smiled again and ran outside with the flower. She showed it to her mom and dad. ""Look, my flower is so pretty!"" she said. 
+Her mom smiled and said, ""That's so pretty, Lily. I'm proud of you.""",eos,118,0.06956521739130439,,,,
+dev_09850,development_prefix,2027,"Once upon a time, there was a little girl named Lily who loved playing outside. She would run around in the grass and pick flowers. One day,"," she found a box of clothes in the park. She was so happy and started jumping around!
+As she was running around, she saw a big bird flying in the sky. The bird was jumping up and down. Lily was scared and didn't know what to do. She wanted to help the bird, but she didn't know how to get away from the box.
+Suddenly, the bird flew down and landed on a branch. Lily was scared and hugged the bird, but it didn't come back. She wanted to help the bird, so she ran back home and told her mom what happened. Her mom was very happy and gave her a big hug. From that day on, Lily made sure to always help her mom when they needed it.",eos,152,0.05369127516778527,,,,
+dev_09850,development_prefix,3407,"Once upon a time, there was a little girl named Lily who loved playing outside. She would run around in the grass and pick flowers. One day,"," she saw a big tree and wanted to pick it up, but she didn't want to. She asked her mom to lend her some of her own toys, but her mom said she had to be careful when she was playing.
+Lily walked and walked until she found a little hole in the ground. She was scared and didn't know what to do. She tried to dig a hole, but it wouldn't budge. She felt sad and didn't know what to do.
+The next day, Lily's mom came in and asked why she was upset. Lily told her mom that she had to surrender and be careful with her toys. Her mom was proud of her for being safe and helpful. From that day on, Lily learned to be careful.",eos,152,0.03355704697986572,,,,
+dev_10185,development_prefix,1337,"Once there was a beautiful refrigerator. It was so shiny and white that everybody wanted it. 
+One day, a family wanted to buy it. So"," they went to the store. They bought some wood and some wood. Then they bought it and bought it for the family. 
+The family enjoyed the old refrigerator. It had lots of fun, interesting things, like this. The refrigerator was so full of excitement. 
+When the family got home, the refrigerator was so happy again. The little refrigerator was full of joy. Everyone was happy and proud of themselves. 
+The end.",eos,90,0.011494252873563204,,,,
+dev_10185,development_prefix,2027,"Once there was a beautiful refrigerator. It was so shiny and white that everybody wanted it. 
+One day, a family wanted to buy it. So"," they went to the store and bought the refrigerator. 
+When they got to the store, they bought it and put it in the fridge. The family was so happy to see it and they were very happy. 
+The family was so happy to see it and they all wanted it to be a special treat. They all loved it very much, but they always wanted it to be the best of them. 
+The family was proud of their wonderful refrigerator. It was a wonderful day to be the best day ever!",eos,106,0.10679611650485432,,,,
+dev_10185,development_prefix,3407,"Once there was a beautiful refrigerator. It was so shiny and white that everybody wanted it. 
+One day, a family wanted to buy it. So"," they grabbed the refrigerator and started to work. They worked hard and soon enough, they were able to buy it.
+The refrigerator was very happy. It had put on it and it was a very nice place to sit. 
+Everyone celebrated and had a lot of fun. 
+But suddenly, the refrigerator started to move. The family was very worried. The refrigerator was a bit dangerous. 
+But eventually, the family had a big smile on their faces. 
+The refrigerator was very powerful. The family in the refrigerator was so happy to have a new friend.",eos,117,0.02631578947368418,,,,
+dev_09121,development_prefix,1337,"Once upon a time, there was a boy named Timmy. Timmy loved to help his mom in the kitchen. One day, his mom asked him to stir"," the batter. Timmy was excited to help and he said, ""Mom, can we stir the flour?"" His mom smiled and said, ""Of course, Timmy. But first, we need to cook some sugar for dinner.""
+Timmy was excited to help his mom stir the batter. He stirred and stirred until the batter was ready. When it was time for dinner, Timmy said, ""Mom, I want to stir the batter with my spoon."" His mom laughed and said, ""Yes, Timmy. Now you can stir the batter with the spoon.""
+Timmy was happy he could help his mom cook the ingredients together. He knew he was good at stirring the batter and making a cake.",eos,139,0.044117647058823484,,,,
+dev_09121,development_prefix,2027,"Once upon a time, there was a boy named Timmy. Timmy loved to help his mom in the kitchen. One day, his mom asked him to stir"," the dishes. Timmy was so excited!
+His mom lifted the dishes and put them in the bowl. Timmy loved the idea of stir. He stirred the dishes with a spoon and stirred them.
+After a long time, Timmy's mom said it was time to go home. Timmy didn't want to leave the pool because he loved it. But his mom said, ""Timmy, it's time to go home now.""
+Timmy didn't want to go to bed, but he knew he had to be careful. He waited and waited until his mom found him. His mom gave him a big hug and said, ""You're so lucky to be able to be safe.""
+From that day on, Timmy always remembered to bake dishes and keep his room clean. He knew that he wouldn't get too wet or dirty, and that way he would be careful.",eos,174,0.011695906432748537,,,,
+dev_09121,development_prefix,3407,"Once upon a time, there was a boy named Timmy. Timmy loved to help his mom in the kitchen. One day, his mom asked him to stir"," a cake. Timmy was excited and started to stir the cake. 
+After they were cooking, Timmy's mom gave him a big bowl of cake. Timmy put on his apron and took a big bite. It was delicious! He ate his cake and it was so yummy. 
+But suddenly, Timmy's tummy hurt. His mom took him to the doctor to get him a bandage. Timmy was hurt but he couldn't help his mom. He tried to help her, but he could not. The vet was too late. Timmy's face became worse. He had to go to the hospital for a long time and no one felt well. The end.",eos,133,0.0,,,,
+dev_06893,development_prefix,1337,"Once upon a time, there was a little girl named Lily. She loved to play at the beach. The beach had sand, water, and a big"," flag. One day, Lily's mom gave her a new toy. It was a shiny rock. 
+Lily was so happy and thanked her mom. She played with it for a while. But then, she accidentally left her toy on the beach. She was sad because her toy rock had ruined. 
+Her mom hugged her and said, ""It's okay, Lily. Let's go to the beach."" They went to the sea and bought the shiny rock. Lily was so happy and proud of herself for being so brave.",eos,108,0.00952380952380949,,,,
+dev_06893,development_prefix,2027,"Once upon a time, there was a little girl named Lily. She loved to play at the beach. The beach had sand, water, and a big"," bucket. One day, Lily saw a big boat in the water. It was big and shiny. She wanted to sail on it, so she asked her mom if she could go on a boat. Her mom said yes, so Lily wore her boat and the water.
+As they sailed to the beach, Lily saw many fish. She asked her mom if they could go near the boat. Her mom said yes, and they went on a big boat. Lily had so much fun, and she was happy to have her boat back.",eos,108,0.04761904761904767,,,,
+dev_06893,development_prefix,3407,"Once upon a time, there was a little girl named Lily. She loved to play at the beach. The beach had sand, water, and a big"," wave. One day, Lily saw a big crab in the water. The crab was trying to catch the crab, but Lily was brave. She wanted to catch the crab.
+Lily asked the crab if she could play with the crab. The crab said yes and they played catch together. They ran and did not see the crab coming closer. Lily asked the crab if she could catch the crab. The crab said yes, but the crab was too fast for Lily to catch it.
+Lily was very sad. She knew she had to find the crab to catch the crab. She tried to catch the crab, but it was too fast for her. She felt very lonely and sad. But then, she remembered the crab and decided to give it a try. She picked it up and threw it back to the crab. Then, the crab jumped back and Lily caught the crab. She was so happy and grateful. She learned that helping others is always good to help others and not have a friend like this.",eos,203,0.07999999999999996,,,,
+dev_09383,development_prefix,1337,"Once upon a time there was a little girl named Rose. She loved to explore the world around her. One day, she decided to explore a new garden",". As she was walking, she spotted something interesting. It was a big, round thing! Rose picked it up and held it in her hand. She was so excited that she forgot to leave it.
+Suddenly, she heard a voice. It was her mom. ""What does that answer?"" she asked. Her mom smiled. ""It's a special thing. It means to open it, so you can open it up and see what you want!""
+Rose was excited to find out what it was. She carefully opened the box and found a beautiful necklace. It was beautiful and shiny. Rose was so happy that she had found a special necklace!",eos,132,0.0,,,,
+dev_09383,development_prefix,2027,"Once upon a time there was a little girl named Rose. She loved to explore the world around her. One day, she decided to explore a new garden",". As she walked, she saw a big tree and decided to climb it. As she was climbing, she saw a big tree. She thought it would be a good place to hide and seek.
+Suddenly, she heard a voice. It was her voice calling her name. It said, ""Do you want to play, Rose?"" Rose was surprised but surprised. She said, ""Yes, of course!""
+So Rose went on her way. She was careful not to make any noise. She kept going, but she was determined to find the best place to hide. Eventually, Rose was able to get to the top of the tree and hide. She was so happy that she had stayed in the tree for a while.",eos,147,0.02083333333333337,,,,
+dev_09383,development_prefix,3407,"Once upon a time there was a little girl named Rose. She loved to explore the world around her. One day, she decided to explore a new garden",". She ran to the garden and started to search for the perfect garden. She searched and searched, but she couldn't find it anywhere.
+Then she spotted a big tree in the garden. She ran to it and reached out to grab it, but it was too heavy for her. She started to cry, but then she heard a voice. It was her mom who was crying. 
+""What are you doing here?"" Rose asked.
+Her mom said, ""I saw the garden and I was so happy in the garden. I wanted to see what was inside.""
+Emma smiled and felt proud of herself for being so kind and generous. She ran off to play with her toys, happy and peaceful.",eos,145,0.014084507042253502,,,,
+dev_08978,development_prefix,1337,"Once upon a time, there was a big, tall mountain. On the top of the mountain was a huge mystery! One day, something strange happened."," A tiny bird flew over the mountain and started to fly away.
+The bird was very scared. The bird wanted to go back to the top of the mountain, but it was too late. The bird couldn't fly away. The tree was so sad.
+The bird had to go home and never saw anything again. The bird never found out again.",eos,72,0.01449275362318836,,,,
+dev_08978,development_prefix,2027,"Once upon a time, there was a big, tall mountain. On the top of the mountain was a huge mystery! One day, something strange happened."," A big, scary cloud appeared in the sky. It was so loud that it roared.
+The people were scared, but they kept coming. Suddenly, a big storm came and the house was destroyed. The people had to stop the storm from going to the mountain and they were safe.
+The people were sad that they had to leave the mountain, but they knew the storm was not so scary. They stayed in the storm until the storm finally came.
+The people were sad, and the storm was gone. They never went back to the mountain again.",eos,113,0.045454545454545414,,,,
+dev_08978,development_prefix,3407,"Once upon a time, there was a big, tall mountain. On the top of the mountain was a huge mystery! One day, something strange happened."," A big storm came and the mountain started to fall down. The people in the village were scared and started to cry.
+The top was getting closer to their house. It was so scared and scared. It wanted to make the mountain very strong and strong. But it was too late. The people in the village was very sad, but they knew it was okay to be scared.
+The next day, the town was back on the journey to a small village. It was a safe place that was safe. The people in the village were happy that they had made the world a happy place. The end.",eos,123,0.05833333333333335,,,,
+dev_08044,development_prefix,1337,Once upon a time there was a little bear named Boo. Boo always loved to explore the world and see what wondeful things he could," discover. One day, Boo was walking through the forest when he saw a beautiful butterfly. He hopped closer to pick it up and realized it was a butterfly! Boo had never seen the butterfly before and was so surprised. The butterfly flew down to show Boo. Booo's friend, a little bunny named Benny, saw him looking sad.
+""Are you okay, Bree?"" asked the butterfly.
+""Yes, I'm okay. I see a butterfly with lots of wings. I'm not too fast,"" replied Boo.
+""Thank you, Benny. You are very kind to you so much."" said Boo smiled.
+Benny felt happy that he had found a new friend. From that day on, Bree and Benny became friends and played together every day. They became good friends and played together every day.",eos,172,0.023668639053254448,,,,
+dev_08044,development_prefix,2027,Once upon a time there was a little bear named Boo. Boo always loved to explore the world and see what wondeful things he could," do. One day, he was walking around a nearby forest when he saw a big, scary bear. He was scared but decided to go closer.
+But then Boo sneezed loudly and he was scared! Booey was brave and he started to run away. He ran around and found a big tree with lots of leaves. He quickly ran back to the tree and said, ""I found some leaves here!"" But the leaves were too big for him to hold. Boo started to fall, but then he saw a little rabbit who had fallen from the tree.
+Boo remembered what his mom said and quickly picked up the leaves and put them in his pocket. He continued his walk and found a new spot to rest. He was so happy to have a new friend, even though it was a scary thing to do.",eos,168,0.0,,,,
+dev_08044,development_prefix,3407,Once upon a time there was a little bear named Boo. Boo always loved to explore the world and see what wondeful things he could," find. One day, Boo had an idea! He decided to go on an adventure and find some fun places to explore.
+As he was walking, he remembered that he had never been to a very big hill before. He went to the top and found some yummy food. He also found some nuts and ate them all up.
+As he was walking around the hill, he saw a wild animal. Boo was so excited that he decided to take a nap. When he woke up, he saw that the animal was not moving. Boo was scared and he didn't know what to do.
+Finally, he felt very sleepy and he decided to take a nap. He dreamed that he could explore this way and find all the things. He was happy to be back on the way, and was now ready to go on his adventure again.",eos,173,0.04705882352941182,,,,
+dev_09612,development_prefix,1337,"Once upon a time there was a little girl named Sarah. One day, Sarah went to the store with her Mommy. There were lots of interesting things in"," the store. Sarah loved going to the store and asked Mommy if she knew she could buy some new things. 
+Mommy said yes, but only if they decided to go to the store. Sarah was so excited! 
+When they got to the store, Sarah saw a big, juicy apple. She wanted it so she put it in the pocket. She ran back home and told her mommy, ""Mommy, what is this apple?"". 
+Her mommy smiled and said, ""That's a very nice apple, Sarah. That's a very nice apple. Now let's go home and get some cookies to eat."" 
+Sarah and her mommy went home and Lily was happy she had found a great apple.",eos,145,0.021126760563380254,,,,
+dev_09612,development_prefix,2027,"Once upon a time there was a little girl named Sarah. One day, Sarah went to the store with her Mommy. There were lots of interesting things in"," the store.
+Sarah saw a big, shiny rock. She thought it was so cool! She picked it up and put it in her pocket. Then she went back to the store and saw a big, fluffy teddy bear.
+Sarah went back to the store and bought the teddy bear. She put it on her wrist, and it felt warm.
+Sarah was so excited! She ate it all up and then went home. She would tell her mommy all about it, and daddy all the fun she had in her pocket.",eos,107,0.04807692307692313,,,,
+dev_09612,development_prefix,3407,"Once upon a time there was a little girl named Sarah. One day, Sarah went to the store with her Mommy. There were lots of interesting things in"," the store.
+Sarah asked her Mommy if she could buy something special. Her mommy said yes, so Sarah started to get a special treat.
+When Sarah got home, she got so excited! She saw a big cake and ran to it and ate it all up. It was so yummy!
+Sarah was so happy and she thanked her mommy for the yummy treat. She loved the treat and it made her smile.",eos,85,0.0,,,,
+dev_07228,development_prefix,1337,"Once upon a time, there was a little girl named Lily. She loved playing in the snow. One day, Lily saw a rare snowman. It was"," very pretty and had a big smile. 
+Lily thought that maybe there was a warm snowman. She ran to the snowman and brought it back to her friend. Her friend had a big coat, a coat, and a scarf. 
+Lily's friend, Tommy, had a long neck and a bow. They played together all day. Lily was so happy to have her own friend. 
+In the end, Lily and her friend had a great time at the beach. They had a great day at the beach.",eos,106,0.01941747572815533,,,,
+dev_07228,development_prefix,2027,"Once upon a time, there was a little girl named Lily. She loved playing in the snow. One day, Lily saw a rare snowman. It was"," shiny and had a long nose. Lily wanted to help the snowman. 
+She went inside and asked her mom, ""Mommy, can I help me make a snowman with my hat?"" 
+Her mom replied, ""Sure, you can help me cut it."" 
+Lily and her mom drew a snowman with the hat. They gave him a cone and said, ""Thanks, Mommy! You are the best snowman ever."" 
+Lily was happy that she could help make the snowman's hat. She hugged her mom and said, ""I love you, mom.""",eos,116,0.017699115044247815,,,,
+dev_07228,development_prefix,3407,"Once upon a time, there was a little girl named Lily. She loved playing in the snow. One day, Lily saw a rare snowman. It was"," so pretty that she wanted to show it to her friends.
+Lily decided to make a snowman with the snowman. They put on some warm coat and a scarf. Lily gave the snowman a scarf to wear when it was cold outside. The snowman was a cold cold and hot cake was wet.
+Lily's mom came outside and said, ""It's okay, Lily. It's just a cold day. We can make a snowman together."" Lily smiled and said, ""Thank you, Mommy."" 
+From that day on, Lily and her mom made a snowman together and were happy too. They felt good to help each other when they were cold and dry, because they always had fun.",eos,140,0.007299270072992692,,,,
+dev_03932,development_prefix,1337,Once upon a time there was a friendly frog who lived in a swamp. He loved hopping around in the swamp and his frog friends would often come to join," in the meadow.
+One day, the frog said to his friends, ""Let's go to the pond with me!"" The other animals agreed, so they decided to go for a walk.
+When they arrived, they saw a big pond. They wanted to swim in it. The water was so tall, but it was too hard. The frog was sad.
+The other animals saw how sad they were. They found a big stick and said, ""Let's have a swim in the pond!"" The fish was happy to be free and they swam together.
+When they got to the pond, the frog showed them all the yummy food they had. They all laughed and said, ""We did it! We ate it!"" Everyone was so happy to see each other and they all went back to the pond.",eos,165,0.01851851851851849,,,,
+dev_03932,development_prefix,2027,Once upon a time there was a friendly frog who lived in a swamp. He loved hopping around in the swamp and his frog friends would often come to join," them. One day, he saw a big wolf in the swamp. The wolf was very scared and scared. 
+The frog decided to take a step back and see if he could not see the wolf. He climbed up one foot and climbed up the wolf. The wolf was so scared that he started to scream. The wolf was so scared that he ran away. 
+The little frog was so sad that he couldn't move. He ran to his friends and told them what happened. They were worried that the wolf was not there to help him. The wolf tried to make the little rabbit feel better but it was too late. He was very sad and wished he had listened to his friends.",eos,141,0.050724637681159424,,,,
+dev_03932,development_prefix,3407,Once upon a time there was a friendly frog who lived in a swamp. He loved hopping around in the swamp and his frog friends would often come to join," him. One day, the frog noticed something different from the swamp. He decided to take a closer look and take a closer look.
+He saw a big green frog hopping around and he wanted to catch it. He wanted to catch it, so he jumped into the swamp and ran towards it. He did not see the frog, but he was very excited.
+Suddenly, a big, scary frog appeared from behind the swamp. The frog smiled and said, ""Hello, you are so nice!"" The frog was happy and he said, ""You are so cute!"" The frog said, ""Thank you! You're so kind!"" The frog smiled and said, ""You are welcome!"" 
+The frog and the frog became friends from then on. They spent many days playing in the swamp together. They was always happy and never wanted to forget the fun.",eos,174,0.04678362573099415,,,,
+dev_00041,development_prefix,1337,"Once upon a time there was a huge, old man. He lived in an old house by the river.
+Every day the old man would go to"," the river and take a seat. He would sit and watch the water. He was very happy.
+One day the old man went to the river. He saw a small fish swimming around the river. The fish said hello. The old man said, ""Hello! What are you doing here?""
+The old man said, ""I am looking for food. I have something special for you to eat."" 
+The old man smiled. He said, ""It's a surprise for you. You will see it in the river."" The old man smiled and said, ""Thank you for letting me take you to the river."" 
+He took a small bite and said, ""It's delicious. Now you can take a bite."" 
+The old man said, ""Thank you for his surprise. That was a very special surprise. I am so happy to have found something so special!"" 
+The old man smiled and said, ""I'm very glad I could help."" And from that day on, the old man was no longer sad, but he was never alone. The old man was always happy and kind to the old man.",eos,232,0.10480349344978168,,,,
+dev_00041,development_prefix,2027,"Once upon a time there was a huge, old man. He lived in an old house by the river.
+Every day the old man would go to"," the river. He would run and jump as high as he could. One day when he was flying, he spotted a big, shiny rock. He wanted to take it with him, so he put the rock on his back.
+He climbed and started to climb. He was so excited to see the rock. He climbed down the rock to take a closer look.
+The big rock was so shiny that it was almost really heavy. The old man tried to hold it, but it was too hard. He fell down and fell down.
+The old man was so upset and he couldn't get the rock back. He had been so sad.
+The old man had hurt his life and he was very sad. He had been so careless and he had to go to the end of the river.",eos,162,0.02515723270440251,,,,
+dev_00041,development_prefix,3407,"Once upon a time there was a huge, old man. He lived in an old house by the river.
+Every day the old man would go to"," the river to get some food. He would feed the animals, but one day he was feeling a bit shy.
+One day, the old man decided to go on a big adventure. He took a deep breath and walked to the river. He saw a big pond and he wanted to grab it.
+He got closer and closer, and he saw that the pond was very full of water. He was so happy!
+He kept walking until he came to a big pond. He saw some fish swimming around and he decided to get some water. He got a bucket and started to splash around in the water.
+The old man laughed and kept swimming. He had so much fun in the pond. He was so happy he decided to go on a special adventure.",eos,155,0.02631578947368418,,,,
+dev_10066,development_prefix,1337,"One day, a girl was in a car with her mom and dad. She saw lots of cars driving on the road. She thought it was fun.","
+The girl was so excited. She wanted to play with the cars. Her mom said, ""Let's do it!""
+So they got to work. They worked together to make the cars go faster and faster. 
+At first, the girl was very proud. She said, ""I will do it! I will win again!"" 
+But the girl was too clever to do anything. She worked hard and finally got her own cars. She was so proud. 
+The girl was so proud of her new car. She said, ""I did it! I am so proud of you!"" 
+But then, a big dog came and scared her away. The girl was so scared, she ran away.",eos,147,0.04166666666666663,,,,
+dev_10066,development_prefix,2027,"One day, a girl was in a car with her mom and dad. She saw lots of cars driving on the road. She thought it was fun.","
+She drove her car on the road as fast as she could. She was so happy! She drove it and drove until she was tired.
+The girl's mom and dad went home. They were so happy to see her. They went back to the car and the girl was able to drive.
+When they got home, the girl was so happy. She had had made a new friend. She had learned an important lesson.",eos,88,0.0,,,,
+dev_10066,development_prefix,3407,"One day, a girl was in a car with her mom and dad. She saw lots of cars driving on the road. She thought it was fun.","
+Then, she saw a little boy. He was wearing a pretty shirt. The little girl was so excited that she started to drive down the road.
+When she got to the car, she was very excited to see the car. She jumped and down as she drove around the road. The boy did not see any cars coming out from the road. He was sad that she wanted to go faster.
+Finally, the little girl got to the car and drove it around the car. She was so happy that she didn't get to the park anymore. She stopped and smiled. She had a fun drive around the car with her mom and dad.",eos,132,0.015503875968992276,,,,
+dev_01323,development_prefix,1337,"John and Mommy were playing. John wanted to play with the toy train. However, Mommy did not allow it. She said it was too dirty. No"," matter what he was doing, John was sad.
+John looked up at his mom. ""Why did you do that?"" he asked.
+Mommy looked at John. ""I didn't know, John. I said this train could be cleaned. It was hard to fix.""
+John smiled. He was glad that Mommy was helping him.
+John was happy too. He went home with his sister, and they had a great time together.",eos,90,0.0,,,,
+dev_01323,development_prefix,2027,"John and Mommy were playing. John wanted to play with the toy train. However, Mommy did not allow it. She said it was too dirty. No"," one was sad.
+John was sad. He wanted his toy train, but Mommy said it was too expensive. So John put the train in the store. He knew it was his and he was very sad. 
+Mummy was worried. She said the toy was okay to buy it. She said it was too expensive, but John was very sad. 
+Finally, the toy train was fixed. John was so happy! He had finally fixed it. He hugged it tight, and the train flew away. John was sad but he knew he had done something wrong.",eos,116,0.04424778761061943,,,,
+dev_01323,development_prefix,3407,"John and Mommy were playing. John wanted to play with the toy train. However, Mommy did not allow it. She said it was too dirty. No"," matter what John said.
+John started to feel sad. He wanted to play with the train. He asked Mommy if he could have the train. Mommy said yes.
+John was so happy! He played with the train and ran around. He had so much fun. He was so glad his mom did not let him play with the train. 
+The end.",eos,75,0.02777777777777779,,,,
+dev_01815,development_prefix,1337,"Once upon a time, there was a little girl named Lily. She loved to explore her house and find new things to play with. One day, she"," found a bottle of perfume on the ground. She picked it up and showed it to her mom. 
+""Mommy, look what I found!"" she said. ""I found a bottle of perfume!"" 
+Her mom smiled and said, ""That's very expensive, Lily. Let's keep it in the cupboard and keep it back."" 
+Lily was happy to have found the perfume, but she knew she had found a way to give it back. So, she put the perfume away and went home with her mom.",eos,107,0.019230769230769273,,,,
+dev_01815,development_prefix,2027,"Once upon a time, there was a little girl named Lily. She loved to explore her house and find new things to play with. One day, she"," found a shiny rock in the park. She picked it up and showed it to her mom. ""Look, I found a shiny rock! Can I touch it?"" she asked. Her mom smiled and said, ""Sure, you can try it. Let's take it home and show it to me.""
+Lily was so excited to show her mom her new rock. ""Look, Mommy! It's so cool!"" she exclaimed. Her mom smiled and said, ""That's a wonderful rock!"" From that day on, Lily always remembered the rock she found and her mom's things.",eos,118,0.060869565217391286,,,,
+dev_01815,development_prefix,3407,"Once upon a time, there was a little girl named Lily. She loved to explore her house and find new things to play with. One day, she"," found a shiny toy on the ground. She was so happy and played with it all day long.
+But then, Lily's mom came in and asked her what was wrong. Lily told her about the toy she wanted. Her mom said, ""Lily, you should be careful when you play with it.""
+Lily listened carefully and played with the toy all day long. She loved playing with it and pretending to be a princess. The end.",eos,90,0.011494252873563204,,,,
+dev_04708,development_prefix,1337,"Once upon a time, there was a little girl named Lily. She loved to look at the fluffy white clouds in the sky. One day, she went"," outside to play in the grass. She saw a big cloud that was flying high in the sky. 
+Lily went up to the cloud and saw a big cloud. She wanted to see the cloud. She climbed up the cloud and found a big, soft spot under the grass. The cloud was so tall that Lily could not reach it. 
+Lily wanted to help the cloud, so she put her paw down and carefully got her paw. She went back inside and took a nap. When she woke up, she was happy. The cloud was not so big enough for her to sit on.",eos,121,0.025423728813559365,,,,
+dev_04708,development_prefix,2027,"Once upon a time, there was a little girl named Lily. She loved to look at the fluffy white clouds in the sky. One day, she went"," to the park with her mom and saw a big, white cloud. It was so big! Lily was very excited and wanted to play with it.
+But then, her mom came and saw the white cloud. She told Lily that the cloud was very dangerous and could hurt her body. Lily felt sad and started to cry. Her mom hugged her and said, ""Don't worry, Lily. We'll make you feel better.""
+Lily felt better and hugged her mom, happy to have the white cloud back in her room. From that day on, Lily always tried to make sure the rain was still hot, but she knew that the white cloud was happy to have a friend like her.",eos,140,0.0,,,,
+dev_04708,development_prefix,3407,"Once upon a time, there was a little girl named Lily. She loved to look at the fluffy white clouds in the sky. One day, she went"," for a walk with her mom and dad. They walked, and Lily saw a big tree and wanted to climb it. She climbed up the tree and climbed up. 
+As she climbed, she heard a big shout. It was her mom and dad. They were calling her name. Lily ran to her mom and said, ""Mommy, look! A joke!"" Her mom laughed and said, ""You're a great boy."" 
+From that day on, Lily loved going to the park every day. She always looked out for the white clouds to climb.",eos,114,0.036036036036036,,,,
+dev_01607,development_prefix,1337,"Once upon a time, there was a little mouse named Timmy. Timmy loved to run and play in the fields. One day, he saw a big piece"," of paper on the ground. He picked it up and showed it to his friend, Johnny. Johnny said, ""Wow, that's a great idea! Let's have a picnic together!"" 
+Timmy and Johnny took a big basket and picnic. They ate the cookies and had so much fun. Timmy was happy that he could help his friend be a successful friend.",eos,74,0.0,,,,
+dev_01607,development_prefix,2027,"Once upon a time, there was a little mouse named Timmy. Timmy loved to run and play in the fields. One day, he saw a big piece"," of cheese on the ground. He wanted to eat it, so he asked his friend, a small mouse named Max, to help him.
+""I can help you,"" said Timmy. ""It's just for me. I will try to reach the cheese.""
+""That's great,"" said Max. ""But you need to climb to the table.""
+Timmy climbed the chair and reached for the cheese. He climbed up and down. He was so happy!
+The cat started to eat the cheese and Timmy was happy that he could help the cat. Then, he ran into the kitchen to get the cheese. He put the cheese back in the fridge and ate it up. 
+""Thank you for helping me, Max!"" said Lily. ""You're the best friend ever!""",eos,160,0.006369426751592355,,,,
+dev_01607,development_prefix,3407,"Once upon a time, there was a little mouse named Timmy. Timmy loved to run and play in the fields. One day, he saw a big piece"," of wood on the fence. He wanted to pick it up, but it was too heavy for him to carry.
+Timmy's friend, Timmy, came over to play. Timmy wanted to help him. He grabbed his friend's hand and walked over to give the wood. Timmy was happy to see the wood and he said, ""Thank you, Timmy! You are very kind and helpful.""
+After his friend gave Timmy a big hug and said, ""You're welcome, Timmy. You're very kind. I'm proud of you."" Timmy felt happy too, and he knew he could always count on his friend's side.",eos,127,0.0,,,,
+dev_07369,development_prefix,1337,"Once upon a time, there was a little girl named Lily. She loved to play with her pink ball. One day, Lily went for a walk in"," the park with her ball. She saw a bird with a long beak. ""Look, Lily! The bird is flying!"" said Lily.
+Lily went to the bird and said, ""Hi, bird! Can I play with you?"" The bird nodded and said, ""Yes, but be careful. We need to be careful.""
+Lily felt happy and said, ""Thank you, bird. You are the best friend ever!"" The bird flew away and Lily flew away. She was happy that she could help the bird.",eos,106,0.01941747572815533,,,,
+dev_07369,development_prefix,2027,"Once upon a time, there was a little girl named Lily. She loved to play with her pink ball. One day, Lily went for a walk in"," the park. She saw a big tree with a lot of leaves. 
+Lily wanted to climb the tree and see what was inside. She asked her mom if she could climb the tree.
+Her mom said yes. She climbed the tree and climbed the tree. Lily climbed the tree and climbed the tree. She climbed down the tree to see her friends. 
+As she ran, she saw a big tree. She went up and down. She was scared. She was scared and didn't know what to do. But then, she remembered the tree her mom's words. She climbed up the tree and climbed the tree. She was so happy and grateful. From that day on, Lily knew that even though she was scared, she could still climb the tree and she was happy she could go on her way.",eos,166,0.07975460122699385,,,,
+dev_07369,development_prefix,3407,"Once upon a time, there was a little girl named Lily. She loved to play with her pink ball. One day, Lily went for a walk in"," the park. She saw a big tree with lots of leaves. She wanted to climb it and see what was inside.
+As she was climbing, she saw a big tree. She asked her mom if she could climb the tree. Her mom said, ""Sure, Lily. Be careful.""
+Lily climbed up the tree and climbed up. But then, she saw a big tree. She was scared, but she climbed up the tree and reached for the branch. She climbed it and got the branch down. She felt proud of herself for finding the tree. From then on, Lily knew that even when she was small, she could always be careful and not climb too high.",eos,137,0.05970149253731338,,,,
+dev_00188,development_prefix,1337,"Once there was a boy called Dave. He liked to jog in the park. One day, it was raining but he wanted to go to the park anyway",". He asked his mom if he could go. His mom said yes, so Dave went to the park. 
+At the park, Dave saw a big slide. He wanted to go down, but his mom said it was too dangerous. Dave was sad and asked his mom if he could go ride on the slide. His mom said yes, so she put on a bike and went to the slide. 
+When they got to the top, Dave was so excited. He rode the slide and the slide, and the sandbox. He was so excited! He was so happy that he laughed and jumped back to his mom.",eos,127,0.06451612903225812,,,,
+dev_00188,development_prefix,2027,"Once there was a boy called Dave. He liked to jog in the park. One day, it was raining but he wanted to go to the park anyway",. He looked around and saw a big tree. He walked down the tree and looked around. He saw a big tree with a hole. Dave was very excited. He hopped down and saw a small pond! He climbed up the tree and climbed up the tree. He was so happy and full. He was so glad he had his jog to the park.,eos,72,0.04347826086956519,,,,
+dev_00188,development_prefix,3407,"Once there was a boy called Dave. He liked to jog in the park. One day, it was raining but he wanted to go to the park anyway",". 
+He started to walk around the park, having lots of fun. Suddenly, Dave heard a noise coming from the park. He stopped and looked around. He saw a big, scary dog. 
+""What are you doing?"" asked Dave.
+The dog sniffed his hand and suddenly stopped. It was a big, scary dog! Dave was scared and ran away.
+Bonuted, he couldn't help but feel better. But as he tried to run, the dog was too fast. Dave was too scared to run. He screamed, ""Help! Glay!""
+The dog chased him away, and Dave was stuck. He had to go to the park to hide and seek. He never saw the dog again.",eos,152,0.01342281879194629,,,,
+dev_08034,development_prefix,1337,Once upon a time there was a little girl called Gwen. She was three years old and really liked to make things. She was playing with her," paper and making them look nice.
+One day Gen was playing in the backyard when she saw something very strange. It was a special stick. She picked it up and showed it to her mom.
+""Mom, look!"" she said. ""It's a stick stuck!""
+Her mom looked at the stick and smiled. ""What do you think we should do with it?"" she asked.
+Gen picked up the stick and put it back in the garden. She watched as it rolled away, making noise.
+The little girl felt so happy. She decided to keep playing with the stick. She ran around and played with it all day long.
+Mom was pleased with her work. ""You did a great job! Now I'm glad it was my job,"" she said.
+Men smiled and said, ""I'm glad I could have a new stick ever again!""",eos,181,0.0,,,,
+dev_08034,development_prefix,2027,Once upon a time there was a little girl called Gwen. She was three years old and really liked to make things. She was playing with her," toys and hours she was having so much fun. 
+Suddenly, a loud noise came from the sky. Gwen was very scared. She wanted to go back to her house and see what was happening. 
+She looked around and saw a big, scary monster. Gen was scared and wanted to run away, but she remembered what her mom said. 
+The monster said, ""I won't be afraid of you. I don't want to be scared.""
+Gen was brave and she wanted to help the monster. She quickly ran back home and told her mom what happened. Her mom was very relieved and said, ""You're brave, Gewen. You did a great job.""",eos,146,0.0,,,,
+dev_08034,development_prefix,3407,Once upon a time there was a little girl called Gwen. She was three years old and really liked to make things. She was playing with her," toys in the garden when she saw something strange. She saw a big, shiny thing in the ground.
+Gen was curious and wanted to investigate. She put on her toy box and began to make something yummy. She scooped up her toy and used it to make a cake.
+Gen climbed up the box and carefully cut the cake. She was so proud of herself and wanted to go back outside to see what would happen. She smiled and smiled as she watched the cake mix.
+When she was done baking, Gen's mom opened the box. Inside was a great cake! Gen was so happy and happy to have made something new. She had made such a fun cake that day and she was so proud of herself.",eos,150,0.020408163265306145,,,,
+dev_05150,development_prefix,1337,"Once upon a time, there was a little girl named Lily. She loved to wear her favorite purple dress and play outside in the sun. One day,"," she went to the park with her mom and saw a big, hairy dog. The dog was black and had sharp teeth.
+Lily asked her mom, ""Can we go for a walk in the park?"" Her mom said, ""Yes, let's go!"" They walked and walked, but they couldn't find the dog's owner. The dog barked and barked, but Lily was scared.
+Suddenly, the dog ran into a tree. He looked down and saw Lily. He said, ""Don't worry, I will help you."" Lily felt better and said, ""Thank you for helping me walk!"" They walked and walked, and they walked, but they did not notice the dog that was not looking for a home.",eos,147,0.02777777777777779,,,,
+dev_05150,development_prefix,2027,"Once upon a time, there was a little girl named Lily. She loved to wear her favorite purple dress and play outside in the sun. One day,"," she found a pretty rose in the grass. It was so pretty and purple. 
+Lily picked up the rose and put it in her basket. Then, she went to her friend, Timmy. ""Hi, Lily! Do you want to play with me?"" asked Lily.
+Timmy said, ""Yes, please! I want to play with you.""
+Lily and Timmy played with the rose together. They had so much fun. They were happy to have each other, and they all played together. From that day on, Lily and Timmy played together every day and had lots of fun.",eos,120,0.008547008547008517,,,,
+dev_05150,development_prefix,3407,"Once upon a time, there was a little girl named Lily. She loved to wear her favorite purple dress and play outside in the sun. One day,"," she went to the park to play with her friends. They played tag, but then Lily felt uncomfortable. She had to go home and put her pink dress back in. 
+At home, she put on her pink dress and went to bed. She had a lot of fun playing with her friends and forgot about her purple dress. But then, her mommy came home and saw a big, colorful butterfly. She tried to catch it, but it was too high. Lily tried and tried, but she couldn't reach it. She was sad because she couldn't play with her friends. 
+Lily felt bad for getting upset and decided to give her mommy a big hug. She went to bed that night and dream of the butterfly. She dreamed of playing with her purple dress and her colorful dress. When she was done, her dress was dry and she knew that her mommy had said she was okay.",eos,182,0.011173184357541888,,,,
+dev_03445,development_prefix,1337,"Once upon a time, there was a little girl named Lily. She loved animals and wanted to visit the zoo. Her mommy promised to bring her there on"," an adventure.
+At the zoo, Lily saw many animals and animals. She saw lions, monkeys, and animals. She loved them very much. She asked her mommy if they could go to a zoo. Her mommy said yes, but they were too expensive.
+Lily was sad, but she knew she had to be careful. She put on a hat and ran back home. When she got home, she showed her mommy and daddy the zoo. They were very happy. Lily felt proud of herself for taking care of the animals.",eos,108,0.00952380952380949,,,,
+dev_03445,development_prefix,2027,"Once upon a time, there was a little girl named Lily. She loved animals and wanted to visit the zoo. Her mommy promised to bring her there on"," a big farm.
+When they arrived at the zoo, Lily saw a big lion. The lion was very friendly and wanted Lily to pet him. But Lily didn't listen and went inside.
+The lion came and caught Lily. Lily was very sad and wanted to take her home. She tried to comfort the lion, but it was too late. Lily's mommy was so sad and wished she had listened to the lion. From that day on, Lily made sure to always make sure the lion was not being selfish.",eos,105,0.0,,,,
+dev_03445,development_prefix,3407,"Once upon a time, there was a little girl named Lily. She loved animals and wanted to visit the zoo. Her mommy promised to bring her there on"," a safari.
+So, they went to the zoo to see all the animals. There, they saw a big lion. They were very happy and wanted to see the lion. Lily asked the lion if he could play with them. The lion said yes and they played together.
+After the trip, Lily and her mommy went home. Lily was very tired but happy to have a new friend. She hugged her mommy and said, ""Thank you for sharing my zoo!""",eos,95,0.0,,,,
+dev_06510,development_prefix,1337,"Tina was walking up the steps. Suddenly, she felt someone pull her back. Tina turned around, surprised to find her evil neighbor. He was deaf and"," didn't answer them.
+Tina stopped and looked around. She saw a tall tree in the garden. She wanted to climb it and see if anyone was right. But the tall man was too high.
+Tina said, “No, no! I can't climb the tree. I will do it!”
+The tall man smiled again. He said, “You should try. Just keep trying and you will get what you want.”
+Tina smiled and hugged the tree. She was so brave and brave, she went back home.",eos,108,0.0,,,,
+dev_06510,development_prefix,2027,"Tina was walking up the steps. Suddenly, she felt someone pull her back. Tina turned around, surprised to find her evil neighbor. He was deaf and"," he was shaking her head.
+Tina was so scared that she started to cry. She was scared that the neighbor was so mean. She ran back to her house and hid behind her house.
+The neighbor was so angry that she started to cry. But it was too late. She had made a terrible mess.
+The neighbor had to leave, but she was also very sad. She never found her parents again.",eos,85,0.04878048780487809,,,,
+dev_06510,development_prefix,3407,"Tina was walking up the steps. Suddenly, she felt someone pull her back. Tina turned around, surprised to find her evil neighbor. He was deaf and"," could not find her way back.
+But then, the girl heard a voice. It was a man. He was so small that he had been in the deepest place. He asked Tina to help him. He gave her a big hug and said it would help her get back.
+ Tina was so excited! She ran around the park, feeling the wind in her face. After a few weeks, her neighbour was back on the path.
+So Tina found her neighbor's home and gave him a big hug. She was so excited to have found her neighbor's surprise.
+The moral of this story is that it's important to be kind and kind, but it's important to be kind to others.",eos,144,0.028368794326241176,,,,
+dev_04121,development_prefix,1337,"Once upon a time, there was a little girl named Lily. She loved to play in the park and swing on the swings. One day, she found"," a shiny thing in the grass. It was a shiny coin that she knew. 
+Lily picked it up and showed it to her mom. Her mom said, ""Wow, that's a pretty coin! Can you please find it?"" 
+Lily was happy to find the coin, so she ran to her mom and hugged her again. Her mom was happy too, and Lily went home happy to play with her coin.",eos,86,0.0,,,,
+dev_04121,development_prefix,2027,"Once upon a time, there was a little girl named Lily. She loved to play in the park and swing on the swings. One day, she found"," a big, red ball in the park. It was so big that her hair was very messy. 
+Lily asked her mommy, ""Mommy, can I play with the ball?"" Her mommy said, ""Of course, you can play with it."" 
+Lily was happy that she helped her mommy play with the ball. She played with it all day long. When it was time to go home, Lily said, ""Thank you for playing with me, mommy. I love to play with the ball."" Her mommy smiled and said, ""I love playing with you, Lily.""",eos,118,0.017391304347826098,,,,
+dev_04121,development_prefix,3407,"Once upon a time, there was a little girl named Lily. She loved to play in the park and swing on the swings. One day, she found"," a note on the ground. It said ""Hello, little girl!"" 
+Lily was so happy to see the note. She said ""Hello, little girl! I am a big, scary dog. I can't find you."" 
+The next day, Lily's mom asked her to go to the park. Lily's mom said yes, but they didn't have enough money. Lily was sad, but she couldn't go back to the park. She found her mom and told her what happened. Her mom hugged her and said, ""Don't worry, we can find your mom tomorrow."" 
+Lily felt happy that she could help the little dog, but she still wanted to go back home. She went home feeling proud of herself for being brave and being brave.",eos,157,0.025974025974025983,,,,
+dev_05698,development_prefix,1337,"Once upon a long time ago, there was a wise and intelligent man. He would hang around the village and help people with their problems. One day,"," the wise old man came to the village and asked the people to help. They said it was nice to help people.
+The wise man was so happy to help. He had a new friend who helped people, and they all worked together to make everyone happy. They all had a long time and they were very happy. The wise man was grateful for his wise work and made his way.",eos,79,0.0,,,,
+dev_05698,development_prefix,2027,"Once upon a long time ago, there was a wise and intelligent man. He would hang around the village and help people with their problems. One day,"," he found a box of toys he wanted to play with. He thought it was a fun idea to play with and he decided to play with them.
+So, the man and his friends went to the town together. They played games and games. They laughed and had so much fun. When it was time to go home, the man gave his friends a big hug and said, ""Thank you for being so brave, little ones!"" They were happy and hugged each other, happy to have each other.",eos,102,0.0,,,,
+dev_05698,development_prefix,3407,"Once upon a long time ago, there was a wise and intelligent man. He would hang around the village and help people with their problems. One day,"," a little girl came to the village and saw the man carrying a big, shiny ball. She was so excited that she started to run around the village.
+When she got to the village, she saw lots of people and children playing. She was wearing a big smile and she wanted to join them. She asked them to join her, and they asked her to join her.
+The little girl was so excited and couldn't help but move away. But as she tried to join the people, she saw a big, scary dog. The dog barked and barked, but the little girl kept running away from the tree.
+The man and the girl cheered. They had fun playing together in the village. They knew they would never forget the kind man.",eos,152,0.0,,,,
+dev_05845,development_prefix,1337,"Once upon a time, there was a man who loved to eat delicious cakes. He would go to the bakery every day and buy lots of cakes. One"," day, he was walking in the park and he saw a little girl.
+The man asked her if she wanted to go there and asked if he could go. The little girl smiled and said yes.
+He said yes, and they went into the park. The little girl was so happy and thanked the man. She was so excited.
+The man said goodbye and said goodbye to the little girl. He said goodbye and went home. He was very happy and full.",eos,96,0.021505376344086002,,,,
+dev_05845,development_prefix,2027,"Once upon a time, there was a man who loved to eat delicious cakes. He would go to the bakery every day and buy lots of cakes. One"," day, he saw a nice lady with a big bag of cookies. She was so happy! She asked the man if he could have some. The man said yes and gave him some cookies.
+The lady was so happy that he could enjoy the cookies. She ran around and around the playground. The man enjoyed the cookies, and he never forgot his hard work.
+The lady enjoyed the cookies of the cookies all by himself. She would always remember the man who brought it to the park to share with her.
+The man was very happy to have lots of cookies and enjoyed them very much. He was so proud that he had enjoyed the cookies and his delicious cookies.",eos,136,0.007518796992481258,,,,
+dev_05845,development_prefix,3407,"Once upon a time, there was a man who loved to eat delicious cakes. He would go to the bakery every day and buy lots of cakes. One"," day, he went to the store with his mom. The girl was so excited!
+When they arrived at the store, the man was so excited to get some ice cream. He asked his mom if he could have some. The little girl was so excited!
+The man was so happy to see the ice cream. He said, ""Yes! That is delicious!"" The little girl was so happy. She ate the ice cream and quickly smiled.
+The bald man was so happy that he was able to have a delicious ice cream. He had been so glad that he accepted the ice cream with his heart.",eos,124,0.06611570247933884,,,,
+dev_06168,development_prefix,1337,"Once upon a time, there was a green frog named Freddy. Freddy loved to jump and play in the pond all day long. One day, while playing"," in the water, Freddy saw a big rock. ""What is that?"" said Freddy. ""I'm going to pick up some bread,"" replied Freddy.
+The next day, Freddy went to the river to dig. He found a big, juicy apple in the water. Freddy was very happy and thanked Benny for helping him. After that, Freddy decided to use the apple to cook the bread.
+In the end, Freddy got a big, juicy apple. He ate it all up and was happy. Freddy learned that sometimes it's okay to ask for help. From that day on, Freddy made sure to always keep the apple in a dry place for him to keep him warm.",eos,138,0.014814814814814836,,,,
+dev_06168,development_prefix,2027,"Once upon a time, there was a green frog named Freddy. Freddy loved to jump and play in the pond all day long. One day, while playing",", he saw a little fish swimming in the pond. Bobby was scared, but he wanted to catch it. 
+The fish said, ""It's okay, Freddy. You can catch me. You have to throw me one!"" So, Freddy and the fish ran as fast as they could. So, the fish swam to the water to swim. 
+ Freddy and the fish ran as fast as they could. But the fish was too fast and it caught him. Freddy was so scared that he flew away, but he was still happy to have found the fish. From that day on, Freddy and the fish were the best of friends and would often play in the pond together.",eos,138,0.07407407407407407,,,,
+dev_06168,development_prefix,3407,"Once upon a time, there was a green frog named Freddy. Freddy loved to jump and play in the pond all day long. One day, while playing",", Freddy saw a scary cat lying on the ground. The cat was very scared and called for help.
+ Freddy tried to run away, but he was too fast. He tried to run, but he couldn't. The cat ran as fast as he could, but it was too late. The cat did not see Freddy and was very sad.
+Benny learned that it's important to be careful and not run too fast. He learned that sometimes things can be dangerous, but it's important to listen to your friends.",eos,105,0.019607843137254943,,,,
+dev_08416,development_prefix,1337,"Once there was a little turtle named Toby. He was very slow but he was always happy.
+One day Toby decided to go for a walk. He"," wanted to find something special, so he hopped and hopped as fast as he could.
+He was so happy with how fast he could see the world. He hopped and hopped until he finally reached a beautiful meadow.
+Suddenly, he heard a loud noise. He was so scared that he started to cry.
+Suddenly a voice said again.
+""Don't worry, Toby. I'll help you find something special.""
+Toby was so happy! He hopped up to the meadow and started to walk. The voice was too fast and Toby's heart started to move.
+The voice was coming from the meadow to a big bush! It was the farmer!
+""What are you doing here?"" said the farmer.
+Toby was surprised. The farmer said, ""I'm trying to find a way to escape. I'm going to get you!""
+So Toby hopped and hopped as fast as he could. The farmer was so thankful to Toby for helping him. 
+Fluffy thanked the farmer and hopped away. Toby was very happy he could help the farmer.",eos,215,0.028301886792452824,,,,
+dev_08416,development_prefix,2027,"Once there was a little turtle named Toby. He was very slow but he was always happy.
+One day Toby decided to go for a walk. He"," hopped through the woods and he saw a big tree. He was so excited when he reached the tree. He reached out to touch the tree.
+The tree was very dark and Toby saw a small pond. He was curious about it. He hopped closer and closer and closer to it. He saw a friendly fox.
+""Hello,"" asked Lisa.
+""Hi,"" said the fox. ""Do you want to play?""
+""Yes,"" said the fox.
+The fox started to jump around the pond. He was having so much fun!
+Toby smiled and thanked the fox. ""You're welcome,"" he said.
+The fox smiled and said, ""You're welcome. I'm glad you like to play.""
+And so, Toby and the fox became the best of friends.",eos,161,0.03797468354430378,,,,
+dev_08416,development_prefix,3407,"Once there was a little turtle named Toby. He was very slow but he was always happy.
+One day Toby decided to go for a walk. He"," put on his shoes and went outside. He was so excited to find something fun.
+When he arrived at the park, he was very excited. He saw some children playing a game, a game. He wanted to make a game.
+He took out a box and started jumping. He ran and jumped, he jumped and laughed. He was having so much fun!
+When he opened the box, he found a big stick. He smiled and smiled as he jumped around. He could see a little bird running across the park. He had so much fun!
+After playing for a while, Toby's mom said it was time for them to go. Toby was so happy to be back to playing and playing again.",eos,146,0.013986013986013957,,,,
+dev_10452,development_prefix,1337,Tom and Mia like to play with crayons. They have many colors of crayons. They like to mark on paper and make pictures. Sometimes they mark on the," paper. They need more crayons.
+One day, they go to visit their grandma. Grandma asks them if they can go to grandma's house. She says yes, but they have to be careful. She says they are not safe.
+She says they have to be careful. She says they have to be careful and not draw again. She says she will be careful. She says she will not play with them again.
+Tom and Mia nod. They leave their toys in their room. They walk home with their mom. They are happy. They tell their stories and tell their stories. They forget about their cat and their crayons. They are good friends.",eos,134,0.0992366412213741,,,,
+dev_10452,development_prefix,2027,Tom and Mia like to play with crayons. They have many colors of crayons. They like to mark on paper and make pictures. Sometimes they mark on the," paper. They sit on the floor and look at the colors.
+One day, they see a new picture in the kitchen. It is a picture of a big cake with a picture of a house on it. They think it looks pretty. They want to see what is inside.
+They go to the kitchen and get some paper. They take some paper and crayons and crayons. They brush them with the crayons. They draw a picture of a cake. They are happy.
+But then, they hear a loud noise. It is the phone! It is the phone that Mom says, ""Stop! That is not the cake! That is not a cake. You are in trouble. You have to clean up the mess.""
+Tom and Mia look at the phone. They feel sorry for the phone. They say, ""Sorry, Mom. We were just playing. We did not mean to make the cake!""
+Mom smiled. She said, ""That is good. Now you can play with your blocks. You can make a picture of a dog and a princess. But only if you say sorry to me and to me. And you have to say sorry to each other and to me.""
+Tom and Mia nodded. They said, ""Yes, Mom. We will forgive you."" They hugged Mom back and said, ""We love you. We will be good and kind.""
+Mom smiled and said, ""I love you too, too, my loves. Now, let",max_tokens,300,0.03367003367003363,,,,
+dev_10452,development_prefix,3407,Tom and Mia like to play with crayons. They have many colors of crayons. They like to mark on paper and make pictures. Sometimes they mark on the," paper. They draw on the paper, on the paper, on the paper, on the wall.
+One day, Tom has some crayons in his drawer. He puts them in a box. He puts his crayons on the paper. He puts them on the paper. He says, ""There, I did it!"" He tries to cut the paper with his crayons. He says, ""Ble, this is better. I am done a good job. I will make you look better.""
+Mia is sad. She says, ""I am sorry, Tom. I can write. I am sorry I wanted to draw with your crayons. I love you. Can you design me to make my pictures?"" Tom says, ""Sure, Sara. I will help you make your own pictures. I am happy for you."" He puts the paper on the paper. He shows his picture to Mia.
+Mia is happy. She says, ""Thank you, Tom. You are very kind. You make me happy. I like your picture. Can I draw with your crayons?""
+Tom smiles. He says, ""Of course, Mia. You can draw my pictures. But you have to be careful. Your paper is not broken. It is not broken. It is not normal. It is not very pretty. It is rare. And your paper is beautiful. It is not a bad picture. It is not pretty. It is just a star.""
+Mia smiles. She says, """,max_tokens,300,0.09764309764309764,,,,
+dev_01251,development_prefix,1337,Once upon a time there was a little girl named Eliza. She loved to play outside and she was very graceful. She had a red ball that she," loved to play with. 
+One day, Karen was playing in the garden when she saw a little girl with a blue ball. She was so happy to see her ball. She wanted to play too, but she didn't know how. 
+Suddenly, a big dog came and chased her. Eliza ran after the dog and tried to catch it. But the dog was too fast and caught away.
+Zizzy got lost and sad. She tried to help the dog, but it was too late. She was able to catch it, but it was too late. 
+The next day, Eliel went back to playing and the little girl was very sad. She had lost her ball and had to go home. She knew she had to get home and not give it back.",eos,161,0.025316455696202556,,,,
+dev_01251,development_prefix,2027,Once upon a time there was a little girl named Eliza. She loved to play outside and she was very graceful. She had a red ball that she," loved very much. One day, when she played outside, she saw a big hole in the ground. She wondered what was inside the hole.
+Mitt's friend, a small dog named Max, came to visit. Max was worried because he lost his toy. He walked around and found his toy. ""What's wrong, little girl?"" he asked.
+Lily said, ""I lost my toy ball in the hole. We can't find it."" Max looked for the toy and saw the toy car in the hole. ""What's wrong, Lily?"" she asked. ""I lost my toy,"" Max said. ""I lost my toy ball!""
+Lily felt sad for Max and wanted to help. She went back to Max and gave him his toy ball to eat. They talked and played together all day long. Lily learned that it's okay to help others and to ask for help when you are sad.",eos,186,0.05464480874316935,,,,
+dev_01251,development_prefix,3407,Once upon a time there was a little girl named Eliza. She loved to play outside and she was very graceful. She had a red ball that she," could kick around and around.
+One day,Amfia was playing in the park when she heard a noise coming from behind a big tree. She looked up and saw that a big, scary dog had been chasing after her.
+Feeling scared, she decided to run away from the dog. She ran up to the dog, but it was too late. The dog ran away, but he was too late.
+Kayla was gone forever. But she never had to go back to the park again. She knew that she would never forget the scary dog.",eos,114,0.009009009009009028,,,,
+dev_05579,development_prefix,1337,"Once upon a time, there was a little girl named Lily. She loved to listen to jazz music and dance around her room. One day, her mom"," brought her a cup of tea. Lily was so happy and started to dance around the room.
+After a while, Lily went to play with her friend, Lily. Lily had so much fun, she forgot about the dough. The dough was so sour that she asked Lily if she could join her dance too. Lily said yes, and they ran outside together.
+When they got home, Lily's mom asked her what she had done. Lily said, ""It's a yummy surprise for you, Lily. You can have a snack if you want."" Her mom was happy and said, ""Thank you, Lily."" And they played together and had a fun day at the park.",eos,138,0.0,,,,
+dev_05579,development_prefix,2027,"Once upon a time, there was a little girl named Lily. She loved to listen to jazz music and dance around her room. One day, her mom"," asked her to watch a record about a big cake. Lily was so excited to watch the cake.
+As she was eating, she saw a big bird flying in the sky. The bird was jumping up and down. Lily was scared and didn't know what to do. She asked her dad, ""Mommy, can you help me climb the tree?""
+His dad smiled and said, ""Sure, Lily. Just be careful.""
+Lily climbed up the tree and sat down to watch the bird fly away. She wanted to touch the bird, but she was too scared to climb it. So, she climbed up the tree and watched the bird fly away. She knew that the bird was not a special thing to do.",eos,146,0.034965034965035,,,,
+dev_05579,development_prefix,3407,"Once upon a time, there was a little girl named Lily. She loved to listen to jazz music and dance around her room. One day, her mom"," told her that she wanted to show her music. Lily was excited to dance and dance.
+As they were dancing, Lily's mom asked her to come outside and play. Lily didn't want to stop when her mom said yes. She put on her favorite dress and ran outside to play.
+As they played, Lily's mom came outside to watch her dance. She looked up and saw that Lily's mom was sad. ""Lily, I'm sorry my mom made me sad,"" Lily said. Her mom smiled and said, ""It's okay, Lily. You can dance again tomorrow tomorrow.""
+Lily was happy that her mom hugged her and said, ""Thank you for being so polite."" And from that day on, Lily always looked forward to music with her mom.",eos,157,0.01948051948051943,,,,
+dev_01470,development_prefix,1337,"Once upon a time there was a little boy named Bob. Bob was only three years old and he loved going to the beach.
+One beautiful day,"," Bob went to the beach. He saw lots of boats and plants. He wanted to make the beach more fun. 
+Bob went to the beach. He played for a long time. Suddenly, he heard a loud noise. The water was coming from the beach. Bob had never seen anything like it before. He knew that it was time to go home. 
+He ran home and told his mom all about his special shell. She said she would come back soon. Bob was so excited he jumped up and down with joy. He couldn't believe his eyes! 
+Bob was so happy with his new shell and he couldn't wait to show it to his mom.",eos,137,0.02238805970149249,,,,
+dev_01470,development_prefix,2027,"Once upon a time there was a little boy named Bob. Bob was only three years old and he loved going to the beach.
+One beautiful day,"," Bob was walking in the river when he saw a big, shiny rock. He wanted to take it home and show it to his friends.
+He grabbed the rock and carried it home with him. Bob's friends were amazed by the rock and asked Bob if it could take it home. Bob smiled and said yes.
+So, Bob carried the rock in a big pile of sand and carried it around the river. He carried it with him wherever he went, even when it was time to go home.
+When he got home, Bob told his mom about the rock and how it would be perfect. His friends were happy and told him he would always remember it.
+Bob was happy that he could keep the rock and always keep it safe.",eos,151,0.0,,,,
+dev_01470,development_prefix,3407,"Once upon a time there was a little boy named Bob. Bob was only three years old and he loved going to the beach.
+One beautiful day,"," Bob was walking in the park and he saw a big, red balloon. Bob wanted to grab it, but he was too small to reach it. So he put on his shoulder and asked his mom if he could have the balloon. His mom said yes and they both got the balloon.
+Bob was so excited he jumped up, down and down with joy. He ran around and laughed, and then his mom gave him a big hug. She said he was happy to get the balloon and he promised to come back to the park again soon.
+The next day Bob took his balloon home and gave it a hug. His mom smiled and said, ""Now, let's go to the park and have some fun."" Bob thanked his mom and they both went home.",eos,155,0.0,,,,
+dev_09136,development_prefix,1337,"Once upon a time there were two friends; one was named Tom and the other was named Sam. Tom enjoyed spelling, but Sam was not so fo","ggy. He was always a little bit lonely.
+One day, Tom said to Sam, ""Let's do something special together."" Sam agreed and he began to draw a picture of a giant, a giant, green tree. The tree was so big that Tom and Sam had lots of fun drawing together.
+They drew pictures of animals and houses. Tom was so happy that his picture was not so ugly anymore. He was proud of his painting and he decided to show it to Sam.
+Tom and Sam were very happy as they drew together. They all had a great time gathering together and made the most beautiful picture ever!",eos,127,0.0,,,,
+dev_09136,development_prefix,2027,"Once upon a time there were two friends; one was named Tom and the other was named Sam. Tom enjoyed spelling, but Sam was not so fo","nd. He would run and play with his friends. One day Tom asked Sam if he could spell his name and he said yes.
+Tom was very excited. He asked if he could try. Sam said yes and Tom was very happy.
+Tom pushed his hands around and around the room. He was learning lots of new things. He tried his best and tried every day. After a few tries, Tom got ready for his dream. He was so proud of himself, he started to sing again.
+Tom was so happy that he had made a new friend. He ran around the room, and around his room. With his help, Tom was able to have a new friend.",eos,139,0.014705882352941124,,,,
+dev_09136,development_prefix,3407,"Once upon a time there were two friends; one was named Tom and the other was named Sam. Tom enjoyed spelling, but Sam was not so fo","ggy. Tom wanted to solve the problem. He said, ""I will solve this problem and I will solve the problem.""
+Tom was happy to find Sam. He said, ""I can solve this problem. I will solve the problem. I will give you the best words I can solve this problem.""
+Tom and Sam worked together and finally managed to solve the problem. They both had solved the problem, and they both were very happy.",eos,90,0.12643678160919536,,,,
+dev_08818,development_prefix,1337,"Once there was a bear. The bear was gentle and he liked to care for others. One day, the bear had an idea. He wanted to find"," a way to get a seat. So he flew over to the seat.
+The bear took a seat and hopped onto the seat. He looked at the seat and then climbed up the seat. He felt so happy! 
+Suddenly, the bear saw a big tree. He wanted to climb the tree, but he knew that it was really high. So he climbed up the seat and climbed up the tree. He was so proud of himself.
+The bear flew higher and higher until he was tired. The bear was happy he had done a good job. From then on, he was always careful with the seat.",eos,125,0.024590163934426257,,,,
+dev_08818,development_prefix,2027,"Once there was a bear. The bear was gentle and he liked to care for others. One day, the bear had an idea. He wanted to find"," a way to find some nice food.
+So he walked along the path and found a big tree. He thought it would be fun to explore the world. He slowly reached a small house.
+The bear followed the tree until he found a small pond. He ran over to it and looked inside. He saw lots of fish, fish, and lots of fish.
+The bear ran around and around. He was so happy to find such a tasty snack. He took a big bite and the fish flew away.
+The bear was happy he had found lots of food and enjoyed his yummy snack. He was glad he had been so lucky to find a happy place to drink in the pond.",eos,140,0.014598540145985384,,,,
+dev_08818,development_prefix,3407,"Once there was a bear. The bear was gentle and he liked to care for others. One day, the bear had an idea. He wanted to find"," a new home to show his friends. He went to the woods and found a big tree and some branches. He was so happy to find his family.
+When the bear found his family, they all gathered around the tree. The bear showed them his new home and they all went home. The bear was so happy and proud. He was glad he could help his family.",eos,76,0.0,,,,
+dev_04788,development_prefix,1337,"Once upon a time there was a brave prince who had a shiny sword. He was always ready to act when something bad happened.
+One day, the"," prince was looking for something special. He found a small piece of paper. He was very curious and decided to try it. He put the stick in a big box and made a wish. 
+But when he tried to find a way out of the box, he accidentally stuck it too hard. He was very sad and didn't know what to do. 
+Just then his friend, a kind old man came over and saw what happened. He said, ""Don't worry, I can help you. I'll release you and I'll give you a hug."" 
+The prince was so happy! He thanked the old man and they all smiled. 
+The prince was so happy that he could make a new friend. He knew that his sword was always the best thing to do.",eos,161,0.03164556962025311,,,,
+dev_04788,development_prefix,2027,"Once upon a time there was a brave prince who had a shiny sword. He was always ready to act when something bad happened.
+One day, the"," prince was walking by a river and he got very hungry. He decided to try something new! He walked and walked until he saw a big, scary lion. He knew he had to eat it.
+The prince was scared but he was brave and decided to try and take a bite. He made a face and laughed. The lion became very brave, but then he realized he was not so scary anymore. He quickly ran back home, and his sword was gone.
+The prince was so happy, he was safe and sound. He knew he had found a way to be brave and listen to the lion. From that day on, the prince was very happy that he had a friend who would always be there for him.",eos,146,0.027972027972028024,,,,
+dev_04788,development_prefix,3407,"Once upon a time there was a brave prince who had a shiny sword. He was always ready to act when something bad happened.
+One day, the"," prince was walking through the forest and he saw a big, red sword. He wanted to grab it, but he was too small to reach it. So he put on his sword and tried to lift it up. He was very strong and strong and he had to go back home.
+But suddenly, the prince heard a loud noise. He opened the door and saw a giant bear. The bear was scared but he climbed up the hill quickly. The bear was happy and gave the bear a big hug. The bear was very happy. He had made a new friend.",eos,115,0.017857142857142905,,,,
+dev_04714,development_prefix,1337,"Once upon a time, there was a little girl named Pat. She had a favorite toy—a tiny pony. Every day, she loved to squeeze and"," make music with her hair.
+One day, Pata decided to pick a real pony. She picked it up and held it in her hand. She was so happy that she forgot to be careful.
+Pata watched as the pony went into the meadow. She was so excited to be able to catch the pony. She ran and jumped until she was able to catch it.
+At the end of the day, Pataa turned to the pony. She was so happy that she had found the pony and put it in her pocket. It was a special treat!",eos,116,0.06194690265486724,,,,
+dev_04714,development_prefix,2027,"Once upon a time, there was a little girl named Pat. She had a favorite toy—a tiny pony. Every day, she loved to squeeze and"," make sure she was safe.
+One day, Pata was playing in the garden when she saw a little girl. She was very shy. She wanted to pet the little girl, so she held up her long arms.
+""Hi, I'm Ella,"" said the little girl. ""Do you want to pet the little girl?""
+""Yes,"" said Pata. ""But be gentle with the little girl's tail.""
+The little girl nodded and picked up the little girl and the little girl pet her tail.
+""Here you have a pet! I must pet it,"" said Pati.
+The little girl smiled. ""You are very brave, Pati!"" she said.
+So they both went back to the garden and played with the little girl every day.",eos,159,0.02564102564102566,,,,
+dev_04714,development_prefix,3407,"Once upon a time, there was a little girl named Pat. She had a favorite toy—a tiny pony. Every day, she loved to squeeze and"," make sure she was her best friend.
+One day, Patie decided to throw the pony in the garden. She threw it in the air and it went higher and higher. She was so happy she had a great time.
+But then, a big storm came and the pony was so scared. Patie tried to run, but it was too late. The pony was gone, but Patie was never seen again.",eos,86,0.0,,,,
+dev_07496,development_prefix,1337,"Once there was a girl named Sarah. She was three years old and loved to dance. On a sunny day, Sarah found an object that she really wanted",". She picked it up and took it home.
+At home, Sarah wanted to show her mum the object. She said, ""Mum, can I show you how to make the object?""
+Dad said, ""Yes, you can try it, but be careful. You need to be careful.""
+Sarah was a little bit scared. She didn't want to get hurt. She kept trying and trying, but it was too late. She was very sad and didn't know what to do.
+Then, her mum saw her and said, ""Don't worry, Sarah. I'll make you a special toy for you.""
+Sarah was so happy that she hugged her mum and said, ""Thank you, mum. Thank you for helping me make it for me!""
+The next day Sarah went outside to play and have fun. She was so happy to have such a nice toy and a special toy. She was so thankful for her mum and for helping her.",eos,197,0.015463917525773141,,,,
+dev_07496,development_prefix,2027,"Once there was a girl named Sarah. She was three years old and loved to dance. On a sunny day, Sarah found an object that she really wanted",". She picked it up and started to dance around. Suddenly, she felt a bit scared! She looked around and saw that it was a big, juicy apple. She was so happy and she laughed. 
+Sarah kept dancing until she felt very tired. She ran home and hugged it tight. Then, she fell asleep, dreaming of her amazing day in the spring.",eos,75,0.0,,,,
+dev_07496,development_prefix,3407,"Once there was a girl named Sarah. She was three years old and loved to dance. On a sunny day, Sarah found an object that she really wanted",". She ran to her house and started dancing. Suddenly, the object started to move. Sarah was so surprised that she started to dance. The object kept moving and spin.
+Sarah was so happy. She danced and danced and danced until she was tired. She spun and twirled until she was tired.
+Sarah was so happy, she had made a new friend. She looked up at the object and saw her smile. She felt so lucky to be outside and have such a wonderful time.",eos,99,0.05208333333333337,,,,
+dev_02309,development_prefix,1337,"Once upon a time, there was a happy puppy named Max. He lived with an old lady and everyday, he would crawl through the garden and make it"," very happy. One day, Max's mom brought him a special box.
+Max was so excited to see what was inside. He ran outside to look inside the box and saw a big, shiny red box. He was so excited!
+Max ran up to the box and opened the box. Inside was a beautiful bow that he wanted. He decided to use it to put his bow in the box. He put it into a box and put it on a bow.
+Max was so excited he jumped up and down. He thought it was so nice to have a bow. He put the bow in the box and began to bow back and arrow! 
+Max was so happy that he had a great surprise. He ran around the garden with his bow, and he was having a great time. He was so happy and he knew he could do it again soon.",eos,176,0.034682080924855474,,,,
+dev_02309,development_prefix,2027,"Once upon a time, there was a happy puppy named Max. He lived with an old lady and everyday, he would crawl through the garden and make it"," up and down. One day, Max decided to explore the world. 
+He found a small, shiny stone that he wanted to keep it. He ran over to it and tried to take it with him, but it was too heavy. Max tried and pulled and pulled, but it wouldn't budge. 
+The old lady saw Max and was upset. She asked him why he was so sad. She told him that he wanted to be able to keep the stone, but he didn't want to give up. 
+Max was very sad and angry at first, but then he remembered how she had helped him. He told the old lady that he would have a special surprise for him. He smiled and said he would keep the stone safe and it was a special surprise for him. 
+Max thanked the old lady for teaching him the magical stone. He was very happy with his new treasure and he knew that it wasn't easy to steal something, no matter how hard it might be to happen.
+The end.",eos,208,0.024390243902439046,,,,
+dev_02309,development_prefix,3407,"Once upon a time, there was a happy puppy named Max. He lived with an old lady and everyday, he would crawl through the garden and make it"," look nice.
+One day, Max saw a big, red tree. He wanted to climb it. He reached up to the top and climbed up. He was very happy.
+Max climbed up the tree and climbed up. He was very clever. He climbed so high that he could not reach the top of the tree. Max could not reach the top.
+He climbed up the tree and climbed the top. He climbed on the top of the tree and found the whole tree. He was very happy. The end.",eos,106,0.13592233009708743,,,,
+dev_10568,development_prefix,1337,"Once upon a time, there was a girl named Kate. Kate was very healthy and liked to go for long rides in her mom's automobile. She was"," very happy and loved to ride on the road.
+One day, Kate wanted to ride the driver's car. She asked her mom, ""Mom, can I ride the driver?""
+Her mom said, ""Yes, you can ride the driver, but be careful. You need to be careful.""
+ Kate was a little scared but she kept on riding. She rode her car and she went slow, faster and faster. Then she found a seat and put the seat against the road.
+Kate was so happy! She was so happy when she got to ride the driver. She was so happy she could ride back and play with her toys. Every time she rode back home, she always carried a little zip around with her mom.",eos,149,0.020547945205479423,,,,
+dev_10568,development_prefix,2027,"Once upon a time, there was a girl named Kate. Kate was very healthy and liked to go for long rides in her mom's automobile. She was"," always very excited when she was going to the park.
+One day, when Kate was at the park, she saw a big, green field. She wanted to see what was inside and see. She ran to the field and looked around.
+Suddenly, it started to rain. Kate was wet and dirty. She started to cry.
+Her mom came running over and said, ""Oh, sweetheart, you should have listened to me. I don't want to get wet.""
+Kate's mom said, ""I'm sorry, but I have to be careful.""
+Kate thought about what her mom said. She said, ""It's okay, sweetheart. Let's get a band-aid.""
+The moral of the story is that it's important to listen to your mom and stay safe. Sharing is more fun and kind to others.",eos,171,0.0,,,,
+dev_10568,development_prefix,3407,"Once upon a time, there was a girl named Kate. Kate was very healthy and liked to go for long rides in her mom's automobile. She was"," so proud of her car and couldn't wait to see it. 
+One day, Kate was walking in the park when she saw something strange. It was a big, scary monster! Kate was scared, but she wanted to be brave. She took a deep breath and stepped closer. She reached out her hand to touch the monster, and then the monster flew away. 
+Kate was so happy that her car was gone. She quickly smiled and waved as she watched the monster go away. 
+The end.",eos,105,0.009803921568627416,,,,
+dev_09463,development_prefix,1337,"Once upon a time, there was a happy family. They wanted to go on a trip. Daddy said, ""We need to pack our bags."" So"," the family packed all the things.
+When they arrived, Daddy and Mommy said their bags were ready. Daddy said, ""We want to pack our bags with the bags!"" But the family said, ""No, we are going!"" 
+The family was sad. They had to go to the hospital, but they knew that they needed to be safe. So, they started to pack their bags with toys and clothes. 
+When they arrived at the hospital, the family was very patient. They were sure they would have a lot of fun. The family was happy because they had packed everything they had put to pack and go to a special place!",eos,132,0.007751937984496138,,,,
+dev_09463,development_prefix,2027,"Once upon a time, there was a happy family. They wanted to go on a trip. Daddy said, ""We need to pack our bags."" So"," they set off on a trip.
+They packed their bags and went on a big trip! They packed all their bags and put on their journey. Then they packed their bags and went inside.
+The family packed their bags and set off on their journey. They were so happy that they had made a new friend. They packed their bags with warm, comfy clothes, and yummy snacks.
+The family had a lot of fun and couldn't wait to go on a journey, but they all agreed they would never forget the trip!",eos,107,0.04807692307692313,,,,
+dev_09463,development_prefix,3407,"Once upon a time, there was a happy family. They wanted to go on a trip. Daddy said, ""We need to pack our bags."" So"," they grabbed their bags and set off on their journey. 
+The family packed their bags and set off. The plane was big and shiny. It was very comfortable. 
+At the destination, Daddy saw a big, white lake. He was so happy to go on an adventure. He ran to the lake and grabbed his bag. 
+When they arrived, Daddy said, ""This is so nice! You can get on the beach!"" 
+The family smiled. They all had a great time together. They all had a great time together. The family was grateful for the fun they had and were glad they had a great adventure together.",eos,131,0.0703125,,,,
+dev_05064,development_prefix,1337,"Once upon a time, there was a rich man who lived in a big house. He had many things, but he was not happy. One day,"," he went to a big house with his mom. He saw a big box with a shiny key. He opened the box and found a special key. He was so happy and excited to see the key.
+He took the key and started to open the door. But the lock was too heavy for him to open. The man was very sad because he couldn't open the box. He thought about it and decided to keep the key in his room.
+He opened the box and inside was a big surprise for his friends. They all lived happily ever after. They were very happy and never forgot the key.",eos,123,0.008333333333333304,,,,
+dev_05064,development_prefix,2027,"Once upon a time, there was a rich man who lived in a big house. He had many things, but he was not happy. One day,"," he found a box of toys he wanted to play with. He went to his friend, a boy named Tim, and said, ""Can I play with you?"" Tim said, ""Yes, but be careful.""
+Tim played with the toys and pretended to be a fireman. They had so much fun together. When it was time for bed, Tim said, ""I'm glad I had fun playing with you all day."" Tim smiled and said, ""Thank you, Tim!""
+From that day on, Tim and Tim played together every day. They played together and had lots of fun. And they all lived happily ever after.",eos,128,0.016000000000000014,,,,
+dev_05064,development_prefix,3407,"Once upon a time, there was a rich man who lived in a big house. He had many things, but he was not happy. One day,"," he saw a little girl named Lily. She was holding a red ball. Lily wanted to play with the ball, so she said, ""Hello, little girl! Can I play with you?"" The man smiled and said, ""Sure!""
+Lily and the man played together for a while, but then Lily got tired. She said, ""I want to play with you, but I don't want to play."" The man smiled and said, ""That's okay, Lily. I love you very much. Let's go play together.""
+Lily and the man went home, happy and tired from playing. They had a fun day and Lily learned that being obedient and sharing is fun.",eos,139,0.044117647058823484,,,,
+dev_00405,development_prefix,1337,"One day, a little girl named Lucy went to the park. She wore her favorite shirt with a big, happy sun on it. Lucy loved to play"," outside. She played with her friends and had lots of fun.
+One day, Lucy's mom told her to be careful. Lucy did not listen. She played outside and had lots of fun. Lucy played with her friends. She was happy. They had fun.
+In the park, Lucy saw a big tree. She wanted to climb the tree. She climbed the tree and climbed. She was very happy. She found a big tree.
+At the top of the tree, Lucy saw a big, scary tree. She thought, ""I am going to climb the tree!"" She climbed the tree and climbed back down. The tree was very big. Lucy was happy. She went home and told her mom about her fun day.",eos,149,0.07534246575342463,,,,
+dev_00405,development_prefix,2027,"One day, a little girl named Lucy went to the park. She wore her favorite shirt with a big, happy sun on it. Lucy loved to play"," with her friends.
+But, when Lucy played, she saw something bad. As she went closer, it broke! Lucy was very sad. She wanted to find a new friend.
+Lucy was sad, but she knew that she could always find a new friend. She walked around and found a new friend. They played together, and Lucy was happy again.",eos,73,0.042857142857142816,,,,
+dev_00405,development_prefix,3407,"One day, a little girl named Lucy went to the park. She wore her favorite shirt with a big, happy sun on it. Lucy loved to play"," with her friends.
+As Lucy played, she saw a girl named Lucy. Lucy was sad because she lost her favorite toy. Lucy wanted to help Lucy, so she gave Lucy a big hug. Lucy smiled and said, ""I will help you find it.""
+Lucy and Lucy walked together to the park. They found a big tree and put the toy under it. The ball came out and Lucy was happy. She hugged Lucy and said, ""Thank you, Lucy. You are so nice."" Lucy and Lucy played in the park all day. They had a great day at the park.",eos,120,0.008547008547008517,,,,
+dev_06045,development_prefix,1337,Tom and Lily were playing hide and seek in the big house. Tom was the seeker and Lily was the hider. Lily ran to the living room and saw," Tom hiding behind a chair. She looked under the bed and then behind a chair.
+""Tom, you are right here!"" Lily said, pointing at Tom. ""You are the best hiding, Lily!""
+Tom looked at Lily and smiled. He did not see the big dog that was hiding behind a chair. He was barking and hiding behind a chair. He had a plan to find out what was behind the chair.
+Lily turned around and saw a man standing. He was wearing a big hat and a hat. He looked angry and scared. He said, ""Hey, you two! What are you doing here? You are not my friends! You are my friend!""
+Tom and Lily were scared. They did not know what to do. They said, ""We are not our friend. We are playing and chasing me. We wanted to play with you and make a mess!""
+The man got angry and ran away. He ran to Lily and Tom and tried to make them stop. He said, ""Stop, you two! Why are you fighting? You are not my friend. You should be kind and quiet. You should share and be kind.""
+Lily and Tom looked at each other. They said, ""Sorry, mister. We are sorry. We were wrong. We should not chase each other. We should have shared what we have.""
+The man smiled and said, ""That's OK. I forgive you. I forgive you too. But you",max_tokens,300,0.047138047138047146,,,,
+dev_06045,development_prefix,2027,Tom and Lily were playing hide and seek in the big house. Tom was the seeker and Lily was the hider. Lily ran to the living room and saw," Tom hiding behind a tree.
+""Tom, come back!"" Lily shouted. ""I found a hiding spot!""
+Tom was very angry. He wanted to hide behind the couch and see what was hidden behind the couch.
+""Stop! You are not nice!"" Lily shouted. She ran to the couch and hid under the sofa.
+""No, no, no!"" Tom said. ""You are not nice, you are right! You are rude!""
+He grabbed Lily's hand and pulled her away. Lily was sad and angry. She did not want to lose Tom. She wanted to get her friend back.
+But the kitchen was not happy. She did not want to find Tom's friend. She wanted to play hide and seek. She looked for Tom, but he could not find her.
+They saw a bench near the table. It was big and soft and looked like a little cake. ""Wow, this is for you!"" Lily said. ""My cake is ready!""
+Tom looked at Lily. He looked at the cake. He saw a big cake on the table. It was red and yellow. It had many candles on it.
+""Hey, Lily, what are you doing?"" Tom asked. ""What are you doing? You have to share the cake. It is for baking. You have to be nice and share with me!""
+Lily laughed. She did not want to share. She wanted to play with Tom. She did not want",max_tokens,300,0.047138047138047146,,,,
+dev_06045,development_prefix,3407,Tom and Lily were playing hide and seek in the big house. Tom was the seeker and Lily was the hider. Lily ran to the living room and saw," Tom hiding behind a fence. She had ten eyes and a red eyes. She wondered if Tom was hiding under her bed.
+Tom was hiding behind the couch. He looked around and saw a big box. He opened the box and saw Lily and Tom playing with him. He was hiding behind a bush. He was hiding behind a bush.
+""Hey, you two! What are you doing here?"" he yelled.
+He was not happy. He was looking for Tom and Lily. He was hiding behind a bush in the bush. He had seen Tom hiding behind a bush. He had an idea.
+""Lily, I found you! I found you!"" he said to Lily.
+Lily and Tom looked at each other and smiled. They knew Tom was right. They decided to hide behind the bush and find him. But when they got closer, they saw a big cat. The cat was hiding behind a bush. The cat was hiding behind a bush. The cat was hungry and hungry.
+""Go away! You are not here!"" Lily said.
+Tom and Lily ran away. They did not want Tom to play with them anymore. They wanted to be his friend.
+The cat was scared. It ran towards them and chased them. It grabbed them and pulled them away.
+""Stop, dog, stop! Bad dog! You are not bad! You are not our friend!"" Tom and Lily shouted.
+The cat did not listen. It grabbed",max_tokens,300,0.09764309764309764,,,,
+dev_05958,development_prefix,1337,Once upon a time there was a big box. Inside was a special gift. It was a box full of gold. The gold was so shiny and sparkly,". The box was so special.
+One day, the box was very excited. It took out the gold and put it around its special box. It was a magic wand.
+The box kept going up, up and down, up and down, up and down. It spun and around and around, until it was time to go home.
+The box was happy. It had found something special and special. It found a magical flower that she had found.",eos,94,0.06593406593406592,,,,
+dev_05958,development_prefix,2027,Once upon a time there was a big box. Inside was a special gift. It was a box full of gold. The gold was so shiny and sparkly,", it made everything look so special.
+The gold box was so special. As the box opened, it was a beautiful blue gift! All around the box were so happy and special inside.
+The box would take it inside and take it inside to show it to all of its friends. Everyone loved it and they wanted to show it to everyone, but they always wanted it to keep it forever.
+The magic box kept its promise and kept it safe. Everyone was so happy, and the gold box was safe. They were so happy with the special gift!",eos,114,0.009009009009009028,,,,
+dev_05958,development_prefix,3407,Once upon a time there was a big box. Inside was a special gift. It was a box full of gold. The gold was so shiny and sparkly,". 
+The little boy couldn't believe it! He was so excited that he wanted to try it. He grabbed the shiny necklace and put it in his pocket. 
+The little boy took a closer look and saw that it was his favorite dress. He was so excited! He put it on and it was so sparkly. He was so happy that he could fit it. 
+The little boy was so happy. He put the necklace back in his pocket and went off to find more treasure.",eos,102,0.08080808080808077,,,,
+manual_1,manual_probe,1337,"Once upon a time, a little fox found a blue box."," The box was so big, it was perfect for me to go inside.
+The fox took out the box and put it in a special box. He was so excited that he forgot to put the box up, then he put it back in his box.
+The fox had so much fun playing with the box. He was so excited to be outside with his toys and put his toys in his box. He could hardly wait to go out and play again.
+The fox kept playing with his toys and hours, and the box was filled with fun things. The fox never forgot the special box he had put to keep it safe and he never forgot!",eos,132,0.054263565891472854,,,,
+manual_1,manual_probe,2027,"Once upon a time, a little fox found a blue box."," The box had a little hole in it. The fox liked to play with the box.
+One day, the fox saw a small hole in the box. He knew he had to be careful. He climbed up to the hole and started to play with the toy.
+The fox and the toy animals played with the toy, and the fox was very happy. They played with the toy all day long. The fox and the dog were very good friends.",eos,92,0.022471910112359605,,,,
+manual_1,manual_probe,3407,"Once upon a time, a little fox found a blue box."," He was very excited and wanted to open it. He asked the tree, ""What is this?""
+The tree replied, ""It's a special box. We can open it and see a treasure!""
+The fox was very happy and thanked the tree. He found a treasure chest full of gold and jewels. He was so happy!
+The fox went home and told his friends about his adventure. They all said, ""I found a treasure for you! I made it for me!""
+The little fox was so happy that he had found the treasure. He said, ""I'm so proud of you!""
+The tree smiled and said, ""You're welcome! I believe in my surprise!""",eos,142,0.007194244604316502,,,,
+manual_2,manual_probe,1337,"Lily wanted to help her friend, but she did not know how."," She asked her friend if she could help her. Her friend said yes, and they went to the store. 
+At the store, Lily saw a big, green bike. She wanted to ride it, but she didn't know how. She asked her friend if she could ride the bike. Her friend said yes, and they went to the store. 
+When they got home, Lily put away the pink bike and got her bike. She rode it all day long, but she didn't see the man who was watching her. The man smiled and said, ""Don't worry, I will help you."" And they rode back home together, happy to see her.",eos,137,0.13432835820895528,,,,
+manual_2,manual_probe,2027,"Lily wanted to help her friend, but she did not know how."," She was scared of the dark and wanted to play. Her mom told her to be careful and listen.
+Lily listened to her mom and listened. She listened to her mom and waited for her. When Lily got to the bathroom, she saw her friend, Max. Max was so happy to see her. He hugged her and said, ""Don't worry, Lily. I will help you.""
+Lily felt better and hugged Max. They played together and had a great time at the park. Lily learned that being careful was not an accident and that she was safe. From that day on, Lily and Max became good friends and played together every day.",eos,132,0.015503875968992276,,,,
+manual_2,manual_probe,3407,"Lily wanted to help her friend, but she did not know how."," She asked her mom for help and her mom said, ""Don't worry, Lily. We'll find a new toy.""
+They went to the store and found a new toy. Lily was very happy to see it and said, ""Wow, this is so pretty!"" Her mom smiled and said, ""You're welcome, Lily. You're very helpful.""
+Lily felt a little better and went home with her new toy. She was happy that she could help her friend.",eos,97,0.010638297872340385,,,,
+manual_3,manual_probe,1337,"Tom put his toy under the bed. Later, he looked for it and"," found it under a bush. He was so happy to find it.
+Tom's mom took him to the garden. She showed him the toy he saw and said, ""Tom, you are a good friend, Tom. I'm sure you are safe."" Tom was so happy that he could play with the toy.",eos,64,0.0,,,,
+manual_3,manual_probe,2027,"Tom put his toy under the bed. Later, he looked for it and"," saw that it was not nice. He decided to take it to his friend's house.
+Tom walked to his friend, Lily. She asked if she could lend him the toy. Tom thought about it and said yes.
+Lily was happy and gave the toy back to Tom. She put the toy in the closet and went to play with her friends. They played together all day long. And they all lived happily ever after.",eos,87,0.0,,,,
+manual_3,manual_probe,3407,"Tom put his toy under the bed. Later, he looked for it and"," could not find it. He looked everywhere but couldn't find it. He was very sad and angry.
+Suddenly, his mom came outside and saw the mess. She said, ""Tom, look what I found! Are you okay?"" Tom was sad and said, ""I'm sorry, mom. I didn't mean to take your toy."" His mom smiled and said, ""It's okay, Tom. You can get your toy inside.""
+So, Tom and his mom went outside and played with their toy car in the rain. They had so much fun playing with their toy car and going home. Tom's mom was proud of them for being kind and sharing her favorite toy.",eos,139,0.022058823529411797,,,,

@@ -1,0 +1,5 @@
+# HPC: use the existing apps/pytorch/1.10.0/gpu/intelpython3.7 module.
+# That module provides torch and numpy. Do not pip-upgrade the cluster stack.
+# In a separate local environment, install an appropriate PyTorch build separately.
+numpy
+# No transformers, datasets, tokenizers, SDPA or FlashAttention dependency at runtime.

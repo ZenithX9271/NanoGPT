@@ -1,0 +1,6 @@
+runs/
+hpc/logs/
+baseline/*.pt
+__pycache__/
+transfer_backups/
+.DS_Store

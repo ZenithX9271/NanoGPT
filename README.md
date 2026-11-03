@@ -85,6 +85,12 @@ NanoGPT/
 │   ├── hpc/train.pbs              # Legacy module; log/walltime setup needs review
 │   ├── tests/test_stage5.py
 │   └── output/run_output.txt       # v1 ~10M pilot output, NOT full v2 training log
+├── stage_6_tinystories/            # Completed +100M continuation experiment
+│   ├── train.py                    # Preflight / benchmark / train / resume
+│   ├── evaluate.py                 # Fixed scoring and story generation
+│   ├── evaluations/                # Complete +25M/+50M/+75M/+100M outputs
+│   ├── docs/                       # Results, validation, and transfer notes
+│   └── README.md                   # Stage 6 project map
 └── data/
     ├── raw/                       # Original TinyStories text files
     ├── tinystories/v2/            # Prepared JSONL splits and provenance
@@ -195,9 +201,21 @@ confirmed for each experiment; A100 access is not confirmed. Preserve FP32/manua
 attention on this stack. SDPA, FlashAttention, BF16 and `torch.compile` are not
 validated features of this environment and must not be enabled automatically.
 
-## Next work
+## Stage 6A: completed continuation experiment
 
-Preserve the accepted Stage 5 model. First repair preparation entry points and
-training continuation/accounting, then run a measured quality-improvement experiment
-with fixed development prompts and a declared compute budget. Broader pretraining,
-SFT, preference learning, reasoning/tools and compression remain later goals.
+`stage_6_tinystories/` contains the completed continuation experiment and its
+reproducibility source. Starting from the verified Stage 5 weights and AdamW state,
+it completed 12,208 updates / 100,007,936 additional processed positions. Final
+fixed-window development CE is 2.048690, and all 159 final generations were saved.
+
+Read `stage_6_tinystories/README.md` for the organized project map and
+`stage_6_tinystories/docs/RESULTS.md` for results and artifact identities. Complete
+matched generation outputs at +25M, +50M, +75M and +100M are under
+`stage_6_tinystories/evaluations/`. Lower development loss establishes improved
+next-token prediction on the fixed windows, not a general narrative-quality claim;
+human ratings remain blank.
+
+The experiment has reached its configured budget, so the retained PBS entry point
+is for reproducibility rather than a recommended new launch. Context 512, larger
+models, broader pretraining, SFT, preference learning, reasoning/tools and
+compression remain later controlled experiments.

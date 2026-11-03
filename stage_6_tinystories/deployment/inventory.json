@@ -1,0 +1,533 @@
+{
+  "baseline_sha256": "2c6d16739cdf7128921a9cc0876793067651debc29484602ac2ce51cf86211ce",
+  "control_files": [
+    "stage_6_tinystories/deployment/files.txt",
+    "stage_6_tinystories/deployment/sha256sums.txt",
+    "stage_6_tinystories/deployment/inventory.json"
+  ],
+  "files": {
+    ".gitignore": {
+      "bytes": 5133,
+      "category": "project_sources_and_documentation",
+      "sha256": "3888a5ef4555749afbfd1fd27c5b84c3abc9097f00e1cf2efffe692291e2e15b"
+    },
+    "LICENSE": {
+      "bytes": 1076,
+      "category": "project_sources_and_documentation",
+      "sha256": "94fc2d15b8811adbcfb503b85e694e580d7c72770a08470a3d6d0bd12e7c332b"
+    },
+    "PROJECT_HANDOFF_STAGES_1_TO_5.md": {
+      "bytes": 19533,
+      "category": "project_sources_and_documentation",
+      "sha256": "940d15cae8af0ee32a6881abdfc47b37803c0bcaaa5ec2854dc568995c0bb5c1"
+    },
+    "README.md": {
+      "bytes": 11768,
+      "category": "project_sources_and_documentation",
+      "sha256": "e8b7840a35ffbd6b43a5cca3d0ff3997b86eeeff029bdde8123046ef281edf09"
+    },
+    "data/shards/v2/dev_val.bin": {
+      "bytes": 4633712,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "782b8bdcd6a00ce610d1cd7db4fbc09bda28f972ff0ea8706dd485edf604c915"
+    },
+    "data/shards/v2/dev_val_offsets.json": {
+      "bytes": 209280,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "914330c227f145d5a2941a258691a23fa6ac23b13ddf702b91fcd8d6ff3bafa0"
+    },
+    "data/shards/v2/manifest.json": {
+      "bytes": 11086,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "89c9df839572ef6a1890caf4b1144229090b8ced8b4ea2c66ed5dd090e17c9a7"
+    },
+    "data/shards/v2/test.bin": {
+      "bytes": 4630724,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "e1c6fa361b1aa5282644ca6e1909d6f62cf9d902c44b97dc980f35f376df41af"
+    },
+    "data/shards/v2/test_offsets.json": {
+      "bytes": 209390,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "9d96d60f0f7ed7a56fa7e7a5e148d50d8b0c087f8b74b719457d254a06570d96"
+    },
+    "data/shards/v2/train_0000.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "b4db8e95ed08e1867bb842819f0bbc963b9796ee7f2c81626cbdb3b39f6f717c"
+    },
+    "data/shards/v2/train_0001.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "d7a68003d180280977d19881fe6e6e2f694a40cb540ecf082912c42b151665c5"
+    },
+    "data/shards/v2/train_0002.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "96c1d553144c9425add69ac66daf080a6ab4c3403ce698a0aa56983b64204dc3"
+    },
+    "data/shards/v2/train_0003.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "641aa3f7c6912fac88fdab52cc0d8667e45355cb8def6b79bfd0164bf8632c68"
+    },
+    "data/shards/v2/train_0004.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "03bc06c4511535776c7da3508791689581a9b250dd63f5210fa0cccc497afb1b"
+    },
+    "data/shards/v2/train_0005.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "4c8a3b291d6f498b2dc81f7c7272861d9fc18f4e3b20b94bf868dc0913d08106"
+    },
+    "data/shards/v2/train_0006.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "6cfa7f64fcea41b2cdd26f0db33abbfd0259cfb09eddcb017fa0b38ad191f2b6"
+    },
+    "data/shards/v2/train_0007.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "dd2fc05bbbc5096a4dc5689dfd7dea76b3edb98fb8da2ca2257108cce699f2b6"
+    },
+    "data/shards/v2/train_0008.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "b84a1acb36436223599b82c568f5f6aef2cebf58cb7e79e088f3f38d1808b1b4"
+    },
+    "data/shards/v2/train_0009.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "8a81a75906ad0dd700da13ed314c08df48a22bdb333c2a89014058d66fc34975"
+    },
+    "data/shards/v2/train_0010.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "d49bb68164dc2a65131a4b61143d01ccd4160c8717db3906e8a724bfd979a068"
+    },
+    "data/shards/v2/train_0011.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "5754ec33ab5c4b5259d7241275634bd09014fd3b94ecd3db0430ce7a5fa63bd6"
+    },
+    "data/shards/v2/train_0012.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "732a02d7ed42a40c954043280ac43f763a0359c32ab507665c0edb17c4ab6660"
+    },
+    "data/shards/v2/train_0013.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "3905e1ed24bc016f06c90a23bfbc7948e217b6518007c07b7658d8ad78cb5b95"
+    },
+    "data/shards/v2/train_0014.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "d582260dcd512b1d87050f3934c4927c084a46e5be0516f1a7f927e10d68da41"
+    },
+    "data/shards/v2/train_0015.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "037ffc85df8f96beda3b2c702ab81c8e11d747f4ecdf6e77fc5a8711bde91717"
+    },
+    "data/shards/v2/train_0016.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "8992f646a1c090d8140f31b9ca3511f757dcd90c809b8d2a02973dcaa2c5e192"
+    },
+    "data/shards/v2/train_0017.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "23454a5cb2e8a5be510aa79474ce74dab7aa55b59d4eac96905bd5f44585b4bf"
+    },
+    "data/shards/v2/train_0018.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "154912a2cb09b88d87797a1f7f747f5add56a3487c7630d109a1a7c845acb8e1"
+    },
+    "data/shards/v2/train_0019.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "8ad4baca4c2a3b7a07b602e45a8c6ead2b2f6c0bc531e523b5886792459025e9"
+    },
+    "data/shards/v2/train_0020.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "7876d25648427579397c6f765f6547e76a63750de221ac0b5279f0a8cb27b026"
+    },
+    "data/shards/v2/train_0021.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "2959ac4092a92cad99dc25319ec86a1f3dc0949f876c8ce09ebbcbfe19003b33"
+    },
+    "data/shards/v2/train_0022.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "ba416cd2b011fda3ede54788e2c5ae7fd0c80ed2b3e3568ce866d82c787be04f"
+    },
+    "data/shards/v2/train_0023.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "380e4cc5e40667365e543a3919bbae68736edc1249ab5489397cf7ba98911875"
+    },
+    "data/shards/v2/train_0024.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "942c0e63629c9644773916562b7e571a3162b297fbcc3090e82ad4b5eceb7e19"
+    },
+    "data/shards/v2/train_0025.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "48014c3e0c95becd7930fb5e742bcd40255e44bb7fc6e03e243a4994037cd3fe"
+    },
+    "data/shards/v2/train_0026.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "dbb8405a7e709d5f27c1033ad4de75b155721f8d7b8be7ce5d22efd2094bb37d"
+    },
+    "data/shards/v2/train_0027.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "5b6b68b25b725c7e9a14f9dfb90b807b1cb47be13f033f9232bad5091c4e3de0"
+    },
+    "data/shards/v2/train_0028.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "a1de43439a390d9a4a61354d8e874888ffd0c386be166fcec630e938a474e901"
+    },
+    "data/shards/v2/train_0029.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "4c791d8b814e9094d5396a6c7d878b7529cc8cec30310d3a58bd2cc43acb0af8"
+    },
+    "data/shards/v2/train_0030.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "91aa262b1ca361eeaf345420df5d01c0d8847fe5bd5dafbb77c64584d545d00b"
+    },
+    "data/shards/v2/train_0031.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "22e405a7e594590410c4bb140f73f44905257cf82a84b6c01b3ecc6c3ac33fcb"
+    },
+    "data/shards/v2/train_0032.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "f486202c06e7c10840ff89ec924d41e004e6f85b7bf3e20eef837916543f856d"
+    },
+    "data/shards/v2/train_0033.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "cdd55013150aef42acd3fb732a2af0c9eccd755971043aa59a535ecb41735258"
+    },
+    "data/shards/v2/train_0034.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "d2a7745d33918cd7c992dfd3b33bfc9aa4996f19aab87463cb0df0b35970d874"
+    },
+    "data/shards/v2/train_0035.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "96813e62d08c394ec0505f15d113ca1cb3b2a2c13569e9a7ba47896ea291b0b8"
+    },
+    "data/shards/v2/train_0036.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "fcf7e3585d40223785bd9b363577387a4165f2698833abc795f8fd9563861b31"
+    },
+    "data/shards/v2/train_0037.bin": {
+      "bytes": 20000000,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "08e6dd24dfa1d679e51faf3b0e57da146c64a484f106c94e8493d85286d14218"
+    },
+    "data/shards/v2/train_0038.bin": {
+      "bytes": 13361598,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "46d9610330e2b98ee5a2501a44a72480c1428a04320a045a5233dd1027112b71"
+    },
+    "data/shards/v2/train_offsets.json": {
+      "bytes": 42002394,
+      "category": "prepared_shards_manifest_and_offsets",
+      "sha256": "9d0e013860a1d3c9c955999b0b8cf7d17c35b6253de1bb4e58bf056b91840ac0"
+    },
+    "data/tinystories/v2/dev_val.jsonl": {
+      "bytes": 9923814,
+      "category": "genuine_prepared_text_and_provenance",
+      "sha256": "f46c818dc6c148486ec46e685423e7f7914f342240f20c3701a518fd08b8e9b5"
+    },
+    "data/tinystories/v2/provenance.json": {
+      "bytes": 799,
+      "category": "genuine_prepared_text_and_provenance",
+      "sha256": "f0378705b768d06786e631ad7df059a963de875bcf2b52009c151ddcc2f5cc19"
+    },
+    "data/tinystories/v2/test.jsonl": {
+      "bytes": 9914056,
+      "category": "genuine_prepared_text_and_provenance",
+      "sha256": "d5627f7d8024f31c5cc27a5af6e5a49e2a87223b96a0f7fa883889b958232c6c"
+    },
+    "data/tinystories/v2/train.jsonl": {
+      "bytes": 1654222133,
+      "category": "genuine_prepared_text_and_provenance",
+      "sha256": "bbaf3f65de8dab65ad407a464d9e565cfd38cb1508085c498056a8cd8591adca"
+    },
+    "data/tokenizer/v2/tokenizer.json": {
+      "bytes": 553969,
+      "category": "required_tokenizer_identity",
+      "sha256": "99055f35c77392e4df4486685b60fee1de1d95e2c373c26f487cf9944746d038"
+    },
+    "data/tokenizer/v2/vocab_info.json": {
+      "bytes": 883,
+      "category": "required_tokenizer_identity",
+      "sha256": "ea7f65abafcfbc9a2b882937e66d766fe6189a8d6fa76392ff633c9b46e0bb0b"
+    },
+    "docs_stage1_to_3.md": {
+      "bytes": 9021,
+      "category": "project_sources_and_documentation",
+      "sha256": "05056bcd922666896496f2d43f380a47d08220bebe253d4f34a5023d95b8fed2"
+    },
+    "input.txt": {
+      "bytes": 1115394,
+      "category": "project_sources_and_documentation",
+      "sha256": "86c4e6aa9db7c042ec79f339dcb96d42b0075e16b8fc2e86bf0ca57e2dc565ed"
+    },
+    "requirements.txt": {
+      "bytes": 664,
+      "category": "project_sources_and_documentation",
+      "sha256": "2eb43aaf6ea4a8c89ef1528a0c094c1d15ea00aba52e27cf38dc6b4fc431177d"
+    },
+    "stage_1_bigram/model.py": {
+      "bytes": 8913,
+      "category": "project_sources_and_documentation",
+      "sha256": "99358d7a5e42985a9eefc8240b5ffcc2ec23c3912c22650bc5ebffd41601e1eb"
+    },
+    "stage_2_gpt_minimal/model.py": {
+      "bytes": 41988,
+      "category": "project_sources_and_documentation",
+      "sha256": "2359e7613d718804b62ca9709fb0eb83f6aedb781ec652ed16689499393ff23c"
+    },
+    "stage_3_gpt_shakespeare/model.py": {
+      "bytes": 41992,
+      "category": "project_sources_and_documentation",
+      "sha256": "3c75f71e83473be13a51cd22f889177abae87d4d5f1a4d3530023bbab6d9bee6"
+    },
+    "stage_3_gpt_shakespeare/model_gpu_variant.py": {
+      "bytes": 29230,
+      "category": "project_sources_and_documentation",
+      "sha256": "590e54771ef64a3f699eaeabd1d372aa19d6077b66a80229da64e003f5c28d50"
+    },
+    "stage_3_gpt_shakespeare/shakespeare_input.txt": {
+      "bytes": 1115394,
+      "category": "project_sources_and_documentation",
+      "sha256": "86c4e6aa9db7c042ec79f339dcb96d42b0075e16b8fc2e86bf0ca57e2dc565ed"
+    },
+    "stage_4_gpt_scaled/model.py": {
+      "bytes": 32233,
+      "category": "project_sources_and_documentation",
+      "sha256": "014a16f1b7fa5d7c0e1a1d351668b1ff4764166bd979d5e8cffe7d6e2e356293"
+    },
+    "stage_4_gpt_scaled/train_gpu.pbs": {
+      "bytes": 2651,
+      "category": "project_sources_and_documentation",
+      "sha256": "6d72124a1f58c6ddc8cfb24b7e801b768517de397b8faf22f28f744d565fc0c9"
+    },
+    "stage_5_tinystories/checkpoints/best.pt": {
+      "bytes": 95568257,
+      "category": "required_baseline",
+      "sha256": "2c6d16739cdf7128921a9cc0876793067651debc29484602ac2ce51cf86211ce"
+    },
+    "stage_5_tinystories/configs/prompt_ids.json": {
+      "bytes": 1123,
+      "category": "project_sources_and_documentation",
+      "sha256": "4c73319ae5596919bf7a32f761cb829bfa406978f3ba96b2563e56e5f266cdfd"
+    },
+    "stage_5_tinystories/configs/stage5.json": {
+      "bytes": 1791,
+      "category": "project_sources_and_documentation",
+      "sha256": "29127ae19b5d0849ee8a9ca8a87f6bbf772da6d36083c90c11ce6284ca028071"
+    },
+    "stage_5_tinystories/evaluate.py": {
+      "bytes": 16711,
+      "category": "project_sources_and_documentation",
+      "sha256": "1356ebc67d4f77a506acec1a93225356a69bf4b56c6b79cbe558f2cd71e47e03"
+    },
+    "stage_5_tinystories/hpc/train.pbs": {
+      "bytes": 2820,
+      "category": "project_sources_and_documentation",
+      "sha256": "5ff6b692b114101fbecc74ad7aea52f5e05f580be86df99980b644db2f73ab9f"
+    },
+    "stage_5_tinystories/model.py": {
+      "bytes": 35889,
+      "category": "project_sources_and_documentation",
+      "sha256": "8e74f9b4c27025e82bfe4ce534df3ef264de6eab7593177ed7450de36d4749db"
+    },
+    "stage_5_tinystories/pipeline/build_token_shards.py": {
+      "bytes": 9896,
+      "category": "project_sources_and_documentation",
+      "sha256": "288f362e36f0b05dcb342f68b5a964b62326f3bd9303b8484055d639a51eca76"
+    },
+    "stage_5_tinystories/pipeline/encode_prompts_mac.py": {
+      "bytes": 5133,
+      "category": "project_sources_and_documentation",
+      "sha256": "2fa0acb0ae4eada1396f208b3ef3d8aea80840d4e5d1b48c5d5b2ffde420e2f0"
+    },
+    "stage_5_tinystories/pipeline/prepare_data.py": {
+      "bytes": 11098,
+      "category": "project_sources_and_documentation",
+      "sha256": "cd0e034e94b0f6f200ab3b8ddad816eefc37ae7a3152cf30cc5d153d7bda36d5"
+    },
+    "stage_5_tinystories/pipeline/train_tokenizer.py": {
+      "bytes": 9895,
+      "category": "project_sources_and_documentation",
+      "sha256": "0a7918dbfe486e10c32f752f7eedf09de75b8737944671997d1d7a08d515b3b1"
+    },
+    "stage_5_tinystories/tests/test_stage5.py": {
+      "bytes": 18729,
+      "category": "project_sources_and_documentation",
+      "sha256": "fbedbbec20c9a6e189deb8992fcb735a0cd223c4d44a784d3e3c9843f2fcca0f"
+    },
+    "stage_6_tinystories/.gitignore": {
+      "bytes": 71,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "16e5b59f19fe003375d6eb3f8004c065f69916119595eb8ab8b6c0a43e365a72"
+    },
+    "stage_6_tinystories/README.md": {
+      "bytes": 3114,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "4f0ff033cbeacaf4fb3e65ac0d7ff8b103b92c8340ad8c9ec81c8491dcb13846"
+    },
+    "stage_6_tinystories/__init__.py": {
+      "bytes": 70,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "02f86e3862c8672123220007e6831262abf939756c9fd053907981fb7cd96f89"
+    },
+    "stage_6_tinystories/baseline/README.md": {
+      "bytes": 860,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "bdb65e822a1242b5704f8680a88cbbdbecf1d0a7f13be903261e0a392162cd12"
+    },
+    "stage_6_tinystories/baseline/stage5_best.pt": {
+      "bytes": 95568257,
+      "category": "required_baseline",
+      "sha256": "2c6d16739cdf7128921a9cc0876793067651debc29484602ac2ce51cf86211ce"
+    },
+    "stage_6_tinystories/configs/continue.json": {
+      "bytes": 1420,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "0df15f4064a433c9f6db1678eeefdcdb0edf0de0385c408f5dd3cf1e8223f7b7"
+    },
+    "stage_6_tinystories/configs/control_lr.json": {
+      "bytes": 1537,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "5721307e8c6f88e9f26650101c9efe7875bc550e9dd1c4e06f57b4addd7d2c8e"
+    },
+    "stage_6_tinystories/configs/evaluation_prompts.json": {
+      "bytes": 37367,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "f1c83474faa2b56d670055d6da373a1460eccc007db296bcf509f44f5737429c"
+    },
+    "stage_6_tinystories/core.py": {
+      "bytes": 16189,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "d339cc0a7bee57197754941734266be25cbaabe75cb1a248fdef1b9394eebe3e"
+    },
+    "stage_6_tinystories/data.py": {
+      "bytes": 6216,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "05acdb60f7c8d5bdf94e40de02ac76569299a455ff0243762ee41be11ebdbfaf"
+    },
+    "stage_6_tinystories/docs/DATA_RECOVERY.md": {
+      "bytes": 3013,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "1487cac9589e014875c933811190e6a60db7364f51c068db5942bc9c3e0e38b8"
+    },
+    "stage_6_tinystories/docs/HPC_VALIDATION.md": {
+      "bytes": 5650,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "779db483050448d07ddfcc41f8daa8de46517cb75558af1a7f7f4d16554ba0ff"
+    },
+    "stage_6_tinystories/docs/RESEARCH_REPORT_THROUGH_50M.md": {
+      "bytes": 53441,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "3468c567a27e39b5009cc9d23b3b62ac0e200d0bdbda9cde033a86b3d81d2007"
+    },
+    "stage_6_tinystories/docs/RESULTS.md": {
+      "bytes": 6545,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "cec0e4889e7779d37ac02935ea4e4f1ec10e3d8efde92baf10b03e7a58c09656"
+    },
+    "stage_6_tinystories/docs/TRANSFER.md": {
+      "bytes": 2123,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "e6317738b7ce92c770912decf81ca8e407568f57af1cc41b5e665b1df781913c"
+    },
+    "stage_6_tinystories/docs/VERIFICATION.md": {
+      "bytes": 5610,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "c2f2cc5174b5661d5878e0123811b8a850f374629a8eca7f8194ba5b326eba4d"
+    },
+    "stage_6_tinystories/evaluate.py": {
+      "bytes": 7773,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "f6d3e32336aed91a8e247755f1392ad6ba8ff7fff742853ec41d896810b5ddd1"
+    },
+    "stage_6_tinystories/hpc/train.pbs": {
+      "bytes": 5102,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "77b4e186f67c0881877431b255e8adf44b498c63b40ed6fa5290ea3555cf58bb"
+    },
+    "stage_6_tinystories/model.py": {
+      "bytes": 5335,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "7aca47adbae88c80bdc9d0339dc662761d179f51e5e274715dc9ae00e954cbb5"
+    },
+    "stage_6_tinystories/recovery/README.md": {
+      "bytes": 559,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "c25b964b0a35b1aa118a5d1511110ab3678f7176d3df07ce53f8698ae09e59ef"
+    },
+    "stage_6_tinystories/recovery/generation_compat_model.py": {
+      "bytes": 5375,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "b058a3621e93103100e017742bc15a08cc9a586f750b59df5b93fdc1a42417d3"
+    },
+    "stage_6_tinystories/requirements.txt": {
+      "bytes": 326,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "3857249f1b1357e69e2ab560b8dd4afd3b88aafb08414513a80eddfc447b65fb"
+    },
+    "stage_6_tinystories/tests/check_restart.py": {
+      "bytes": 4522,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "9eef38212992b867cf7105ce11b3767fd84f4fb483a8cdfc02a94c4b39e3156c"
+    },
+    "stage_6_tinystories/tests/test_stage6.py": {
+      "bytes": 16538,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "c65184b4bd920c26ea434e5ea219745d8dce8bbf59da1d886ed01e6ca501ea2b"
+    },
+    "stage_6_tinystories/tests/test_transfer.py": {
+      "bytes": 6480,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "ace1b4da53d3c41088750ab751268851d06531d3dc5b8e081548f58d725f49d4"
+    },
+    "stage_6_tinystories/tools/prepare_transfer.py": {
+      "bytes": 5297,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "40c815ef44fc59921505825ba0d470ff00f27d7608d46b46a1f1f1aa2f71acbf"
+    },
+    "stage_6_tinystories/tools/verify_transfer.py": {
+      "bytes": 13015,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "4ace69d66a176a05615192f6ac616e0b115116f2e04563f0f320ac9e3d1778ce"
+    },
+    "stage_6_tinystories/train.py": {
+      "bytes": 18464,
+      "category": "stage6_code_configuration_tests_and_documentation",
+      "sha256": "9ccb6273e90522da66f1e64b30bdf6cb67d25483e1041a3b859343f66bb3577a"
+    }
+  },
+  "format": "nanogpt_hpc_transfer_v1",
+  "preparation_scope": "Baseline copy, optional raw materialization and transfer control files only; this tool never edits training code/configuration.",
+  "root_policy": "All paths repository-relative; physical files only. Raw source is optional for HPC and excluded from payload."
+}
