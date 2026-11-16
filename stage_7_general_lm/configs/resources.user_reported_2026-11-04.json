@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-04",
+  "status": "Corrected evidence: 32 GB per job is unverified and excluded from allocation decisions; no deployment or submission authorized",
+  "supersedes_planning_assumptions_only": "stage_7_general_lm/configs/resources.json",
+  "evidence": "User explicitly marked 32 GB per job unverified. Verified Stage 6 evidence: PBS requested 4 GB host RAM; home corpus/checkpoints persisted between jobs; Tesla V100 GPUs had 32 GB VRAM. These facts do not establish Stage 7 limits or peak RAM.",
+  "maximum_job_seconds": 230400,
+  "maximum_job_hours": 64,
+  "longer_job_limit_confirmed": false,
+  "total_gpu_hours": null,
+  "total_gpu_hours_note": "User reports no fixed time restriction. A numerical aggregate allocation and scheduler enforcement have not been independently verified; do not infer 64 total GPU-hours.",
+  "reported_per_job_capacity_bytes": null,
+  "reported_per_job_capacity_type": null,
+  "host_ram_per_job_bytes": null,
+  "storage_budget_bytes": null,
+  "storage_unit_assumption": null,
+  "storage_free_or_total_quota": null,
+  "scratch_vs_persistent_split": null,
+  "scheduler_and_filesystem_verified": false,
+  "a100_available": null,
+  "modern_hpc_runtime_available": null,
+  "main_run_approved": false,
+  "existing_templates_and_candidate_config_modified": false,
+  "next_benchmark_request": {
+    "gpu": "V100 32GB (historical target; availability unverified)",
+    "gpus": 1,
+    "maximum_seconds": 900,
+    "requested_gpu_hours": 0.25,
+    "working_storage_reserve_bytes": 4294967296,
+    "submitted": false
+  },
+  "proposed_working_storage_pools_decimal_gb": null,
+  "storage_plan_status": "Previous hypothetical 32 GB partition withdrawn. Confirm actual filesystem byte/inode headroom, retention and temporary checkpoint space.",
+  "training_token_budget": null,
+  "lr_horizon": null,
+  "budget_policy": {
+    "scratch_fraction_max": 0.5,
+    "adaptation_compression_fraction_min": 0.4,
+    "contingency_fraction": 0.1
+  },
+  "next_decision": "Bounded benchmark and evaluation review before choosing fixed main horizon or approving a run.",
+  "maximum_job_limit_status": "64 hours is an earlier user-reported possibility; queue/project limit needs administrator confirmation",
+  "verified_stage6_evidence": {
+    "host_ram_requested": "4 GB through PBS; actual peak and Stage 7 maximum unknown",
+    "gpu": "Tesla V100 with 32 GB VRAM; Stage 7 availability/allocation unconfirmed",
+    "storage": "Corpus/checkpoints persisted in HPC home; byte/inode quotas, backup and performance guarantees unknown",
+    "source": "User clarification, 2026-11-04"
+  },
+  "administrator_checklist": "stage_7_general_lm/ADMIN_RESOURCE_CONFIRMATION.md"
+}

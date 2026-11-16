@@ -1,0 +1,10 @@
+{
+  "torch": "2.8.0",
+  "numpy": "2.0.2",
+  "tokenizers": "0.22.2",
+  "transformers": "4.57.6",
+  "psutil": "7.1.2",
+  "peft": null,
+  "datasets": null,
+  "bitsandbytes": null
+}

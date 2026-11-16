@@ -1,0 +1,76 @@
+{
+  "dtype": "<u2",
+  "format": "stage7_corpus_audit_v1",
+  "group_counts": {
+    "dev": 47011,
+    "heldout": 47592,
+    "train": 382339
+  },
+  "inputs": [
+    {
+      "bytes": 2433194062,
+      "file": "/scratch/cse/btech/cs1230342/nanogpt_stage7/extracted_v1/documents.jsonl",
+      "sha256": "d337b93db45d3c7845df580f1e87723d8c98430856df79cdb24ae05bd47c64e3"
+    }
+  ],
+  "ledger_documents": 477445,
+  "manifest_sha256": "fa40be03f50c9d7bd4cd3bcf33df1538a55f62e9b7760b845ec17a04fe7ade65",
+  "minimum_domain_eval_tokens": 1025,
+  "minimum_train_tokens": 100000000,
+  "seconds": 50.5425285740057,
+  "shards": [
+    {
+      "bytes": 160283002,
+      "file": "train_00.bin",
+      "maximum_token_id": 49151,
+      "sha256": "3219562ef489ae05450f6ef48927abab813da4e735875a98a418a846af3c3002",
+      "tokens": 80141501
+    },
+    {
+      "bytes": 567292022,
+      "file": "train_01.bin",
+      "maximum_token_id": 49151,
+      "sha256": "969122d474f62184775e5429c14f120eabae49674fd0226262ed0f516076c613",
+      "tokens": 283646011
+    },
+    {
+      "bytes": 19710720,
+      "file": "dev_00.bin",
+      "maximum_token_id": 49151,
+      "sha256": "cfd4a9b894806a51cc58637eb70b6c0ca4f480b2841daa227674783b55591b7d",
+      "tokens": 9855360
+    },
+    {
+      "bytes": 69643564,
+      "file": "dev_01.bin",
+      "maximum_token_id": 49151,
+      "sha256": "47176995160d2cf28c0832eae04a5a52ee5852bf25277ea567baa710429d55b3",
+      "tokens": 34821782
+    },
+    {
+      "bytes": 20006266,
+      "file": "heldout_00.bin",
+      "maximum_token_id": 49151,
+      "sha256": "524bf4663b7e06db67deb85d6382a73a05ce112212cd5fd07d44d844e763a779",
+      "tokens": 10003133
+    },
+    {
+      "bytes": 71455228,
+      "file": "heldout_01.bin",
+      "maximum_token_id": 49151,
+      "sha256": "9719da11875ba25f87c76668005644240bbc5937dae21bccdf74a42f356b37b6",
+      "tokens": 35727614
+    }
+  ],
+  "source_tokens": {
+    "cosmopedia_v2": 99999994,
+    "fineweb_edu": 354195407
+  },
+  "split_tokens": {
+    "dev": 44677142,
+    "heldout": 45730747,
+    "train": 363787512
+  },
+  "status": "PASS",
+  "vocab_size": 49152
+}

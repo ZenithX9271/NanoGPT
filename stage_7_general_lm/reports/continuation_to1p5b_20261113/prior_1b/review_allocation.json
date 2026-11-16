@@ -1,0 +1,8 @@
+{
+  "job_id": "1146578.pbshpc",
+  "exit_code": 0,
+  "allocation_seconds": 251.7225890159607,
+  "gpu_hours_upper_bound": 0.06992294139332242,
+  "maximum_allocation_gpu_hours": 0.25,
+  "optimization_performed": false
+}

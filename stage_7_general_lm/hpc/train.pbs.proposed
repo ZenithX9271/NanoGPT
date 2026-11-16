@@ -1,0 +1,34 @@
+#!/bin/bash
+# DRAFT ONLY: deliberately requires a separately frozen, approved configuration.
+#PBS -N nanogpt_s7train
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=4:ngpus=1:mem=20gb:centos=skylake
+#PBS -l walltime=04:00:00
+#PBS -l software=PYTHON
+#PBS -j oe
+set -euo pipefail
+cd "${PBS_O_WORKDIR:?Repository root required}"
+: "${PBS_JOBID:?PBS allocation required}"
+: "${STAGE7_CONFIG:?New frozen configuration with confirmed resource caps required}"
+: "${STAGE7_MANIFEST:?New Stage 7 manifest required}"
+: "${STAGE7_RUN:?New Stage 7 owned run directory required}"
+: "${STAGE7_REVIEW_UPDATES:?Approved cumulative review gate required}"
+python3 -B - <<'PY'
+import json, os
+with open(os.environ['STAGE7_CONFIG']) as stream:
+    limits=json.load(stream)['resource_limits']
+if not limits.get('main_run_approved') or not 300 < limits.get('maximum_job_seconds', 0) <= 14400:
+    raise SystemExit('Approved walltime must fit the four-hour PBS request and save margin')
+PY
+STAGE7_JOB_START=$(date +%s)
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+export MKL_THREADING_LAYER=GNU
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+arguments=()
+if [[ -n "${STAGE7_RESUME:-}" ]]; then arguments+=(--resume "$STAGE7_RESUME"); fi
+python -B -m stage_7_general_lm.train --mode train --device cuda --threads 4 \
+  --config "$STAGE7_CONFIG" --manifest "$STAGE7_MANIFEST" --run-dir "$STAGE7_RUN" \
+  --review-updates "$STAGE7_REVIEW_UPDATES" --job-start-epoch "$STAGE7_JOB_START" "${arguments[@]}"

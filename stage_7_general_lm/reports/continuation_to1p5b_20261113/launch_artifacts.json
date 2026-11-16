@@ -1,0 +1,21 @@
+{
+  "format": "stage7_continuation_launch_artifacts_v1",
+  "created_on": "2026-11-13",
+  "files": {
+    "continue_to_1p5b.pbs": "4a7e0cf3cf328cd719a5f33083e79fd5489b3bffc1ca4524bf0faa2256419ae0",
+    "continuation_to1p5b_20261113.json": "fbb742ba1e62d387570f47997b617990d835ab25e5387b8b71444c63e88445eb",
+    "deployment.json": "2d434fc65dbff95520970ee8e46813227692bef04af164f8eae26fdc11fd3e69",
+    "prior_1b/metrics.jsonl": "72eddf47485c20c093502356544aafd474c2ad7b92810b867358381d4565669e",
+    "prior_1b/review.json": "5c6857aeeb86f81a2af0f6d166d59c9ffe05dcdc6136d7066933d07f279a54bd",
+    "prior_1b/checkpoint.json": "1e9bd064d33e5d61d75363ca1e72bc776f888bc8779958b85dcf7952bd696a74",
+    "prior_1b/mac_backup_verified.json": "f67261c4b2c2bf52908fa2c488abbbbfc495584cecbe4475cc94ac7963462e0f",
+    "prior_1b/launch.json": "ee66de1815d342018fc96098561e2265e2f1c6143d0c14a7bae1f171b420b8e0",
+    "prior_1b/allocation.json": "cbc1c83c3f1dad50f9591efb4274bb4484d00c289fd783118e2cdcd0d56d6283",
+    "prior_1b/review_allocation.json": "5b180a59675b7868f6e94570c664c18139bad9526fe46ac5cb99981022284c6f",
+    "prior_1b/summary.json": "d7a0fa7c0783e8c095e1874dedbd94305db26e5226243e3f24a4a5c810dd8b83",
+    "prior_1b/run_bytes.json": "1538d17dd96379d49d3b98fb8124751ef6d0cb296d435c6aa0d88860657d2466",
+    "prior_1b/completions.json": "ecd4ef555cf325a2d3bca76a48aea7999d248d63fdef0a5c98d97ff8232f0e31",
+    "prior_1b/comparisons.json": "eff8a971ce9bac4b1b8cbfa22a71a432d6303276535ecf4da77001e87f072ff7",
+    "prior_1b/training_allocation.json": "e6d250db8f2e8945113c81f2edc0f96916047a61bc25936c5849b16593e38a6b"
+  }
+}

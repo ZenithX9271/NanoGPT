@@ -1,0 +1,123 @@
+#!/bin/bash
+# One training submission. No automatic continuation beyond the first review.
+#PBS -N nanogpt_s7first
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=2:ngpus=1:mem=16gb:centos=skylake
+#PBS -l walltime=04:00:00
+#PBS -j oe
+set -euo pipefail
+umask 077
+: "${PBS_JOBID:?PBS allocation required}"
+: "${STAGE7_GATE_TAG:?Successful production GPU validation job number required}"
+[[ "$STAGE7_GATE_TAG" =~ ^[0-9]+$ ]]
+export STAGE7_REPO=/home/cse/btech/cs1230342/zenithX9271/NanoGPT
+export STAGE7_BASE=/scratch/cse/btech/cs1230342/nanogpt_stage7
+export STAGE7_MANIFEST="$STAGE7_BASE/packed_v1/manifest.json"
+export STAGE7_CONFIG="$STAGE7_REPO/stage_7_general_lm/configs/production_2b_first100m.json"
+export STAGE7_GATE="$STAGE7_REPO/stage_7_general_lm/reports/hpc_validation_$STAGE7_GATE_TAG"
+export STAGE7_RUN="$STAGE7_BASE/train_2b_first100m_${PBS_JOBID%%.*}"
+export STAGE7_EVIDENCE="$STAGE7_REPO/stage_7_general_lm/reports/training_${PBS_JOBID%%.*}"
+export STAGE7_JOB_START="${STAGE7_JOB_START:-$(date +%s)}"
+cd "$STAGE7_REPO"
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
+export PYTHONPATH="$STAGE7_REPO${PYTHONPATH:+:$PYTHONPATH}"
+export MKL_THREADING_LAYER=GNU CUBLAS_WORKSPACE_CONFIG=:4096:8
+export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2
+export PYTHONUNBUFFERED=1
+
+python -B - <<'PY'
+import json, os, shutil
+from pathlib import Path
+import torch
+from stage_7_general_lm.common import read_json, sha, source_identity
+
+cfg = read_json(os.environ['STAGE7_CONFIG'])
+candidate = read_json('stage_7_general_lm/configs/production_2b_candidate.json')
+assert {k: v for k, v in cfg.items() if k not in ('status', 'resource_limits')} == {
+    k: v for k, v in candidate.items() if k not in ('status', 'resource_limits')}
+assert cfg['resource_limits'] == dict(disk_bytes=17179869184, gpu_hours=4,
+                                    main_run_approved=True, maximum_job_seconds=14400)
+manifest = Path(os.environ['STAGE7_MANIFEST'])
+identity = sha(manifest)
+assert identity == 'fa40be03f50c9d7bd4cd3bcf33df1538a55f62e9b7760b845ec17a04fe7ade65'
+assert read_json(manifest.parent / 'COMPLETE.json')['manifest_sha256'] == identity
+audit = read_json(manifest.parent / 'audit.json')
+assert audit['status'] == 'PASS' and audit['manifest_sha256'] == identity
+gate = Path(os.environ['STAGE7_GATE'])
+restart, bench = (read_json(gate / n) for n in ('restart_validation.json', 'benchmark.json'))
+assert restart['status'] == 'PASS' and restart['semantic_checkpoint_equality']
+assert restart['manifest_sha256'] == bench['data_identity'] == identity
+assert restart['config_sha256'] == sha('stage_7_general_lm/configs/production_2b_candidate.json')
+assert restart['code_identity'] == bench['code_identity'] == source_identity()
+assert bench['measured_optimizer_updates'] == 20
+assert bench['measured_processed_positions'] == bench['measured_successful_positions']
+assert bench['parameters'] == 122702592
+assert torch.cuda.is_available() and 'V100' in torch.cuda.get_device_name(0)
+assert shutil.disk_usage(os.environ['STAGE7_BASE']).free >= cfg['resource_limits']['disk_bytes']
+run, evidence = Path(os.environ['STAGE7_RUN']), Path(os.environ['STAGE7_EVIDENCE'])
+assert not run.exists() and not evidence.exists()
+positions = 6104 * cfg['training']['micro_batch_size'] * cfg['training']['accumulation_steps'] * cfg['model']['block_size']
+seconds = positions / bench['training_tokens_per_second']
+seconds += 13 * (bench['evaluation_seconds'] + bench['save_seconds']) + 600
+assert seconds < 13800, 'Measured cost exceeds the bounded first segment'
+evidence.mkdir()
+for name, obj in [('launch.json', dict(job_id=os.environ['PBS_JOBID'], run_dir=str(run),
+        gate=str(gate), manifest_sha256=identity, config_sha256=sha(os.environ['STAGE7_CONFIG']),
+        review_updates=6104, review_positions=positions, estimated_seconds=seconds,
+        code_identity=source_identity(), resource_limits=cfg['resource_limits']))]:
+    with (evidence / name).open('x') as f:
+        json.dump(obj, f, indent=2, sort_keys=True)
+shutil.copyfile(os.environ['STAGE7_CONFIG'], str(evidence / 'config.json'))
+print('TRAINING_ADMISSION_PASS', 'run=' + str(run), 'estimated_hours=' + str(seconds / 3600), flush=True)
+PY
+
+# Record the entire allocation elapsed time, including startup, on every exit.
+record_exit() {
+    local result=$?
+    trap - EXIT
+    if [[ -d "$STAGE7_EVIDENCE" ]]; then
+        STAGE7_EXIT_CODE="$result" python -B - <<'PY'
+import json, os, time
+from pathlib import Path
+elapsed = max(0, time.time() - int(os.environ['STAGE7_JOB_START']))
+record = dict(job_id=os.environ['PBS_JOBID'], exit_code=int(os.environ['STAGE7_EXIT_CODE']),
+              allocation_seconds=elapsed, gpu_hours_upper_bound=elapsed / 3600,
+              gpu_count=1, automatic_continuation=False, run_dir=os.environ['STAGE7_RUN'])
+with (Path(os.environ['STAGE7_EVIDENCE']) / 'allocation.json').open('x') as f:
+    json.dump(record, f, indent=2, sort_keys=True)
+print(json.dumps(record), flush=True)
+PY
+    fi
+    exit "$result"
+}
+trap record_exit EXIT
+
+echo "job_id=$PBS_JOBID host=$(hostname) run=$STAGE7_RUN"
+python -B -m stage_7_general_lm.train --mode train --device cuda --threads 2 \
+    --config "$STAGE7_CONFIG" --manifest "$STAGE7_MANIFEST" --run-dir "$STAGE7_RUN" \
+    --review-updates 6104 --job-start-epoch "$STAGE7_JOB_START"
+
+python -B - <<'PY'
+import json, os, shutil
+from pathlib import Path
+from stage_7_general_lm.common import read_json, sha
+run, evidence = Path(os.environ['STAGE7_RUN']), Path(os.environ['STAGE7_EVIDENCE'])
+summary = read_json(run / 'summary.json')
+count = summary['counters']
+if summary['reason'] == 'review_gate':
+    assert count['updates'] == 6104 and count['successful_positions'] == 100007936
+latest = run / 'latest.pt'
+frozen = run / ('review_u%d_positions_%d.pt' % (count['updates'], count['successful_positions']))
+# A later atomic replacement of latest.pt cannot change this exclusive link.
+os.link(str(latest), str(frozen))
+record = dict(summary=summary, checkpoint=str(frozen), checkpoint_sha256=sha(frozen),
+              checkpoint_bytes=frozen.stat().st_size)
+with (evidence / 'checkpoint.json').open('x') as f:
+    json.dump(record, f, indent=2, sort_keys=True)
+shutil.copyfile(str(run / 'summary.json'), str(evidence / 'summary.json'))
+shutil.copyfile(str(run / 'metrics.jsonl'), str(evidence / 'metrics.jsonl'))
+print(json.dumps(record, indent=2), flush=True)
+print('STAGE7_FIRST_TRAINING_SEGMENT_SAVED', flush=True)
+PY

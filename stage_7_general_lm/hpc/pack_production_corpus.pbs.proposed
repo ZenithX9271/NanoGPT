@@ -1,0 +1,84 @@
+#!/bin/bash
+# CPU-only Stage 7 production tokenization and packing.
+# Consumes the immutable extracted_v1 JSONL and never downloads data.
+#PBS -N nanogpt_s7pack
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=16gb:centos=skylake
+#PBS -l walltime=04:00:00
+#PBS -j oe
+
+set -euo pipefail
+umask 077
+
+: "${PBS_JOBID:?PBS allocation required}"
+
+STAGE7_REPO=/home/cse/btech/cs1230342/zenithX9271/NanoGPT
+STAGE7_BASE=/scratch/cse/btech/cs1230342/nanogpt_stage7
+STAGE7_PREP_ENV="$STAGE7_BASE/prep_env_py39"
+STAGE7_EXTRACTED="$STAGE7_BASE/extracted_v1"
+STAGE7_PACKED="$STAGE7_BASE/packed_v1"
+STAGE7_CONFIG="$STAGE7_REPO/stage_7_general_lm/configs/production_sources_v1.json"
+STAGE7_TOKENIZER="$STAGE7_REPO/stage_7_general_lm/artifacts/native_tokenizer/tokenizer.json"
+
+cd "$STAGE7_REPO"
+
+test -x "$STAGE7_PREP_ENV/bin/python"
+test -f "$STAGE7_CONFIG"
+test -f "$STAGE7_TOKENIZER"
+test -f "$STAGE7_EXTRACTED/documents.jsonl"
+test -f "$STAGE7_EXTRACTED/extraction.json"
+
+if [[ -e "$STAGE7_PACKED" ]]; then
+    echo "REFUSING_TO_OVERWRITE_EXISTING_PATH: $STAGE7_PACKED" >&2
+    exit 17
+fi
+
+module purge
+module load compiler/python/3.9.13/ucs4/gnu/447
+source "$STAGE7_PREP_ENV/bin/activate"
+unset PYTHONPATH
+export PYTHONPATH="$STAGE7_REPO"
+export TOKENIZERS_PARALLELISM=true
+export RAYON_NUM_THREADS=4
+export OMP_NUM_THREADS=4
+export MKL_NUM_THREADS=4
+export OPENBLAS_NUM_THREADS=4
+
+echo "job_id=$PBS_JOBID"
+echo "host=$(hostname)"
+echo "python=$(python --version 2>&1)"
+echo "tokenizers=$(python -B -c 'import tokenizers; print(tokenizers.__version__)')"
+echo "packed=$STAGE7_PACKED"
+
+python -B -m stage_7_general_lm.pack_production \
+    --config "$STAGE7_CONFIG" \
+    --documents "$STAGE7_EXTRACTED/documents.jsonl" \
+    --tokenizer "$STAGE7_TOKENIZER" \
+    --output "$STAGE7_PACKED"
+
+test -f "$STAGE7_PACKED/manifest.json"
+test -f "$STAGE7_PACKED/COMPLETE.json"
+
+echo "PACKED_OUTPUT_SIZE"
+du -sh "$STAGE7_PACKED"
+
+echo "PACKED_COMPLETION"
+cat "$STAGE7_PACKED/COMPLETE.json"
+
+echo "PACKED_MANIFEST_SUMMARY"
+python -B - "$STAGE7_PACKED/manifest.json" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1]) as stream:
+    manifest = json.load(stream)
+keys = ('format', 'vocab_size', 'dtype', 'source_token_counts',
+        'source_token_counts_by_split', 'document_counts',
+        'documents_scanned', 'unique_normalized_documents', 'skipped',
+        'seconds', 'stop_reason')
+print(json.dumps({key: manifest[key] for key in keys}, indent=2,
+                 sort_keys=True))
+PY
+
+echo "STAGE7_PACKING_JOB_PASS"

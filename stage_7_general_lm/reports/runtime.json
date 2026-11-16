@@ -1,0 +1,44 @@
+{
+  "cuda_device_count": 0,
+  "disk_free_bytes": 41748455424,
+  "failed": [],
+  "gpu_allocation_observed": null,
+  "libc": [
+    "",
+    ""
+  ],
+  "machine": "arm64",
+  "observed": {
+    "available_host_ram_bytes": 4117659648,
+    "cuda_build": null,
+    "device": "cpu",
+    "gpu": null,
+    "host_ram_bytes": 17179869184,
+    "numpy": "2.0.2",
+    "platform": "macOS-15.5-arm64-arm-64bit",
+    "python": "3.9.6",
+    "threads": 1,
+    "torch": "2.8.0"
+  },
+  "optional_modules": {
+    "bitsandbytes": false,
+    "datasets": false,
+    "peft": false,
+    "tokenizers": true,
+    "transformers": true
+  },
+  "probe_is_not_candidate_throughput": true,
+  "production_class_small_config_forward_backward": true,
+  "python_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "quantized_engines": [
+    "qnnpack",
+    "none"
+  ],
+  "selected_quantized_engine": "none",
+  "unknown": [
+    "HPC driver/OS/quotas when probing locally",
+    "A100 availability and GPU-hour allocation",
+    "External 1.7B checkpoint load/adapters",
+    "CPU or GPU INT4 acceleration"
+  ]
+}

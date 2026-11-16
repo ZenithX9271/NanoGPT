@@ -1,0 +1,67 @@
+{
+  "extraction_limits": {
+    "max_documents": 2000000,
+    "max_output_bytes": 4294967296,
+    "max_seconds": 21600
+  },
+  "format": "stage7_production_sources_v1",
+  "known_limitations": [
+    "Exact normalized-text deduplication does not detect semantic paraphrases.",
+    "Cosmopedia synthetic-parent derivative lineage is incomplete.",
+    "The selected files are bounded convenience samples, not uniform samples of either full dataset."
+  ],
+  "network_cap_bytes": 4294967296,
+  "packing": {
+    "batch_documents": 128,
+    "max_seconds": 21600,
+    "split_seed": 1337
+  },
+  "sources": [
+    {
+      "dataset_id": "HuggingFaceFW/fineweb-edu",
+      "download_url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu/resolve/87f09149ef4734204d70ed1d046ddc9ca3f2b8f9/sample/10BT/000_00000.parquet",
+      "expected_bytes": 2152819114,
+      "group_columns": [
+        "url"
+      ],
+      "id_columns": [
+        "id",
+        "url"
+      ],
+      "license": "odc-by; underlying-source rights require source-level review",
+      "max_text_bytes": 1610612736,
+      "max_tokens": 400000000,
+      "name": "fineweb_edu",
+      "relative_path": "fineweb-edu/000_00000.parquet",
+      "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "sha256": "b1ba7b2ce4cb5ea6ef42dca40263eabb85f37700d01693a68e9b30a31d78e871",
+      "text_column": "text",
+      "xet_hash": "75e3d0530e0153b1260904449807a6aca765eb899b669cf3d1da290e52eedae8"
+    },
+    {
+      "dataset_id": "HuggingFaceTB/smollm-corpus",
+      "download_url": "https://huggingface.co/datasets/HuggingFaceTB/smollm-corpus/resolve/3ba9d605774198c5868892d7a8deda78031a781f/cosmopedia-v2/train-00030-of-00104.parquet",
+      "expected_bytes": 1176491589,
+      "group_columns": [
+        "prompt"
+      ],
+      "id_columns": [],
+      "license": "odc-by; synthetic parentage requires source-level review",
+      "max_text_bytes": 536870912,
+      "max_tokens": 100000000,
+      "name": "cosmopedia_v2",
+      "relative_path": "smollm-corpus/train-00030-of-00104.parquet",
+      "revision": "3ba9d605774198c5868892d7a8deda78031a781f",
+      "sha256": "53d0b6755d1164bd48e6bcb2195e0cb47fbaf09b383e6fb4932df6ac13359d0b",
+      "text_column": "text",
+      "xet_hash": "1ba450ad5991d708c286619ad575556a0ef8f82164fd7396d503fe4858710743"
+    }
+  ],
+  "tokenizer": {
+    "bos_id": 1,
+    "eos_id": 2,
+    "revision": "31b70e2e869a7173562077fd711b654946d38674",
+    "sha256": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+    "vocab_size": 49152
+  }
+}

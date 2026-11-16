@@ -1,0 +1,62 @@
+{
+  "format": "stage7_comprehensive_audit_evidence_v1",
+  "audit_date": "2026-11-16",
+  "report": "stage_7_general_lm/docs/STAGE_7A_COMPREHENSIVE_AUDIT.md",
+  "report_sha256": "832bc78159ef872911c4d35d15aba5b6a219734d4cb2bb177894c013ec3799c5",
+  "evidence_files": {
+    "final_model_cpu_smoke.json": {
+      "bytes": 727,
+      "sha256": "6cc0005c765f09bacf296590e21569d6658fa7802e10d9f8063252db0d22a18b"
+    },
+    "matched_evaluation_history.json": {
+      "bytes": 7357,
+      "sha256": "4e76f2c964d8c0c161925d1f776a791487f2a9fede11249b94003398f3582c8e"
+    },
+    "original_gpu_gate/benchmark.json": {
+      "bytes": 4826,
+      "sha256": "e5a572299ef2e7c99017041a0ddbfa9da165dc5f3471aa868e0ec99961354f81"
+    },
+    "original_gpu_gate/restart_validation.json": {
+      "bytes": 3109,
+      "sha256": "7fbf736bb6023e5668141b503f4e102512ac29b598e755bdc4da80e4712be3b9"
+    },
+    "records_integrity.json": {
+      "bytes": 7971,
+      "sha256": "485fe64ffffe03c79bb3ee88a5ae9952d6a9acbf0a710fea6f1407b47d9de156"
+    },
+    "recovered_350m/allocation.json": {
+      "bytes": 336,
+      "sha256": "e2bf342600fbc4a55a2f0297e939457998ed7105d9b1806bb48a8b4093e05c06"
+    },
+    "recovered_350m/checkpoint.json": {
+      "bytes": 457,
+      "sha256": "2a44b87b319dc0d7923982ec95fb6ec893a0e6dfbb6f25fd4559e1c66b59f31f"
+    },
+    "recovered_350m/summary.json": {
+      "bytes": 172,
+      "sha256": "b465c5317ea2ab2d274c3ed2087b16973c7e2feaefa66235ab06be2d6a165151"
+    },
+    "remote_corpus_integrity.json": {
+      "bytes": 1635,
+      "sha256": "507e02ee4447fe5a07adea0b010af6d8a02499d784631f8df3d4c3cbada1f2c7"
+    },
+    "remote_final_checkpoint.json": {
+      "bytes": 302,
+      "sha256": "bc0670adf3a2377e14c4beb9c67cddd5f5eaebd6c78488f3f6e482b36fa3be54"
+    },
+    "tests.txt": {
+      "bytes": 8247,
+      "sha256": "628d6aae3151255bc5ce7a804e90ee8a15a8f115c23a145fb5b75620049c7ed5"
+    },
+    "verify_final_model.py": {
+      "bytes": 2628,
+      "sha256": "8ab098f660f4dbab5ac0d483b6b5da684b8cc7467d6e51b4b9112324365ffe21"
+    },
+    "verify_records.py": {
+      "bytes": 7507,
+      "sha256": "4b0bf3c4cd60817440562ecaed023610d801c389bf25d729fa018cf4b863122b"
+    }
+  },
+  "no_training_launched": true,
+  "report_links_verified": true
+}

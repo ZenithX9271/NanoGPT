@@ -1,0 +1,14 @@
+{
+  "format": "stage7_mac_checkpoint_backup_v1",
+  "verified_on": "2026-11-12",
+  "source_job": "1144925.pbshpc",
+  "checkpoint_bytes": 1472538167,
+  "checkpoint_sha256": "dc195f441d332e6b8ae21d505af293452e6a7e2c66e45d8ff7a6cdaf023694da",
+  "local_directory": "stage_7_general_lm/artifacts/checkpoints/1b_1144925",
+  "evidence_backed_up": true,
+  "training_source_and_config_identity_verified": true,
+  "tokenizer_bundle_backed_up": true,
+  "corpus_metadata_backed_up": true,
+  "backup_manifest_sha256": "d281cca07663542ba6eeebb609732fc89b942986edfe5b5c01cf57dda3b72406",
+  "cloud_upload_status": "Not independently verified; local Mac copy SHA256 verified."
+}

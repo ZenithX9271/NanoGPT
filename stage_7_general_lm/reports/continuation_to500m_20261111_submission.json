@@ -1,0 +1,8 @@
+{
+  "status": "submitted",
+  "authorization": "User approved 500M cumulative tokens on 2026-11-11",
+  "maximum_additional_gpu_hours": 6,
+  "target_positions": 500006912,
+  "phase_1_job": "1142015.pbshpc",
+  "phase_2_job": "1142016.pbshpc"
+}

@@ -1,0 +1,14 @@
+{
+  "verified_on": "2026-11-15",
+  "all_four_allocation_exit_codes_zero": true,
+  "remote_review_and_checkpoint_metadata_verified": true,
+  "source": "Authenticated read from HPC",
+  "evidence_sha256": {
+    "checkpoint.json": "e9f9cd3b4427e91f57f10a6f2ac7a60f507c5e8b3f598e0c64f532adfecba189",
+    "review.json": "f8ffcf3639a11b443222953f6e4bb892ac3d79b361554d7a5e531e7a02e3b881",
+    "completions.json": "c7f1a4d9dcedf8bc15826c2a3b9c93b107914cd85e085ec4dff30ed37c0df2e9",
+    "allocation.json": "17c72a76c99074df5c5bdf17b96d09f03b2c99f5b6fd9c42aa2110302ebf6a05",
+    "launch.json": "a01d44e453476b1a0e514abc1aaf2f66a76c22ed10818836a6b00a8e28d997ad",
+    "summary.json": "e9d6daf852681c90107330d8de84898a72817ad6face3162ef7003d0a808b56b"
+  }
+}

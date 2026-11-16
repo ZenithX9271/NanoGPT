@@ -1,0 +1,9 @@
+{
+  "allocation_seconds": 5986.008137464523,
+  "automatic_continuation": false,
+  "exit_code": 0,
+  "gpu_count": 1,
+  "gpu_hours_upper_bound": 1.6627800381845899,
+  "job_id": "1141598.pbshpc",
+  "run_dir": "/scratch/cse/btech/cs1230342/nanogpt_stage7/train_2b_first100m_1141598"
+}

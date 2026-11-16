@@ -1,0 +1,9 @@
+{
+  "counters": {
+    "attempts": 122117,
+    "processed_positions": 2000764928,
+    "successful_positions": 2000011264,
+    "updates": 122071
+  },
+  "reason": "completed"
+}

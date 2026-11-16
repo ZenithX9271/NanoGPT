@@ -1,0 +1,8 @@
+{
+  "verified_on": "2026-11-13",
+  "source_job": "1146578.pbshpc",
+  "review_status": "PASS",
+  "optimization_performed": false,
+  "remote_local_sha256_match": true,
+  "comparison_seeds_windows_positions_match": true
+}

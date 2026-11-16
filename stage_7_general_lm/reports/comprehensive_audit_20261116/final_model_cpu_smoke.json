@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "device": "cpu",
+  "torch_version": "2.8.0",
+  "checkpoint_bytes": 1472538359,
+  "unique_parameters": 122702592,
+  "strict_state_load": true,
+  "tied_embedding": true,
+  "all_parameters_finite": true,
+  "optimizer_states": 86,
+  "optimizer_step": 122071,
+  "optimizer_moments_finite": true,
+  "prompt_tokens": 13,
+  "cached_logits_max_abs_error": 1.2874603271484375e-05,
+  "prompt": "Plants use sunlight to make food through photosynthesis. During this process,",
+  "greedy_continuation": " the plant produces a compound called chlorophyll, which helps it absorb water and nutrients from the air.\n\nNow, let",
+  "scope": "Read-only CPU inference; no optimizer updates, no cross-runtime resume claim"
+}

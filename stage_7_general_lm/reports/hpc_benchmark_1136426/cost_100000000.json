@@ -1,0 +1,10 @@
+{
+  "approximate_dense_flops": 73621555200000000,
+  "measured_periodic_overhead_hours": 0.08525393258831981,
+  "optimizer_updates": 6104,
+  "queue_time_unknown": true,
+  "restart_and_startup_allowance": "Add from the actual planned number of jobs; restore timing is in the benchmark report",
+  "subtotal_hours": 1.5602571539388312,
+  "tokens": 100000000,
+  "training_hours": 1.4750032213505113
+}

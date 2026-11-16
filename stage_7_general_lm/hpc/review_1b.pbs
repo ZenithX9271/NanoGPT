@@ -1,0 +1,103 @@
+#!/bin/bash
+# Read-only 1B review: no optimization and no continuation.
+#PBS -N nanogpt_s7review1b
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=2:ngpus=1:mem=16gb:centos=skylake
+#PBS -l walltime=00:15:00
+#PBS -W sandbox=HOME
+#PBS -o /scratch/cse/btech/cs1230342/nanogpt_stage7/review_1b_20261112/pbs.log
+#PBS -j oe
+set -euo pipefail
+umask 077
+export STAGE7_BASE=/scratch/cse/btech/cs1230342/nanogpt_stage7
+export STAGE7_REPO="$STAGE7_BASE/deploy_1b_20261112"
+export STAGE7_FLOW="$STAGE7_BASE/continuation_to1b_20261112"
+export STAGE7_REVIEW="$STAGE7_BASE/review_1b_20261112"
+STAGE7_ENDPOINT="$STAGE7_FLOW/continuation_1144925"
+STAGE7_CHECKPOINT="$STAGE7_BASE/train_2b_first100m_1141598/review_u61036_positions_1000013824.pt"
+STAGE7_HELPER="$STAGE7_REPO/stage_7_general_lm/hpc/review_segment.py"
+: "${PBS_JOBID:?PBS allocation required}"
+test -d "$STAGE7_REVIEW"
+cd "$STAGE7_REPO"
+exec 9>"$STAGE7_BASE/train_2b_first100m_1141598/.continuation.lock"
+flock -s -n 9 || { echo 'Training owns the run lock'; exit 19; }
+mkdir "$STAGE7_REVIEW/results"
+exec > >(tee "$STAGE7_REVIEW/results/job.log") 2>&1
+export XDG_CACHE_HOME="$STAGE7_REVIEW/results/cache"
+export CUDA_CACHE_PATH="$STAGE7_REVIEW/results/cuda_cache"
+mkdir -p "$XDG_CACHE_HOME" "$CUDA_CACHE_PATH"
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
+export PYTHONPATH="$STAGE7_REPO${PYTHONPATH:+:$PYTHONPATH}"
+export CUBLAS_WORKSPACE_CONFIG=:4096:8 MKL_THREADING_LAYER=GNU
+export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 PYTHONUNBUFFERED=1
+export STAGE7_REVIEW_START=$(date +%s)
+record_exit() {
+    local result=$?
+    trap - EXIT
+    STAGE7_EXIT="$result" python -B - <<'PY'
+import json, os, time
+from pathlib import Path
+elapsed=time.time()-int(os.environ['STAGE7_REVIEW_START'])
+record=dict(job_id=os.environ['PBS_JOBID'],exit_code=int(os.environ['STAGE7_EXIT']),
+            allocation_seconds=elapsed,gpu_hours_upper_bound=elapsed/3600,
+            maximum_allocation_gpu_hours=.25,optimization_performed=False)
+with (Path(os.environ['STAGE7_REVIEW'])/'results/allocation.json').open('x') as f:
+    json.dump(record,f,indent=2)
+print(json.dumps(record),flush=True)
+PY
+    exit "$result"
+}
+trap record_exit EXIT
+python -B - <<'PY'
+import json, os
+from pathlib import Path
+from stage_7_general_lm.common import sha,source_identity
+read=lambda p:json.loads(p.read_text())
+flow=Path(os.environ['STAGE7_FLOW']); root=Path(os.environ['STAGE7_REPO'])
+deployment=read(flow/'deployment.json')
+for name,digest in deployment['files'].items():assert sha(root/name)==digest,name
+endpoint=read(flow/'continuation_1144925/checkpoint.json')
+assert endpoint['summary']['counters']['updates']==61036
+assert endpoint['summary']['counters']['successful_positions']==1000013824
+assert read(flow/'continuation_1144925/allocation.json')['exit_code']==0
+assert source_identity()==read(flow/'continuation_1144925/launch.json')['code_identity']
+checkpoint=Path(endpoint['checkpoint'])
+assert checkpoint.stat().st_size==endpoint['checkpoint_bytes']
+assert sha(checkpoint)==endpoint['checkpoint_sha256']
+print('FROZEN_IDENTITY_AND_CHECKPOINT_PASS',flush=True)
+PY
+echo "job_id=$PBS_JOBID host=$(hostname) review_only=true"
+nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
+python -B "$STAGE7_HELPER" review --checkpoint "$STAGE7_CHECKPOINT" \
+    --checkpoint-record "$STAGE7_ENDPOINT/checkpoint.json" \
+    --config "$STAGE7_REPO/stage_7_general_lm/configs/production_2b_first100m.json" \
+    --manifest "$STAGE7_BASE/packed_v1/manifest.json" \
+    --metrics "$STAGE7_ENDPOINT/metrics.jsonl" \
+    --probes "$STAGE7_REPO/stage_7_general_lm/hpc/completion_probes_v1.json" \
+    --output "$STAGE7_REVIEW/results/review.json" --windows 512 \
+    --reference-review "$STAGE7_FLOW/continuation_1144924/review.json" --max-dev-regression .05
+(
+    module purge
+    module load compiler/python/3.9.13/ucs4/gnu/447
+    unset PYTHONPATH
+    "$STAGE7_BASE/prep_env_py39/bin/python" -B "$STAGE7_HELPER" decode \
+        --tokenizer "$STAGE7_REPO/stage_7_general_lm/artifacts/native_tokenizer/tokenizer.json" \
+        --input "$STAGE7_REVIEW/results/review.json" \
+        --output "$STAGE7_REVIEW/results/completions.json"
+)
+python -B - <<'PY'
+import os
+from pathlib import Path
+import sys
+sys.path.insert(0,str(Path(os.environ['STAGE7_REPO'])/'stage_7_general_lm/hpc'))
+from review_segment import read,publish,compare_reference
+flow=Path(os.environ['STAGE7_FLOW']); result=Path(os.environ['STAGE7_REVIEW'])/'results'
+current=read(result/'review.json')
+changes={}
+for milestone,job in [('500m','1144922'),('750m','1144924')]:
+    changes[milestone]=compare_reference(current,read(flow/('continuation_'+job)/'review.json'))
+publish(result/'comparisons.json',changes)
+print('STAGE7_1B_REVIEW_AND_COMPARISONS_PASS',flush=True)
+PY

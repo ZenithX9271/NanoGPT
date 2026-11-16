@@ -1,0 +1,138 @@
+{
+  "config_sha256": "6498b6f9a0445c3ac321cc91f8d9f62e2aaaac5c13cd61ff471df928f995ca4d",
+  "cross_document_attention": true,
+  "document_counts": {
+    "cosmopedia_v2": 138662,
+    "dev": 47054,
+    "dev:cosmopedia_v2": 13652,
+    "dev:fineweb_edu": 33402,
+    "fineweb_edu": 338783,
+    "heldout": 47638,
+    "heldout:cosmopedia_v2": 13852,
+    "heldout:fineweb_edu": 33786,
+    "train": 382753,
+    "train:cosmopedia_v2": 111158,
+    "train:fineweb_edu": 271595
+  },
+  "document_ledger": {
+    "file": "documents.jsonl.gz",
+    "sha256": "c4e7e57c001a15b0c3e04969b0323bf500042a75492c8a7830552ec0ef7b2fb1"
+  },
+  "documents_scanned": 482019,
+  "dtype": "<u2",
+  "format": "stage7_token_stream_v2",
+  "input_documents": [
+    {
+      "file": "/scratch/cse/btech/cs1230342/nanogpt_stage7/extracted_v1/documents.jsonl",
+      "sha256": "d337b93db45d3c7845df580f1e87723d8c98430856df79cdb24ae05bd47c64e3"
+    }
+  ],
+  "known_limitations": [
+    "Exact normalized-text deduplication does not detect semantic paraphrases.",
+    "Cosmopedia synthetic-parent derivative lineage is incomplete.",
+    "The selected files are bounded convenience samples, not uniform samples of either full dataset."
+  ],
+  "mixture_policy": "Fixed per-source selected-token caps before random-window sampling; actual split/source counts are recorded.",
+  "seconds": 990.7990284319967,
+  "skipped": {
+    "cosmopedia_v2:duplicate": 84,
+    "cosmopedia_v2:token_cap": 4310,
+    "fineweb_edu:duplicate": 180
+  },
+  "source_token_caps": {
+    "cosmopedia_v2": 100000000,
+    "fineweb_edu": 400000000
+  },
+  "source_token_counts": {
+    "cosmopedia_v2": 99999994,
+    "fineweb_edu": 354195407
+  },
+  "source_token_counts_by_split": {
+    "dev": {
+      "cosmopedia_v2": 9855360,
+      "fineweb_edu": 34821782
+    },
+    "heldout": {
+      "cosmopedia_v2": 10003133,
+      "fineweb_edu": 35727614
+    },
+    "train": {
+      "cosmopedia_v2": 80141501,
+      "fineweb_edu": 283646011
+    }
+  },
+  "special_ids": {
+    "bos": 1,
+    "eos": 2
+  },
+  "split_seed": 1337,
+  "splits": {
+    "dev": {
+      "shards": [
+        {
+          "file": "dev_00.bin",
+          "sha256": "cfd4a9b894806a51cc58637eb70b6c0ca4f480b2841daa227674783b55591b7d",
+          "source": "cosmopedia_v2",
+          "tokens": 9855360
+        },
+        {
+          "file": "dev_01.bin",
+          "sha256": "47176995160d2cf28c0832eae04a5a52ee5852bf25277ea567baa710429d55b3",
+          "source": "fineweb_edu",
+          "tokens": 34821782
+        }
+      ],
+      "source_group_index": {
+        "file": "group_digests_dev.txt",
+        "groups": 47011,
+        "sha256": "39e4201cabcc436c5ffe1dba9386ca3343a257e6f996ab3de935e2076548e5b4"
+      }
+    },
+    "heldout": {
+      "shards": [
+        {
+          "file": "heldout_00.bin",
+          "sha256": "524bf4663b7e06db67deb85d6382a73a05ce112212cd5fd07d44d844e763a779",
+          "source": "cosmopedia_v2",
+          "tokens": 10003133
+        },
+        {
+          "file": "heldout_01.bin",
+          "sha256": "9719da11875ba25f87c76668005644240bbc5937dae21bccdf74a42f356b37b6",
+          "source": "fineweb_edu",
+          "tokens": 35727614
+        }
+      ],
+      "source_group_index": {
+        "file": "group_digests_heldout.txt",
+        "groups": 47592,
+        "sha256": "95c47f0727ecbcfbba164c31013d19bdb5bfbc3006c804ec7839e6ed20ac079a"
+      }
+    },
+    "train": {
+      "shards": [
+        {
+          "file": "train_00.bin",
+          "sha256": "3219562ef489ae05450f6ef48927abab813da4e735875a98a418a846af3c3002",
+          "source": "cosmopedia_v2",
+          "tokens": 80141501
+        },
+        {
+          "file": "train_01.bin",
+          "sha256": "969122d474f62184775e5429c14f120eabae49674fd0226262ed0f516076c613",
+          "source": "fineweb_edu",
+          "tokens": 283646011
+        }
+      ],
+      "source_group_index": {
+        "file": "group_digests_train.txt",
+        "groups": 382339,
+        "sha256": "77b973855466bbb45ab7e53380c7b83f39d1c096217e721a993086db915bced2"
+      }
+    }
+  },
+  "stop_reason": "input_exhausted",
+  "tokenizer_sha256": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+  "unique_normalized_documents": 481755,
+  "vocab_size": 49152
+}

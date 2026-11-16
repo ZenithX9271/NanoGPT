@@ -1,0 +1,22 @@
+{
+  "500m": {
+    "ce_changes": {
+      "dev": -0.15680678561329842,
+      "dev_domain:cosmopedia_v2": -0.18839051900431514,
+      "dev_domain:fineweb_edu": -0.14478131290525198,
+      "train": -0.17348286975175142
+    },
+    "maximum_ce_regression": 0.05,
+    "reference_checkpoint_sha256": "c9eb7c507a874ad7d7db497282121617288f5e5dd50602e9ff78733443d8074e"
+  },
+  "750m": {
+    "ce_changes": {
+      "dev": -0.07047384325414896,
+      "dev_domain:cosmopedia_v2": -0.08665207913145423,
+      "dev_domain:fineweb_edu": -0.06413353234529495,
+      "train": -0.07405626028776169
+    },
+    "maximum_ce_regression": 0.05,
+    "reference_checkpoint_sha256": "2fcbffa9393202acf55bbff4190810c9d219fac17b47d45489c289f838c82b20"
+  }
+}

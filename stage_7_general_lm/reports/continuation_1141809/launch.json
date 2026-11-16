@@ -1,0 +1,40 @@
+{
+  "job_id": "1141809.pbshpc",
+  "source_checkpoint": {
+    "checkpoint": "/scratch/cse/btech/cs1230342/nanogpt_stage7/train_2b_first100m_1141598/review_u6104_positions_100007936.pt",
+    "checkpoint_bytes": 1472538167,
+    "checkpoint_sha256": "bd9b7ddabfdf75b4551a3a7da4e16a67fecedead3ac32a11e959449b164ee36a",
+    "summary": {
+      "counters": {
+        "attempts": 6105,
+        "processed_positions": 100024320,
+        "successful_positions": 100007936,
+        "updates": 6104
+      },
+      "reason": "review_gate"
+    }
+  },
+  "prior_allocation_seconds": 5986.008137464523,
+  "maximum_job_seconds": 8100,
+  "cumulative_maximum_seconds": 14086.008137464523,
+  "authorization": "User approved backup, expanded review and continuation to 200M on 2026-11-11",
+  "target_updates": 12208,
+  "target_positions": 200015872,
+  "code_identity": {
+    "__init__.py": "cff50ac02bea917ecf8d83a0bdfdf9b3177db98243958662b9a7d489ba42f038",
+    "audit_corpus.py": "967ea929c086708067d66a3dfe38fea3b866dc1d4a199819dd15706385467e62",
+    "common.py": "6d7f1e978bf3b394bc7816d33f746e4f1ddbe5f8958029e57fb708082e19f247",
+    "corpus.py": "53d934cad7efbeead1780b781871d49fdb11e9659ccd5804e44d047975118c7e",
+    "cost.py": "3e4d34e03ca9eff35e102dbe287bdf1a32219e1810e7db4a01c7e39b34a50061",
+    "data.py": "b4654868c417e1e98daac030527cc8caa0fbc1c6b5e82ce4939b6f89d6a6e041",
+    "evaluation.py": "5a4b99f87d06c1e150e01f50f743cfe56b8ad022e5a328f4c96ce88dc1f45423",
+    "extract_parquet.py": "3c7ed581b39a1d2786069698a3777f06becdcdfc6b5f1283ec669842bec3574d",
+    "fetch_sample.py": "efb3d18767972a89a087f99d7f52198f21903e4c68221cb61049486d811c3974",
+    "model.py": "c8a6a273a4f1576fee8c67ed75668841a24945b713efe98b165a1db35fb43166",
+    "pack_production.py": "e509d3f548ff9bf4a638aca4e3bfe163f7201c08c8ef835d86a962b019424583",
+    "pretrained.py": "9be4584e4821218826a96169a98a4ea57f298882e4cfab019a32ed3efbc2f464",
+    "runtime_probe.py": "d8eb06bd448427abf4f31805a87e4cb2e53c579cf4e417361ef3edd80308b1ed",
+    "train.py": "4bc8fe69515d2490dc590d34f3baaf8b1278442823537a411bd478cb8533028a",
+    "validate_restart.py": "53caa37320adf16c5363558ada9e74e7f818d821a0cdd139ceb98711e69c3b80"
+  }
+}

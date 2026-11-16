@@ -1,0 +1,104 @@
+{
+  "cross_document_attention": true,
+  "documents_sha256": "f1040d4cf20fcfb6d683fcd44199ca7f49024a9a18f0a4095c4e1275c94e28bc",
+  "dtype": "<u2",
+  "format": "stage7_token_stream_v1",
+  "mixture_policy": "Uniform random windows over fixed concatenation; source token exposure is recorded, not actively reweighted",
+  "source_token_counts": {
+    "HuggingFaceFW/fineweb-edu/sample-10BT": 10344,
+    "HuggingFaceTB/smollm-corpus/cosmopedia-v2": 8725
+  },
+  "source_token_counts_by_split": {
+    "dev": {
+      "HuggingFaceFW/fineweb-edu/sample-10BT": 3735,
+      "HuggingFaceTB/smollm-corpus/cosmopedia-v2": 741
+    },
+    "heldout": {
+      "HuggingFaceFW/fineweb-edu/sample-10BT": 912
+    },
+    "train": {
+      "HuggingFaceFW/fineweb-edu/sample-10BT": 5697,
+      "HuggingFaceTB/smollm-corpus/cosmopedia-v2": 7984
+    }
+  },
+  "special_ids": {
+    "bos": 1,
+    "eos": 2
+  },
+  "splits": {
+    "dev": {
+      "shards": [
+        {
+          "file": "dev_00.bin",
+          "sha256": "fd778bc7ee8039104adda9b4cef220e843ef45ed5ded3cca11330c8bb6301dad",
+          "source": "HuggingFaceFW/fineweb-edu/sample-10BT",
+          "tokens": 3735
+        },
+        {
+          "file": "dev_01.bin",
+          "sha256": "605c2f5d2351d0419d39aa39aaa1453758efb5e36c3b9cc2492084089229b7b1",
+          "source": "HuggingFaceTB/smollm-corpus/cosmopedia-v2",
+          "tokens": 741
+        }
+      ],
+      "source_groups": [
+        "HuggingFaceTB/smollm-corpus:147",
+        "http://svconline.com/proav/audiovisual-equipment_digital-audio-networking-demystified/"
+      ]
+    },
+    "heldout": {
+      "shards": [
+        {
+          "file": "heldout_00.bin",
+          "sha256": "410ea826ba3bbc2589554eb88de713cc1b4b782db9c45da810e3789f69d5062e",
+          "source": "HuggingFaceFW/fineweb-edu/sample-10BT",
+          "tokens": 912
+        }
+      ],
+      "source_groups": [
+        "http://www.scienceprojects.in/electricity-and-magnetism-physics-projects-experiments.html",
+        "http://www3.nfb.ca/acrosscultures/text.php?txt=abo"
+      ]
+    },
+    "train": {
+      "shards": [
+        {
+          "file": "train_00.bin",
+          "sha256": "a899258a3ee70439b1a39261924d2951bd7509cb01145968a6d5c0aa8fd36e3d",
+          "source": "HuggingFaceFW/fineweb-edu/sample-10BT",
+          "tokens": 5697
+        },
+        {
+          "file": "train_01.bin",
+          "sha256": "3ede44fd18c99e951afafe39e4f24f15b3d9f7d8d51bf03f063775f6d89d2022",
+          "source": "HuggingFaceTB/smollm-corpus/cosmopedia-v2",
+          "tokens": 7984
+        }
+      ],
+      "source_groups": [
+        "HuggingFaceTB/smollm-corpus:137",
+        "HuggingFaceTB/smollm-corpus:138",
+        "HuggingFaceTB/smollm-corpus:139",
+        "HuggingFaceTB/smollm-corpus:140",
+        "HuggingFaceTB/smollm-corpus:141",
+        "HuggingFaceTB/smollm-corpus:142",
+        "HuggingFaceTB/smollm-corpus:143",
+        "HuggingFaceTB/smollm-corpus:144",
+        "HuggingFaceTB/smollm-corpus:145",
+        "HuggingFaceTB/smollm-corpus:146",
+        "HuggingFaceTB/smollm-corpus:148",
+        "http://almostchosenpeople.wordpress.com/2011/07/27/a-republic-if-you-can-keep-it/",
+        "http://blog.compassion.com/holes-in-the-pockets/quote-comment-10992/",
+        "http://cheapholidaysinspain.net/semana-santa-in-andalucia/",
+        "http://nova.newcastle.edu.au/vital/access/manager/Repository/uon:10801?exact=creator%3A%22Daly%2C+Justine+B.%22&f0=creator%3A%22Freund%2C+Megan%22",
+        "http://oncolink.org/types/article1.cfm?id=9594&c=185",
+        "http://www.angelfire.com/pa/ImperialRussian/news/512news.html",
+        "http://www.definitions.net/definition/acanthosis%20nigricans",
+        "http://www.medterms.com/script/main/art.asp?articlekey=38325",
+        "http://www.pelvichealthsolutions.com/print/133"
+      ]
+    }
+  },
+  "tokenizer_sha256": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+  "vocab_size": 49152
+}

@@ -1,0 +1,44 @@
+{
+  "timestamp": 1794733216,
+  "jobs": {
+    "1150576.pbshpc": {
+      "job_state": "R",
+      "Hold_Types": "n",
+      "exec_host": "vsky004/0*2",
+      "depend": "beforeok:1150577.pbshpc@mst01",
+      "comment": "Job run at Sun Nov 15 at 14:28 on (vsky004:ncpus=2:ngpus=1:mem=16777216kb)",
+      "resources_used": {
+        "cpupercent": 59,
+        "cput": "00:00:15",
+        "mem": "2753868kb",
+        "ncpus": 2,
+        "vmem": "28295728kb",
+        "walltime": "00:01:43"
+      }
+    },
+    "1150577.pbshpc": {
+      "job_state": "H",
+      "Hold_Types": "s",
+      "exec_host": null,
+      "depend": "afterok:1150576.pbshpc@mst01,beforeok:1150578.pbshpc@mst01",
+      "comment": null,
+      "resources_used": null
+    },
+    "1150578.pbshpc": {
+      "job_state": "H",
+      "Hold_Types": "s",
+      "exec_host": null,
+      "depend": "afterok:1150577.pbshpc@mst01,beforeok:1150579.pbshpc@mst01",
+      "comment": null,
+      "resources_used": null
+    },
+    "1150579.pbshpc": {
+      "job_state": "H",
+      "Hold_Types": "s",
+      "exec_host": null,
+      "depend": "afterok:1150578.pbshpc@mst01",
+      "comment": null,
+      "resources_used": null
+    }
+  }
+}

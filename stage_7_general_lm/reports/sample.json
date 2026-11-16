@@ -1,0 +1,28 @@
+{
+  "consumed_input_sha256": "553d531fe57cbd3b2963e0f7ca3bf90f95e622a373ab9f523da33e60392adc14",
+  "documents": 24,
+  "input_bytes_consumed": 106826,
+  "leakage_limit": "Source groups and exact normalized hashes only; semantic derivative lineage may be incomplete",
+  "limits": {
+    "documents": 24,
+    "input_bytes": 4194304,
+    "seconds": 60,
+    "text_bytes": 1048576
+  },
+  "network_bytes": 0,
+  "retained_text_bytes": 94211,
+  "sampling": "seeded shuffle of bounded input pool; no claim of full-corpus uniform sampling",
+  "seconds": 0.00383391700000002,
+  "seed": 1337,
+  "skipped": {},
+  "source_counts": {
+    "HuggingFaceFW/fineweb-edu/sample-10BT": 12,
+    "HuggingFaceTB/smollm-corpus/cosmopedia-v2": 12
+  },
+  "split_counts": {
+    "dev": 2,
+    "heldout": 2,
+    "train": 20
+  },
+  "stop_reason": "document_limit"
+}

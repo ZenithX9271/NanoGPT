@@ -1,0 +1,46 @@
+{
+  "all_parameter_gradients_finite": true,
+  "batch_size": 1,
+  "code_identity": {
+    "__init__.py": "cff50ac02bea917ecf8d83a0bdfdf9b3177db98243958662b9a7d489ba42f038",
+    "common.py": "6d7f1e978bf3b394bc7816d33f746e4f1ddbe5f8958029e57fb708082e19f247",
+    "corpus.py": "53d934cad7efbeead1780b781871d49fdb11e9659ccd5804e44d047975118c7e",
+    "cost.py": "3e4d34e03ca9eff35e102dbe287bdf1a32219e1810e7db4a01c7e39b34a50061",
+    "data.py": "b4654868c417e1e98daac030527cc8caa0fbc1c6b5e82ce4939b6f89d6a6e041",
+    "evaluation.py": "5a4b99f87d06c1e150e01f50f743cfe56b8ad022e5a328f4c96ce88dc1f45423",
+    "fetch_sample.py": "efb3d18767972a89a087f99d7f52198f21903e4c68221cb61049486d811c3974",
+    "model.py": "c8a6a273a4f1576fee8c67ed75668841a24945b713efe98b165a1db35fb43166",
+    "pretrained.py": "9be4584e4821218826a96169a98a4ea57f298882e4cfab019a32ed3efbc2f464",
+    "runtime_probe.py": "d8eb06bd448427abf4f31805a87e4cb2e53c579cf4e417361ef3edd80308b1ed",
+    "train.py": "4bc8fe69515d2490dc590d34f3baaf8b1278442823537a411bd478cb8533028a"
+  },
+  "config": {
+    "block_size": 1024,
+    "dropout": 0.1,
+    "intermediate_size": 2048,
+    "n_embd": 768,
+    "n_head": 12,
+    "n_layer": 12,
+    "rope_theta": 10000,
+    "vocab_size": 49152
+  },
+  "configured_context": 1024,
+  "kind": "full_candidate_bounded_cpu_numerical_proof",
+  "limitation": "Full parameter shapes, short sequence on CPU; no 1024-context GPU throughput/memory claim",
+  "loss": 11.031961441040039,
+  "optimizer_updates": 0,
+  "parameters": 122702592,
+  "peak_process_rss_bytes": 1384398848,
+  "runtime": {
+    "cuda_build": null,
+    "device": "cpu",
+    "gpu": null,
+    "numpy": "2.0.2",
+    "platform": "macOS-15.5-arm64-arm-64bit",
+    "python": "3.9.6",
+    "threads": 1,
+    "torch": "2.8.0"
+  },
+  "seconds": 3.0595146250000003,
+  "sequence_length": 32
+}

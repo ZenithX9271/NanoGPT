@@ -1,0 +1,35 @@
+#!/bin/bash
+# DRAFT: one bounded compatibility + candidate benchmark job, never submitted here.
+#PBS -N nanogpt_s7bench
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=4:ngpus=1:mem=20gb:centos=skylake
+#PBS -l walltime=00:15:00
+#PBS -l software=PYTHON
+#PBS -j oe
+set -euo pipefail
+cd "${PBS_O_WORKDIR:?Repository root required}"
+: "${PBS_JOBID:?PBS allocation required}"
+: "${STAGE7_GPU_HOURS:?Confirmed allocation allowance required}"
+: "${STAGE7_DISK_BYTES:?Confirmed scratch/checkpoint allowance required}"
+: "${STAGE7_MANIFEST:?Transferred new Stage 7 token-stream manifest required}"
+: "${STAGE7_OUTPUT:?New persistent report directory required}"
+: "${STAGE7_PROBE_DIR:?Existing quota-checked parent on the intended checkpoint filesystem required}"
+python3 -B - <<'PY'
+import os
+if float(os.environ['STAGE7_GPU_HOURS']) < .25:
+    raise SystemExit('Benchmark requests 0.25 GPU-hour; allowance insufficient')
+if int(os.environ['STAGE7_DISK_BYTES']) < 4294967296:
+    raise SystemExit('Reserve at least 4 GiB for full checkpoint probe and reports')
+PY
+mkdir "$STAGE7_OUTPUT"
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+export MKL_THREADING_LAYER=GNU
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+python -B -c "import torch; assert torch.cuda.is_available(); assert 'V100' in torch.cuda.get_device_name(0)"
+python -B -m stage_7_general_lm.runtime_probe --device cuda --threads 4 --report "$STAGE7_OUTPUT/runtime.json"
+python -B -m stage_7_general_lm.train --mode benchmark \
+  --config stage_7_general_lm/configs/candidate.json --manifest "$STAGE7_MANIFEST" \
+  --device cuda --threads 4 --warmup 5 --steps 20 --checkpoint-probe-dir "$STAGE7_PROBE_DIR" --report "$STAGE7_OUTPUT/benchmark.json"

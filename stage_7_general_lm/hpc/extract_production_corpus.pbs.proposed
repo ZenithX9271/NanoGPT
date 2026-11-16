@@ -1,0 +1,64 @@
+#!/bin/bash
+# CPU-only, bounded extraction of the two hash-pinned Stage 7 Parquet files.
+# Submit from the repository root after the schema/footer probe passes.
+#PBS -N nanogpt_s7extract
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=4:mem=16gb:centos=skylake
+#PBS -l walltime=04:00:00
+#PBS -j oe
+
+set -euo pipefail
+umask 077
+
+: "${PBS_JOBID:?PBS allocation required}"
+
+STAGE7_REPO=/home/cse/btech/cs1230342/zenithX9271/NanoGPT
+STAGE7_BASE=/scratch/cse/btech/cs1230342/nanogpt_stage7
+STAGE7_RAW="$STAGE7_BASE/raw_v1"
+STAGE7_EXTRACTED="$STAGE7_BASE/extracted_v1"
+STAGE7_CONFIG="$STAGE7_REPO/stage_7_general_lm/configs/production_sources_v1.json"
+
+cd "$STAGE7_REPO"
+
+test -f "$STAGE7_CONFIG"
+test -f "$STAGE7_RAW/fineweb-edu/000_00000.parquet"
+test -f "$STAGE7_RAW/smollm-corpus/train-00030-of-00104.parquet"
+
+if [[ -e "$STAGE7_EXTRACTED" ]]; then
+    echo "REFUSING_TO_OVERWRITE_EXISTING_PATH: $STAGE7_EXTRACTED" >&2
+    exit 17
+fi
+
+module purge
+module load apps/anaconda/3
+export PYTHONPATH="$STAGE7_REPO"
+export OMP_NUM_THREADS=4
+export MKL_NUM_THREADS=4
+export OPENBLAS_NUM_THREADS=4
+
+echo "job_id=$PBS_JOBID"
+echo "host=$(hostname)"
+echo "python=$(python --version 2>&1)"
+echo "extracted=$STAGE7_EXTRACTED"
+
+python -B -m stage_7_general_lm.extract_parquet \
+    --config "$STAGE7_CONFIG" \
+    --input-root "$STAGE7_RAW" \
+    --output "$STAGE7_EXTRACTED"
+
+test -f "$STAGE7_EXTRACTED/documents.jsonl"
+test -f "$STAGE7_EXTRACTED/extraction.json"
+
+echo "EXTRACTION_OUTPUT_SIZES"
+du -sh "$STAGE7_EXTRACTED"
+stat -c '%n %s bytes' \
+    "$STAGE7_EXTRACTED/documents.jsonl" \
+    "$STAGE7_EXTRACTED/extraction.json"
+
+echo "EXTRACTION_OUTPUT_SHA256"
+sha256sum \
+    "$STAGE7_EXTRACTED/documents.jsonl" \
+    "$STAGE7_EXTRACTED/extraction.json"
+
+echo "STAGE7_EXTRACTION_JOB_PASS"

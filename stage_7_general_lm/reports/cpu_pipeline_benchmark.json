@@ -1,0 +1,121 @@
+{
+  "checkpoint_bytes": 19162461,
+  "checkpoint_probe_device": 16777232,
+  "checkpoint_probe_parent": "/private/tmp/nanogpt-stage7-production-fetch-20261104",
+  "code_identity": {
+    "__init__.py": "cff50ac02bea917ecf8d83a0bdfdf9b3177db98243958662b9a7d489ba42f038",
+    "common.py": "6d7f1e978bf3b394bc7816d33f746e4f1ddbe5f8958029e57fb708082e19f247",
+    "corpus.py": "53d934cad7efbeead1780b781871d49fdb11e9659ccd5804e44d047975118c7e",
+    "cost.py": "3e4d34e03ca9eff35e102dbe287bdf1a32219e1810e7db4a01c7e39b34a50061",
+    "data.py": "b4654868c417e1e98daac030527cc8caa0fbc1c6b5e82ce4939b6f89d6a6e041",
+    "evaluation.py": "5a4b99f87d06c1e150e01f50f743cfe56b8ad022e5a328f4c96ce88dc1f45423",
+    "fetch_sample.py": "efb3d18767972a89a087f99d7f52198f21903e4c68221cb61049486d811c3974",
+    "model.py": "c8a6a273a4f1576fee8c67ed75668841a24945b713efe98b165a1db35fb43166",
+    "pretrained.py": "9be4584e4821218826a96169a98a4ea57f298882e4cfab019a32ed3efbc2f464",
+    "runtime_probe.py": "d8eb06bd448427abf4f31805a87e4cb2e53c579cf4e417361ef3edd80308b1ed",
+    "train.py": "4bc8fe69515d2490dc590d34f3baaf8b1278442823537a411bd478cb8533028a"
+  },
+  "config": {
+    "benchmark_schedule_placeholder": true,
+    "evaluation": {
+      "batch_size": 1,
+      "seed": 2026,
+      "windows": 2
+    },
+    "experiment": "stage7a_general_english_candidate",
+    "model": {
+      "block_size": 32,
+      "dropout": 0.1,
+      "intermediate_size": 64,
+      "n_embd": 32,
+      "n_head": 4,
+      "n_layer": 2,
+      "rope_theta": 10000,
+      "vocab_size": 49152
+    },
+    "resource_limits": {
+      "disk_bytes": null,
+      "gpu_hours": null,
+      "main_run_approved": false,
+      "maximum_job_seconds": null
+    },
+    "status": "Benchmark candidate only: 122702592 parameters using the measured existing 49152-token tokenizer. This is provisional; batch/LR/main horizon and final tokenizer are unselected.",
+    "training": {
+      "accumulation_steps": 2,
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "eval_interval": 100,
+      "grad_clip": 1.0,
+      "micro_batch_size": 1,
+      "min_lr": 3e-05,
+      "peak_lr": 0.0003,
+      "precision": "fp32",
+      "save_interval": 100,
+      "seed": 1337,
+      "token_budget": 384,
+      "warmup_updates": 200,
+      "weight_decay": 0.1
+    }
+  },
+  "data_identity": "6bc232a27f927555fe8374925a71411a9d4922563b95e676dd302b4486c0c177",
+  "evaluation": {
+    "event": "evaluation",
+    "precision": "fp32",
+    "scores": {
+      "dev": {
+        "ce": 10.805855751037598,
+        "perplexity": 49308.69684363599,
+        "positions": 64
+      },
+      "dev_domain:HuggingFaceFW/fineweb-edu/sample-10BT": {
+        "ce": 10.82231855392456,
+        "perplexity": 50127.174936633135,
+        "positions": 64
+      },
+      "dev_domain:HuggingFaceTB/smollm-corpus/cosmopedia-v2": {
+        "ce": 10.783814430236816,
+        "perplexity": 48233.75809170036,
+        "positions": 64
+      },
+      "train": {
+        "ce": 10.816322326660156,
+        "perplexity": 49827.50035991717,
+        "positions": 64
+      }
+    },
+    "updates": 5
+  },
+  "evaluation_seconds": 0.032244750000000044,
+  "gpu_peak_allocated": null,
+  "gpu_peak_reserved": null,
+  "measured_optimizer_updates": 4,
+  "measured_processed_positions": 256,
+  "measured_successful_positions": 256,
+  "mode": "benchmark_only",
+  "parameters": 1593504,
+  "processed_tokens_per_second": 2773.302817757995,
+  "quality_training": false,
+  "restore_seconds": 0.022004582999999966,
+  "runtime": {
+    "cuda_build": null,
+    "device": "cpu",
+    "gpu": null,
+    "numpy": "2.0.2",
+    "platform": "macOS-15.5-arm64-arm-64bit",
+    "python": "3.9.6",
+    "threads": 1,
+    "torch": "2.8.0"
+  },
+  "save_seconds": 0.03557891600000018,
+  "step_seconds": [
+    0.02362933299999992,
+    0.02291429200000006,
+    0.022944749999999958,
+    0.02282033300000008
+  ],
+  "tokens_per_update": 64,
+  "total_seconds": 0.6817012920000001,
+  "training_tokens_per_second": 2773.302817757995
+}

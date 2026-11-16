@@ -1,0 +1,116 @@
+{
+  "/private/tmp/nanogpt-stage7-production-fetch-20261104/general-tokenizer.json": {
+    "domains": {
+      "HuggingFaceFW/fineweb-edu/sample-10BT": {
+        "documents": 12,
+        "over_1024": 2,
+        "roundtrip_mismatches": 0,
+        "tokens": 10320,
+        "tokens_per_byte": 0.21023039784880523,
+        "tokens_per_word": 1.2861415752741774,
+        "utf8_bytes": 49089,
+        "words": 8024
+      },
+      "HuggingFaceTB/smollm-corpus/cosmopedia-v2": {
+        "documents": 12,
+        "over_1024": 1,
+        "roundtrip_mismatches": 0,
+        "tokens": 8701,
+        "tokens_per_byte": 0.19283276450511946,
+        "tokens_per_word": 1.3345092024539877,
+        "utf8_bytes": 45122,
+        "words": 6520
+      }
+    },
+    "fragments": {
+      "1048576": [
+        "1",
+        "0",
+        "4",
+        "8",
+        "5",
+        "7",
+        "6"
+      ],
+      "Zainab": [
+        "Z",
+        "ain",
+        "ab"
+      ],
+      "couldn't": [
+        "could",
+        "n",
+        "'t"
+      ],
+      "photosynthesis": [
+        "photos",
+        "ynthesis"
+      ]
+    },
+    "maximum_id": 49151,
+    "required_storage_dtype": "<u2",
+    "sha256": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+    "status": "Small-sample efficiency diagnostics; no tokenizer quality or throughput winner selected",
+    "vocab_entries": 49152
+  },
+  "data/tokenizer/v2/tokenizer.json": {
+    "domains": {
+      "HuggingFaceFW/fineweb-edu/sample-10BT": {
+        "documents": 12,
+        "over_1024": 4,
+        "roundtrip_mismatches": 0,
+        "tokens": 15635,
+        "tokens_per_byte": 0.3185031269734564,
+        "tokens_per_word": 1.9485294117647058,
+        "utf8_bytes": 49089,
+        "words": 8024
+      },
+      "HuggingFaceTB/smollm-corpus/cosmopedia-v2": {
+        "documents": 12,
+        "over_1024": 6,
+        "roundtrip_mismatches": 0,
+        "tokens": 13752,
+        "tokens_per_byte": 0.3047737245689464,
+        "tokens_per_word": 2.10920245398773,
+        "utf8_bytes": 45122,
+        "words": 6520
+      }
+    },
+    "fragments": {
+      "1048576": [
+        "1",
+        "0",
+        "4",
+        "8",
+        "5",
+        "7",
+        "6"
+      ],
+      "Zainab": [
+        "Z",
+        "ain",
+        "ab"
+      ],
+      "couldn't": [
+        "c",
+        "ould",
+        "n",
+        "'t"
+      ],
+      "photosynthesis": [
+        "ph",
+        "ot",
+        "os",
+        "y",
+        "nt",
+        "hes",
+        "is"
+      ]
+    },
+    "maximum_id": 8191,
+    "required_storage_dtype": "<u2",
+    "sha256": "99055f35c77392e4df4486685b60fee1de1d95e2c373c26f487cf9944746d038",
+    "status": "Small-sample efficiency diagnostics; no tokenizer quality or throughput winner selected",
+    "vocab_entries": 8192
+  }
+}

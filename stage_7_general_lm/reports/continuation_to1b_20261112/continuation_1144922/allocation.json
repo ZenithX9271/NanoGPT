@@ -1,0 +1,12 @@
+{
+  "job_id": "1144922.pbshpc",
+  "exit_code": 0,
+  "allocation_seconds": 8284.480197429657,
+  "gpu_hours_upper_bound": 2.3012444992860157,
+  "cumulative_gpu_hours_upper_bound": 11.209627406597138,
+  "phase": 1,
+  "authorized_additional_gpu_hours": 10,
+  "additional_gpu_hours_since_500m": 2.3012444992860157,
+  "final_target_positions": 1000013824,
+  "automatic_continuation_beyond_1b": false
+}

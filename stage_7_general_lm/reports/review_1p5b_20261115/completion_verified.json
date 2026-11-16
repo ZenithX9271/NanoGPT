@@ -1,0 +1,58 @@
+{
+  "verified_on": "2026-11-15",
+  "training_status": "Stopped at 1.5B review gate",
+  "successful_positions": 1500004352,
+  "updates": 91553,
+  "expanded_review_status": "PASS",
+  "automatic_continuation_beyond_1p5b": false,
+  "jobs": {
+    "1147658.pbshpc": {
+      "job_id": "1147658.pbshpc",
+      "exit_code": 0,
+      "allocation_seconds": 7901.019931316376,
+      "gpu_hours_upper_bound": 2.1947277586989933,
+      "cumulative_gpu_hours_upper_bound": 20.10207847204473,
+      "phase": 1,
+      "authorized_additional_gpu_hours": 10,
+      "additional_gpu_hours_since_1b": 2.194727758698992,
+      "final_target_positions": 1500004352,
+      "automatic_continuation_beyond_1p5b": false
+    },
+    "1147659.pbshpc": {
+      "job_id": "1147659.pbshpc",
+      "exit_code": 0,
+      "allocation_seconds": 7732.61586022377,
+      "gpu_hours_upper_bound": 2.1479488500621584,
+      "cumulative_gpu_hours_upper_bound": 22.250027322106888,
+      "phase": 2,
+      "authorized_additional_gpu_hours": 10,
+      "additional_gpu_hours_since_1b": 4.342676608761149,
+      "final_target_positions": 1500004352,
+      "automatic_continuation_beyond_1p5b": false
+    },
+    "1147660.pbshpc": {
+      "job_id": "1147660.pbshpc",
+      "exit_code": 0,
+      "allocation_seconds": 7990.002788305283,
+      "gpu_hours_upper_bound": 2.2194452189736897,
+      "cumulative_gpu_hours_upper_bound": 24.469472541080577,
+      "phase": 3,
+      "authorized_additional_gpu_hours": 10,
+      "additional_gpu_hours_since_1b": 6.562121827734838,
+      "final_target_positions": 1500004352,
+      "automatic_continuation_beyond_1p5b": false
+    },
+    "1147661.pbshpc": {
+      "job_id": "1147661.pbshpc",
+      "exit_code": 0,
+      "allocation_seconds": 8270.540443897247,
+      "gpu_hours_upper_bound": 2.297372345527013,
+      "cumulative_gpu_hours_upper_bound": 26.76684488660759,
+      "phase": 4,
+      "authorized_additional_gpu_hours": 10,
+      "additional_gpu_hours_since_1b": 8.85949417326185,
+      "final_target_positions": 1500004352,
+      "automatic_continuation_beyond_1p5b": false
+    }
+  }
+}

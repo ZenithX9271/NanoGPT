@@ -1,0 +1,12 @@
+{
+  "examples_checked": 24,
+  "maximum_full_template_length": 200,
+  "native_vocab_size": 49152,
+  "bos_id": 1,
+  "eos_id": 2,
+  "pad_id": 2,
+  "real_eos_supervised": true,
+  "sft_source_groups_disjoint": true,
+  "model_weights_loaded": false,
+  "external_pretrained_compatibility": "Tokenizer/template only; weights/adapters unverified"
+}

@@ -1,0 +1,92 @@
+#!/bin/bash
+# One bounded V100 job: exact FP16 restart proof plus production-data benchmark.
+# It does not create or resume a quality-training run.
+#PBS -N nanogpt_s7gate
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=2:ngpus=1:mem=16gb:centos=skylake
+#PBS -l walltime=01:00:00
+#PBS -j oe
+
+set -euo pipefail
+umask 077
+
+: "${PBS_JOBID:?PBS allocation required}"
+
+STAGE7_REPO=/home/cse/btech/cs1230342/zenithX9271/NanoGPT
+STAGE7_BASE=/scratch/cse/btech/cs1230342/nanogpt_stage7
+STAGE7_PACKED="$STAGE7_BASE/packed_v1"
+STAGE7_MANIFEST="$STAGE7_PACKED/manifest.json"
+STAGE7_CONFIG="$STAGE7_REPO/stage_7_general_lm/configs/production_2b_candidate.json"
+JOB_TAG="${PBS_JOBID%%.*}"
+STAGE7_WORK="$STAGE7_BASE/gpu_validation_$JOB_TAG"
+STAGE7_EVIDENCE="$STAGE7_REPO/stage_7_general_lm/reports/hpc_validation_$JOB_TAG"
+
+cd "$STAGE7_REPO"
+
+test -f "$STAGE7_PACKED/COMPLETE.json"
+test -f "$STAGE7_PACKED/audit.json"
+test -f "$STAGE7_CONFIG"
+test -f "$STAGE7_MANIFEST"
+if [[ -e "$STAGE7_WORK" || -e "$STAGE7_EVIDENCE" ]]; then
+    echo "REFUSING_TO_OVERWRITE_GPU_VALIDATION_PATH" >&2
+    exit 17
+fi
+mkdir "$STAGE7_WORK"
+mkdir "$STAGE7_EVIDENCE"
+
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
+# Preserve the module-provided Python path: on this cluster it contains the
+# PyTorch 1.10 installation.  Replacing it makes `import torch` fail.
+export PYTHONPATH="$STAGE7_REPO${PYTHONPATH:+:$PYTHONPATH}"
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+export MKL_THREADING_LAYER=GNU
+export OMP_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+test "$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["status"])' "$STAGE7_PACKED/audit.json")" = PASS
+
+echo "job_id=$PBS_JOBID"
+echo "host=$(hostname)"
+nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
+python -B -c "import torch; print('torch=' + str(torch.__version__)); print('cuda=' + str(torch.version.cuda)); print('available=' + str(torch.cuda.is_available()))"
+
+python -B -m stage_7_general_lm.validate_restart \
+    --config "$STAGE7_CONFIG" \
+    --manifest "$STAGE7_MANIFEST" \
+    --work-dir "$STAGE7_WORK" \
+    --device cuda \
+    --threads 2 \
+    --report "$STAGE7_EVIDENCE/restart_validation.json"
+
+python -B -m stage_7_general_lm.train \
+    --mode benchmark \
+    --config "$STAGE7_CONFIG" \
+    --manifest "$STAGE7_MANIFEST" \
+    --device cuda \
+    --threads 2 \
+    --warmup 5 \
+    --steps 20 \
+    --checkpoint-probe-dir "$STAGE7_WORK" \
+    --report "$STAGE7_EVIDENCE/benchmark.json"
+
+echo "GPU_VALIDATION_REPORTS"
+sha256sum "$STAGE7_EVIDENCE/restart_validation.json" \
+          "$STAGE7_EVIDENCE/benchmark.json"
+
+python -B - "$STAGE7_EVIDENCE/restart_validation.json" "$STAGE7_EVIDENCE/benchmark.json" <<'PY'
+import json
+import sys
+
+restart = json.load(open(sys.argv[1]))
+benchmark = json.load(open(sys.argv[2]))
+assert restart['status'] == 'PASS'
+assert restart['semantic_checkpoint_equality']
+assert benchmark['measured_optimizer_updates'] == 20
+assert benchmark['measured_processed_positions'] == benchmark['measured_successful_positions']
+print('restart_status=' + restart['status'])
+print('positions_per_second=' + str(benchmark['training_tokens_per_second']))
+print('data_identity=' + benchmark['data_identity'])
+print('STAGE7_GPU_VALIDATION_JOB_PASS')
+PY

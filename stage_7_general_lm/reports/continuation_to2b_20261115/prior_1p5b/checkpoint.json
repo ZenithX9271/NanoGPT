@@ -1,0 +1,14 @@
+{
+  "checkpoint": "/scratch/cse/btech/cs1230342/nanogpt_stage7/train_2b_first100m_1141598/review_u91553_positions_1500004352.pt",
+  "checkpoint_bytes": 1472538359,
+  "checkpoint_sha256": "d641a56858874f563a55e84b8084aa199f6bef3af9e210d36957f7c72d5da642",
+  "summary": {
+    "counters": {
+      "attempts": 91588,
+      "processed_positions": 1500577792,
+      "successful_positions": 1500004352,
+      "updates": 91553
+    },
+    "reason": "review_gate"
+  }
+}

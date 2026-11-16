@@ -1,0 +1,51 @@
+{
+  "cuda_device_count": 1,
+  "disk_free_bytes": 3392787098693632,
+  "failed": [],
+  "gpu_allocation_observed": "1136426.pbshpc",
+  "libc": [
+    "glibc",
+    "2.10"
+  ],
+  "machine": "x86_64",
+  "observed": {
+    "compute_capability": [
+      7,
+      0
+    ],
+    "cuda_build": "11.0",
+    "device": "cuda",
+    "gpu": "Tesla V100-PCIE-32GB",
+    "host_ram_bytes": null,
+    "numpy": "1.18.5",
+    "nvidia_smi_query": "Tesla V100-PCIE-32GB, 550.90.07, 32768 MiB",
+    "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-centos-7.9.2009-Core",
+    "python": "3.7.9",
+    "threads": 4,
+    "torch": "1.10.0a0+git36449ea",
+    "vram_bytes": 34072559616
+  },
+  "optional_modules": {
+    "bitsandbytes": false,
+    "datasets": false,
+    "peft": false,
+    "tokenizers": false,
+    "transformers": false
+  },
+  "probe_is_not_candidate_throughput": true,
+  "production_class_small_config_forward_backward": true,
+  "python_executable": "/home/soft/intel2020u4/intelpython3/bin/python",
+  "quantized_engines": [
+    "qnnpack",
+    "none",
+    "fbgemm"
+  ],
+  "selected_quantized_engine": "fbgemm",
+  "unknown": [
+    "HPC driver/OS/quotas when probing locally",
+    "A100 availability and GPU-hour allocation",
+    "External 1.7B checkpoint load/adapters",
+    "CPU or GPU INT4 acceleration",
+    "Host RAM: optional psutil unavailable"
+  ]
+}

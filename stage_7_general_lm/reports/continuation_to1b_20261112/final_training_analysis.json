@@ -1,0 +1,44 @@
+{
+  "final_evaluation": {
+    "event": "evaluation",
+    "updates": 61036,
+    "scores": {
+      "train": {
+        "ce": 3.282262682914734,
+        "perplexity": 26.635973328490465,
+        "positions": 16384
+      },
+      "dev": {
+        "ce": 3.455675035715103,
+        "perplexity": 31.679666372354813,
+        "positions": 16384
+      },
+      "dev_domain:cosmopedia_v2": {
+        "ce": 2.664555847644806,
+        "perplexity": 14.361569404348941,
+        "positions": 16384
+      },
+      "dev_domain:fineweb_edu": {
+        "ce": 3.6173215210437775,
+        "perplexity": 37.23769374737952,
+        "positions": 16384
+      }
+    },
+    "precision": "fp32"
+  },
+  "final_update": {
+    "event": "update",
+    "updates": 61036,
+    "attempts": 61059,
+    "processed_positions": 1000390656,
+    "successful_positions": 1000013824,
+    "lr": 0.0001685318282589832,
+    "loss": 3.499319612979889,
+    "grad_norm": 1.5874156951904297,
+    "optimizer_step_succeeded": true,
+    "amp_scale": 65536.0
+  },
+  "all_update_losses_finite": true,
+  "skipped_attempts": 23,
+  "fixed_probe_dev_ppl_reduction_vs_500m": 0.1613723935939988
+}

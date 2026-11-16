@@ -1,0 +1,20 @@
+{
+  "format": "stage7_continuation_launch_artifacts_v1",
+  "created_on": "2026-11-15",
+  "files": {
+    "continue_to_2b.pbs": "9a321f22fa5a851c72d0077f1888f89726207386d4481e302060b8af7ed9ea5e",
+    "continuation_to2b_20261115.json": "5445f60e52b8a49df0a72d7cb5d2fb2314887249e7e6479285f305fd620d6f0a",
+    "review_segment.py": "35fe076df4c4e697a6d0a8b4b4fdbfc421ff6c7d86939a169252747fc5957bf0",
+    "test_completion_export.py": "3f181aa270393bfb4ee3971136a7db6b7bc6f412543652817249d8b4a95cf091",
+    "deployment.json": "2d434fc65dbff95520970ee8e46813227692bef04af164f8eae26fdc11fd3e69",
+    "prior_1p5b/metrics.jsonl": "64317887145583690d03620777ea8e894b81f37471b3c9ba5e1c589ff28f058b",
+    "prior_1p5b/review.json": "f8ffcf3639a11b443222953f6e4bb892ac3d79b361554d7a5e531e7a02e3b881",
+    "prior_1p5b/checkpoint.json": "e9f9cd3b4427e91f57f10a6f2ac7a60f507c5e8b3f598e0c64f532adfecba189",
+    "prior_1p5b/mac_backup_verified.json": "426f0d1db1fdb0ac4fee19c757aaa920f936e4a33f0456aa56ec778a517ceda9",
+    "prior_1p5b/launch.json": "a01d44e453476b1a0e514abc1aaf2f66a76c22ed10818836a6b00a8e28d997ad",
+    "prior_1p5b/allocation.json": "17c72a76c99074df5c5bdf17b96d09f03b2c99f5b6fd9c42aa2110302ebf6a05",
+    "prior_1p5b/summary.json": "e9d6daf852681c90107330d8de84898a72817ad6face3162ef7003d0a808b56b",
+    "prior_1p5b/run_bytes.json": "56de14abdeb70b13fd4edbc6e958b443de81ffad439dc2d077b05ec8c64423c9",
+    "prior_1p5b/completions.json": "c7f1a4d9dcedf8bc15826c2a3b9c93b107914cd85e085ec4dff30ed37c0df2e9"
+  }
+}

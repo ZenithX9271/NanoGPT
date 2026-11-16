@@ -1,0 +1,127 @@
+#!/bin/bash
+# User authorized continuation to 500M total tokens on 2026-11-11.
+# Two dependent allocations, each <=3h; no continuation beyond 500M.
+#PBS -N nanogpt_s7to500m
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=2:ngpus=1:mem=16gb:centos=skylake
+#PBS -l walltime=03:00:00
+#PBS -j oe
+set -euo pipefail
+umask 077
+: "${PBS_JOBID:?PBS allocation required}"
+: "${STAGE7_PHASE:?Submit phase 1 or 2}"
+export STAGE7_START=$(date +%s)
+export STAGE7_REPO=/home/cse/btech/cs1230342/zenithX9271/NanoGPT
+export STAGE7_BASE=/scratch/cse/btech/cs1230342/nanogpt_stage7
+export STAGE7_RUN="$STAGE7_BASE/train_2b_first100m_1141598"
+export STAGE7_EVIDENCE="$STAGE7_REPO/stage_7_general_lm/reports/continuation_${PBS_JOBID%%.*}"
+export STAGE7_BACKUP="$STAGE7_REPO/stage_7_general_lm/reports/continuation_1141809/mac_backup_verified.json"
+export STAGE7_ORIGINAL="$STAGE7_REPO/stage_7_general_lm/reports/training_1141598"
+STAGE7_HELPER="$STAGE7_REPO/stage_7_general_lm/hpc/review_segment.py"
+STAGE7_CONFIG="$STAGE7_REPO/stage_7_general_lm/configs/production_2b_first100m.json"
+STAGE7_MANIFEST="$STAGE7_BASE/packed_v1/manifest.json"
+case "$STAGE7_PHASE" in
+  1)
+    export STAGE7_PRIOR_EVIDENCE="$STAGE7_REPO/stage_7_general_lm/reports/continuation_1141809"
+    export STAGE7_FROM=12208 STAGE7_TARGET=21363
+    ;;
+  2)
+    : "${STAGE7_PRIOR_JOB:?Phase 2 requires phase 1 job id}"
+    [[ "$STAGE7_PRIOR_JOB" =~ ^[0-9]+\.pbshpc$ ]]
+    export STAGE7_PRIOR_EVIDENCE="$STAGE7_REPO/stage_7_general_lm/reports/continuation_${STAGE7_PRIOR_JOB%%.*}"
+    export STAGE7_FROM=21363 STAGE7_TARGET=30518
+    ;;
+  *) echo 'Only two authorized phases'; exit 2 ;;
+esac
+export STAGE7_CHECKPOINT="$STAGE7_RUN/review_u${STAGE7_FROM}_positions_$((STAGE7_FROM * 16384)).pt"
+cd "$STAGE7_REPO"
+exec 9>"$STAGE7_RUN/.continuation.lock"
+flock -n 9 || { echo 'Another continuation owns this run'; exit 19; }
+test -f "$STAGE7_BACKUP"
+mkdir "$STAGE7_EVIDENCE"
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
+export PYTHONPATH="$STAGE7_REPO${PYTHONPATH:+:$PYTHONPATH}"
+export CUBLAS_WORKSPACE_CONFIG=:4096:8 MKL_THREADING_LAYER=GNU
+export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 PYTHONUNBUFFERED=1
+
+record_exit() {
+    local result=$?
+    trap - EXIT
+    STAGE7_EXIT="$result" python -B - <<'PY'
+import json,os,time
+from pathlib import Path
+prior=json.loads((Path(os.environ['STAGE7_PRIOR_EVIDENCE'])/'allocation.json').read_text())
+elapsed=time.time()-int(os.environ['STAGE7_START'])
+record=dict(job_id=os.environ['PBS_JOBID'],exit_code=int(os.environ['STAGE7_EXIT']),
+    allocation_seconds=elapsed,gpu_hours_upper_bound=elapsed/3600,
+    cumulative_gpu_hours_upper_bound=prior['cumulative_gpu_hours_upper_bound']+elapsed/3600,
+    phase=int(os.environ['STAGE7_PHASE']),authorized_additional_gpu_hours=6,
+    final_target_positions=500006912,automatic_continuation_beyond_500m=False)
+with (Path(os.environ['STAGE7_EVIDENCE'])/'allocation.json').open('x') as f: json.dump(record,f,indent=2)
+print(json.dumps(record),flush=True)
+PY
+    exit "$result"
+}
+trap record_exit EXIT
+
+python -B - <<'PY'
+import json,os
+from pathlib import Path
+from stage_7_general_lm.common import sha,source_identity
+read=lambda p: json.loads(p.read_text())
+prior=Path(os.environ['STAGE7_PRIOR_EVIDENCE'])
+record=read(prior/'checkpoint.json')
+allocation=read(prior/'allocation.json')
+assert allocation['exit_code']==0
+phase=int(os.environ['STAGE7_PHASE'])
+if phase==2: assert allocation['phase']==1
+assert allocation['cumulative_gpu_hours_upper_bound'] <= 3.497795283+(phase-1)*3
+backup=read(Path(os.environ['STAGE7_BACKUP']))
+assert backup['checkpoint_sha256']=='2af4534223727988332bb1ca47dfdafeb97601d088005c4cd7caf311588579ef'
+run=Path(os.environ['STAGE7_RUN'])
+assert sha(Path(os.environ['STAGE7_CHECKPOINT']))==record['checkpoint_sha256']
+assert sha(run/'latest.pt')==record['checkpoint_sha256']
+summary=read(run/'summary.json')
+assert summary==record['summary']
+assert summary['reason']=='review_gate'
+assert summary['counters']['updates']==int(os.environ['STAGE7_FROM'])
+assert read(prior/'launch.json')['code_identity']==source_identity()
+evidence=Path(os.environ['STAGE7_EVIDENCE'])
+with (evidence/'launch.json').open('x') as f:
+    json.dump(dict(job_id=os.environ['PBS_JOBID'],phase=phase,source_checkpoint=record,
+        authorization='User approved 500M cumulative tokens on 2026-11-11; <=6 additional V100 hours',
+        maximum_job_seconds=10800,target_updates=int(os.environ['STAGE7_TARGET']),
+        target_positions=int(os.environ['STAGE7_TARGET'])*16384,final_target_positions=500006912,
+        config_sha256=sha(Path('stage_7_general_lm/configs/production_2b_first100m.json')),
+        code_identity=source_identity(),helper_sha256=sha(Path('stage_7_general_lm/hpc/review_segment.py')),
+        pbs_sha256=sha(Path('stage_7_general_lm/hpc/continue_to_500m.pbs'))),f,indent=2)
+print('CONTINUATION_IDENTITY_AND_BUDGET_PASS',flush=True)
+PY
+echo "job_id=$PBS_JOBID phase=$STAGE7_PHASE host=$(hostname) run=$STAGE7_RUN"
+nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
+if [ "$STAGE7_PHASE" = 1 ]; then
+    python -B "$STAGE7_HELPER" review --checkpoint "$STAGE7_CHECKPOINT" \
+        --checkpoint-record "$STAGE7_PRIOR_EVIDENCE/checkpoint.json" --config "$STAGE7_CONFIG" \
+        --manifest "$STAGE7_MANIFEST" --metrics "$STAGE7_RUN/metrics.jsonl" \
+        --probes "$STAGE7_ORIGINAL/completion_probes_v1.json" \
+        --output "$STAGE7_EVIDENCE/review.json" --windows 512
+    (
+        module purge
+        module load compiler/python/3.9.13/ucs4/gnu/447
+        unset PYTHONPATH
+        "$STAGE7_BASE/prep_env_py39/bin/python" -B "$STAGE7_HELPER" decode \
+            --tokenizer "$STAGE7_REPO/stage_7_general_lm/artifacts/native_tokenizer/tokenizer.json" \
+            --input "$STAGE7_EVIDENCE/review.json" --output "$STAGE7_EVIDENCE/completions.json"
+    )
+fi
+# Tighten the unchanged four-hour process limit to this allocation's three hours,
+# including review and a five-minute checkpoint/exit margin.
+STAGE7_BUDGET_EPOCH=$((STAGE7_START + 10800 - 14400))
+echo "RESUMING_FROM_UPDATE_$STAGE7_FROM TO_UPDATE_$STAGE7_TARGET"
+python -B -m stage_7_general_lm.train --mode train --device cuda --threads 2 \
+    --config "$STAGE7_CONFIG" --manifest "$STAGE7_MANIFEST" --run-dir "$STAGE7_RUN" \
+    --resume "$STAGE7_CHECKPOINT" --review-updates "$STAGE7_TARGET" --job-start-epoch "$STAGE7_BUDGET_EPOCH"
+python -B "$STAGE7_HELPER" finalize --run "$STAGE7_RUN" --output "$STAGE7_EVIDENCE" \
+    --start-updates "$STAGE7_FROM" --target-updates "$STAGE7_TARGET"

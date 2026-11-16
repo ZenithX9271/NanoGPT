@@ -1,0 +1,260 @@
+{
+  "status": "PASS",
+  "segments": [
+    {
+      "milestone": "100m",
+      "job_id": 1141598,
+      "checkpoint_sha256": "bd9b7ddabfdf75b4551a3a7da4e16a67fecedead3ac32a11e959449b164ee36a",
+      "counters": {
+        "attempts": 6105,
+        "processed_positions": 100024320,
+        "successful_positions": 100007936,
+        "updates": 6104
+      },
+      "allocation_seconds": 5986.008137464523
+    },
+    {
+      "milestone": "200m",
+      "job_id": 1141809,
+      "checkpoint_sha256": "2af4534223727988332bb1ca47dfdafeb97601d088005c4cd7caf311588579ef",
+      "counters": {
+        "attempts": 12212,
+        "processed_positions": 200081408,
+        "successful_positions": 200015872,
+        "updates": 12208
+      },
+      "allocation_seconds": 6606.054878950119
+    },
+    {
+      "milestone": "350m",
+      "job_id": 1142015,
+      "checkpoint_sha256": "ff8b7fd1b1e1e4c037c5f6d3c218429cc134640c38bbeb10290aee0aff48cc32",
+      "counters": {
+        "attempts": 21370,
+        "processed_positions": 350126080,
+        "successful_positions": 350011392,
+        "updates": 21363
+      },
+      "allocation_seconds": 10153.428117513657
+    },
+    {
+      "milestone": "500m",
+      "job_id": 1142016,
+      "checkpoint_sha256": "c9eb7c507a874ad7d7db497282121617288f5e5dd50602e9ff78733443d8074e",
+      "counters": {
+        "attempts": 30530,
+        "processed_positions": 500203520,
+        "successful_positions": 500006912,
+        "updates": 30518
+      },
+      "allocation_seconds": 9324.687332391739
+    },
+    {
+      "milestone": "625m",
+      "job_id": 1144922,
+      "checkpoint_sha256": "e52d1f54baf6b4c4f8c0cab77500f25801cf64854cb194d6f9f29e4d3d7ed4c3",
+      "counters": {
+        "attempts": 38162,
+        "processed_positions": 625246208,
+        "successful_positions": 625000448,
+        "updates": 38147
+      },
+      "allocation_seconds": 8284.480197429657
+    },
+    {
+      "milestone": "750m",
+      "job_id": 1144923,
+      "checkpoint_sha256": "2fcbffa9393202acf55bbff4190810c9d219fac17b47d45489c289f838c82b20",
+      "counters": {
+        "attempts": 45793,
+        "processed_positions": 750272512,
+        "successful_positions": 750010368,
+        "updates": 45777
+      },
+      "allocation_seconds": 7683.348159313202
+    },
+    {
+      "milestone": "875m",
+      "job_id": 1144924,
+      "checkpoint_sha256": "db0976fd2785a3955138a9f604b9db5d3921becd6c2aa3824e666bba59a39fee",
+      "counters": {
+        "attempts": 53425,
+        "processed_positions": 875315200,
+        "successful_positions": 875003904,
+        "updates": 53406
+      },
+      "allocation_seconds": 8174.876066446304
+    },
+    {
+      "milestone": "1b",
+      "job_id": 1144925,
+      "checkpoint_sha256": "dc195f441d332e6b8ae21d505af293452e6a7e2c66e45d8ff7a6cdaf023694da",
+      "counters": {
+        "attempts": 61059,
+        "processed_positions": 1000390656,
+        "successful_positions": 1000013824,
+        "updates": 61036
+      },
+      "allocation_seconds": 8001.857089519501
+    },
+    {
+      "milestone": "1p125b",
+      "job_id": 1147658,
+      "checkpoint_sha256": "e816f0bcd05e53cb29f89b48e8b1ec508a57e4d22108ffc8f2dcf5012e5a2c0f",
+      "counters": {
+        "attempts": 68691,
+        "processed_positions": 1125433344,
+        "successful_positions": 1125007360,
+        "updates": 68665
+      },
+      "allocation_seconds": 7901.019931316376
+    },
+    {
+      "milestone": "1p25b",
+      "job_id": 1147659,
+      "checkpoint_sha256": "6277f2dd3c27686a9d74ff870364ef7986b7eccf08b67067b0a348085398d3c5",
+      "counters": {
+        "attempts": 76322,
+        "processed_positions": 1250459648,
+        "successful_positions": 1250000896,
+        "updates": 76294
+      },
+      "allocation_seconds": 7732.61586022377
+    },
+    {
+      "milestone": "1p375b",
+      "job_id": 1147660,
+      "checkpoint_sha256": "771dcd7ace1536e022e92ca2e6d9b8493b15d06b4cee183f7f56f70078aeb2a1",
+      "counters": {
+        "attempts": 83955,
+        "processed_positions": 1375518720,
+        "successful_positions": 1375010816,
+        "updates": 83924
+      },
+      "allocation_seconds": 7990.002788305283
+    },
+    {
+      "milestone": "1p5b",
+      "job_id": 1147661,
+      "checkpoint_sha256": "d641a56858874f563a55e84b8084aa199f6bef3af9e210d36957f7c72d5da642",
+      "counters": {
+        "attempts": 91588,
+        "processed_positions": 1500577792,
+        "successful_positions": 1500004352,
+        "updates": 91553
+      },
+      "allocation_seconds": 8270.540443897247
+    },
+    {
+      "milestone": "1p625b",
+      "job_id": 1150576,
+      "checkpoint_sha256": "30809a766934d5def5f39b400072287e875a572f2896a368f9e9bcf52884d482",
+      "counters": {
+        "attempts": 99220,
+        "processed_positions": 1625620480,
+        "successful_positions": 1625014272,
+        "updates": 99183
+      },
+      "allocation_seconds": 7343.176856994629
+    },
+    {
+      "milestone": "1p75b",
+      "job_id": 1150577,
+      "checkpoint_sha256": "b7d0017fb7d12c1d45b3597bb02fd2b15ed3be569dd71c1955d7cfafcb1c0682",
+      "counters": {
+        "attempts": 106851,
+        "processed_positions": 1750646784,
+        "successful_positions": 1750007808,
+        "updates": 106812
+      },
+      "allocation_seconds": 8099.201919555664
+    },
+    {
+      "milestone": "1p875b",
+      "job_id": 1150578,
+      "checkpoint_sha256": "1f709de9fadabdb17e77b7af449959e4d4d6ac6af1ce9797b2049c0dfd6d4144",
+      "counters": {
+        "attempts": 114484,
+        "processed_positions": 1875705856,
+        "successful_positions": 1875001344,
+        "updates": 114441
+      },
+      "allocation_seconds": 7779.667637586594
+    },
+    {
+      "milestone": "2b",
+      "job_id": 1150579,
+      "checkpoint_sha256": "f32b6a493d3aab92c5f3d9a5ff482f856f5a21dccfaa38780c4ba7a1e61a6791",
+      "counters": {
+        "attempts": 122117,
+        "processed_positions": 2000764928,
+        "successful_positions": 2000011264,
+        "updates": 122071
+      },
+      "allocation_seconds": 8084.27636218071
+    }
+  ],
+  "training_config_equal_to_original_gpu_gate_candidate": true,
+  "current_core_code_matches_frozen_identity": true,
+  "metrics": {
+    "attempts": 122117,
+    "updates": 122071,
+    "amp_skips": 46,
+    "evaluations": 260,
+    "positions_per_update": 16384,
+    "successful_positions": 2000011264,
+    "processed_positions": 2000764928,
+    "max_lr_error": 5.421010862427522e-20
+  },
+  "sixteen_training_allocation_hours": 35.3931227164136,
+  "final_recorded_cumulative_hours": 35.46304565780692,
+  "backups": {
+    "100m_1141598": {
+      "status": "PASS",
+      "verified_files": 21,
+      "bytes": 1474757656,
+      "scope": "checkpoint, source identity, config, tokenizer lock",
+      "manifest_sha256": null
+    },
+    "1b_1144925": {
+      "status": "PASS",
+      "verified_files": 69,
+      "bytes": 1491684824,
+      "scope": "full backup manifest",
+      "manifest_sha256": "d281cca07663542ba6eeebb609732fc89b942986edfe5b5c01cf57dda3b72406"
+    },
+    "1p5b_1147661": {
+      "status": "PASS",
+      "verified_files": 76,
+      "bytes": 1500277550,
+      "scope": "full backup manifest",
+      "manifest_sha256": "3dea1e0d9e5b5d29ffd65e1e76b2fc49c638d4ff11be217c798a4229d63547dd"
+    },
+    "200m_1141809": {
+      "status": "PASS",
+      "verified_files": 21,
+      "bytes": 1474757656,
+      "scope": "checkpoint, source identity, config, tokenizer lock",
+      "manifest_sha256": null
+    },
+    "2b_1150579": {
+      "status": "PASS",
+      "verified_files": 81,
+      "bytes": 1508760723,
+      "scope": "full backup manifest",
+      "manifest_sha256": "544a6968743c4ca77cf5bd951e0329339a9c822700602c16c46027389695a0c4"
+    },
+    "500m_1142016": {
+      "status": "PASS",
+      "verified_files": 21,
+      "bytes": 1474757656,
+      "scope": "checkpoint, source identity, config, tokenizer lock",
+      "manifest_sha256": null
+    }
+  },
+  "stage6_preservation": {
+    "baseline_files": 72,
+    "changed": [],
+    "missing": []
+  }
+}

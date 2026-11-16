@@ -1,0 +1,141 @@
+{
+  "verified_on": "2026-11-15",
+  "review_status": "PASS",
+  "checkpoint_record": {
+    "checkpoint": "/scratch/cse/btech/cs1230342/nanogpt_stage7/train_2b_first100m_1141598/review_u91553_positions_1500004352.pt",
+    "checkpoint_bytes": 1472538359,
+    "checkpoint_sha256": "d641a56858874f563a55e84b8084aa199f6bef3af9e210d36957f7c72d5da642",
+    "summary": {
+      "counters": {
+        "attempts": 91588,
+        "processed_positions": 1500577792,
+        "successful_positions": 1500004352,
+        "updates": 91553
+      },
+      "reason": "review_gate"
+    }
+  },
+  "expanded_comparisons": {
+    "500m": {
+      "dev": {
+        "before_perplexity": 34.979933171210966,
+        "after_perplexity": 26.023556771228105,
+        "ppl_reduction_percent": 25.604326789720965,
+        "ce_change": -0.2957724016159773
+      },
+      "dev_domain:cosmopedia_v2": {
+        "before_perplexity": 17.865067020910335,
+        "after_perplexity": 12.613774937873266,
+        "ppl_reduction_percent": 29.394191899143983,
+        "ce_change": -0.3480577771551907
+      },
+      "dev_domain:fineweb_edu": {
+        "before_perplexity": 41.10718603918238,
+        "after_perplexity": 31.139618770191202,
+        "ppl_reduction_percent": 24.24774894465005,
+        "ce_change": -0.2777020251378417
+      },
+      "train": {
+        "before_perplexity": 33.44521572831202,
+        "after_perplexity": 23.98102781029855,
+        "ppl_reduction_percent": 28.297583710909823,
+        "ce_change": -0.33264573896303773
+      }
+    },
+    "750m": {
+      "dev": {
+        "before_perplexity": 32.086700086132986,
+        "after_perplexity": 26.023556771228105,
+        "ppl_reduction_percent": 18.896126116518943,
+        "ce_change": -0.20943945925682783
+      },
+      "dev_domain:cosmopedia_v2": {
+        "before_perplexity": 16.136903681061025,
+        "after_perplexity": 12.613774937873266,
+        "ppl_reduction_percent": 21.832743212829953,
+        "ce_change": -0.2463193372823298
+      },
+      "dev_domain:fineweb_edu": {
+        "before_perplexity": 37.922142202058964,
+        "after_perplexity": 31.139618770191202,
+        "ppl_reduction_percent": 17.885391061846466,
+        "ce_change": -0.19705424457788467
+      },
+      "train": {
+        "before_perplexity": 30.279839842157145,
+        "after_perplexity": 23.98102781029855,
+        "ppl_reduction_percent": 20.801999167409946,
+        "ce_change": -0.233219129499048
+      }
+    },
+    "1b": {
+      "dev": {
+        "before_perplexity": 29.903268042065058,
+        "after_perplexity": 26.023556771228105,
+        "ppl_reduction_percent": 12.974204910912569,
+        "ce_change": -0.13896561600267887
+      },
+      "dev_domain:cosmopedia_v2": {
+        "before_perplexity": 14.797477454569671,
+        "after_perplexity": 12.613774937873266,
+        "ppl_reduction_percent": 14.757261995503479,
+        "ce_change": -0.15966725815087557
+      },
+      "dev_domain:fineweb_edu": {
+        "before_perplexity": 35.56640939528187,
+        "after_perplexity": 31.139618770191202,
+        "ppl_reduction_percent": 12.44654914667297,
+        "ce_change": -0.13292071223258972
+      },
+      "train": {
+        "before_perplexity": 28.11844815897276,
+        "after_perplexity": 23.98102781029855,
+        "ppl_reduction_percent": 14.714255656224529,
+        "ce_change": -0.1591628692112863
+      }
+    }
+  },
+  "phase_gpu_hours": 8.859494173261854,
+  "all_update_losses_finite": true,
+  "skipped_attempts": 35,
+  "latest_update": {
+    "event": "update",
+    "updates": 91553,
+    "attempts": 91588,
+    "processed_positions": 1500577792,
+    "successful_positions": 1500004352,
+    "lr": 7.079881503613127e-05,
+    "loss": 3.1418502926826477,
+    "grad_norm": 1.8142234086990356,
+    "optimizer_step_succeeded": true,
+    "amp_scale": 65536.0
+  },
+  "latest_fixed_evaluation": {
+    "event": "evaluation",
+    "updates": 91553,
+    "scores": {
+      "train": {
+        "ce": 3.138035863637924,
+        "perplexity": 23.058532249971602,
+        "positions": 16384
+      },
+      "dev": {
+        "ce": 3.3253401815891266,
+        "perplexity": 27.808456958885362,
+        "positions": 16384
+      },
+      "dev_domain:cosmopedia_v2": {
+        "ce": 2.5046616196632385,
+        "perplexity": 12.239416687067381,
+        "positions": 16384
+      },
+      "dev_domain:fineweb_edu": {
+        "ce": 3.514804035425186,
+        "perplexity": 33.60934103831938,
+        "positions": 16384
+      }
+    },
+    "precision": "fp32"
+  },
+  "expanded_train_dev_ce_gap": 0.08173914765939116
+}

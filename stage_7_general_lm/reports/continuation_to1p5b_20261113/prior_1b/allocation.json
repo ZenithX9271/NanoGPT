@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "cumulative_gpu_hours_upper_bound": 17.90735071334574,
+  "training_ledger_sha256": "e6d250db8f2e8945113c81f2edc0f96916047a61bc25936c5849b16593e38a6b",
+  "review_ledger_sha256": "5b180a59675b7868f6e94570c664c18139bad9526fe46ac5cb99981022284c6f",
+  "note": "Derived baseline includes all training and standalone 1B review allocation time"
+}

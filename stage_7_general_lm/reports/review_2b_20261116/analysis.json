@@ -1,0 +1,148 @@
+{
+  "verified_on": "2026-11-16",
+  "status": "Original 2B horizon completed; review and sampled heldout evaluation passed",
+  "final_counter": {
+    "attempts": 122117,
+    "processed_positions": 2000764928,
+    "successful_positions": 2000011264,
+    "updates": 122071
+  },
+  "checkpoint_record": {
+    "checkpoint": "/scratch/cse/btech/cs1230342/nanogpt_stage7/train_2b_first100m_1141598/review_u122071_positions_2000011264.pt",
+    "checkpoint_bytes": 1472538359,
+    "checkpoint_sha256": "f32b6a493d3aab92c5f3d9a5ff482f856f5a21dccfaa38780c4ba7a1e61a6791",
+    "summary": {
+      "counters": {
+        "attempts": 122117,
+        "processed_positions": 2000764928,
+        "successful_positions": 2000011264,
+        "updates": 122071
+      },
+      "reason": "completed"
+    }
+  },
+  "expanded_comparisons": {
+    "500m": {
+      "dev": {
+        "before_perplexity": 34.979933171210966,
+        "after_perplexity": 24.166026341028125,
+        "ppl_reduction_percent": 30.914601172202516
+      },
+      "dev_domain:cosmopedia_v2": {
+        "before_perplexity": 17.865067020910335,
+        "after_perplexity": 11.58517918113553,
+        "ppl_reduction_percent": 35.15177319191947
+      },
+      "dev_domain:fineweb_edu": {
+        "before_perplexity": 41.10718603918238,
+        "after_perplexity": 29.007703983116702,
+        "ppl_reduction_percent": 29.433982770148127
+      },
+      "train": {
+        "before_perplexity": 33.44521572831202,
+        "after_perplexity": 21.9306843574558,
+        "ppl_reduction_percent": 34.42803737429312
+      }
+    },
+    "1b": {
+      "dev": {
+        "before_perplexity": 29.903268042065058,
+        "after_perplexity": 24.166026341028125,
+        "ppl_reduction_percent": 19.186002322442917
+      },
+      "dev_domain:cosmopedia_v2": {
+        "before_perplexity": 14.797477454569671,
+        "after_perplexity": 11.58517918113553,
+        "ppl_reduction_percent": 21.708418095559512
+      },
+      "dev_domain:fineweb_edu": {
+        "before_perplexity": 35.56640939528187,
+        "after_perplexity": 29.007703983116702,
+        "ppl_reduction_percent": 18.440729676342382
+      },
+      "train": {
+        "before_perplexity": 28.11844815897276,
+        "after_perplexity": 21.9306843574558,
+        "ppl_reduction_percent": 22.006064369318366
+      }
+    },
+    "1p5b": {
+      "dev": {
+        "before_perplexity": 26.023556771228105,
+        "after_perplexity": 24.166026341028125,
+        "ppl_reduction_percent": 7.137880676840003
+      },
+      "dev_domain:cosmopedia_v2": {
+        "before_perplexity": 12.613774937873266,
+        "after_perplexity": 11.58517918113553,
+        "ppl_reduction_percent": 8.154543440039863
+      },
+      "dev_domain:fineweb_edu": {
+        "before_perplexity": 31.139618770191202,
+        "after_perplexity": 29.007703983116702,
+        "ppl_reduction_percent": 6.8463098498665715
+      },
+      "train": {
+        "before_perplexity": 23.98102781029855,
+        "after_perplexity": 21.9306843574558,
+        "ppl_reduction_percent": 8.54985644928129
+      }
+    }
+  },
+  "heldout_score": {
+    "ce": 3.184979220852256,
+    "perplexity": 24.16678623540609,
+    "positions": 524288,
+    "seed": 20261115,
+    "windows": 512
+  },
+  "latest_fixed_evaluation": {
+    "event": "evaluation",
+    "updates": 122071,
+    "scores": {
+      "train": {
+        "ce": 3.0374291241168976,
+        "perplexity": 20.85156747585046,
+        "positions": 16384
+      },
+      "dev": {
+        "ce": 3.245061457157135,
+        "perplexity": 25.663287204438692,
+        "positions": 16384
+      },
+      "dev_domain:cosmopedia_v2": {
+        "ce": 2.4307039082050323,
+        "perplexity": 11.366880505045813,
+        "positions": 16384
+      },
+      "dev_domain:fineweb_edu": {
+        "ce": 3.43176531791687,
+        "perplexity": 30.931197979830717,
+        "positions": 16384
+      }
+    },
+    "precision": "fp32"
+  },
+  "latest_update": {
+    "event": "update",
+    "updates": 122071,
+    "attempts": 122117,
+    "processed_positions": 2000764928,
+    "successful_positions": 2000011264,
+    "lr": 3e-05,
+    "loss": 3.125427007675171,
+    "grad_norm": 2.033859968185425,
+    "optimizer_step_succeeded": true,
+    "amp_scale": 65536.0
+  },
+  "all_update_losses_finite": true,
+  "skipped_amp_attempts": 46,
+  "phase_gpu_hours": 8.696200771199333,
+  "development_train_ce_gap": 0.09706100821495056,
+  "evidence_sha256": {
+    "checkpoint.json": "81bf664ced6d8f51648986a36961ff9a924a07dc4e57d688b5133c5cb41e6cb6",
+    "review.json": "7e4621c937998fc3fc1718e5328571994964f289d73f886da60bd70db20c40f6",
+    "completions.json": "015739eaa75399d74c977f1194d738284c9cd228a94777e2ecee126d0ce5c221",
+    "allocation.json": "8053450a289fec493d5185029b2ea2e3afe586a744c326991129f5acca0c1e69"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "authorization": "User approved resuming verified 1B checkpoint to 1.5B cumulative tokens and reviewing before any further training, 2026-11-13",
+  "maximum_additional_gpu_hours": 10,
+  "maximum_phase_seconds": 9000,
+  "maximum_run_disk_bytes": 25769803776,
+  "maximum_additional_disk_bytes": 8589934592,
+  "prior_cumulative_gpu_hours": 17.90735071334574,
+  "initial_checkpoint_sha256": "dc195f441d332e6b8ae21d505af293452e6a7e2c66e45d8ff7a6cdaf023694da",
+  "initial_review_sha256": "5c6857aeeb86f81a2af0f6d166d59c9ffe05dcdc6136d7066933d07f279a54bd",
+  "final_target_positions": 1500004352,
+  "maximum_development_ce_regression": 0.05,
+  "automatic_continuation_beyond_1p5b": false,
+  "phases": [
+    {
+      "phase": 1,
+      "start_updates": 61036,
+      "target_updates": 68665,
+      "review_after_training": false
+    },
+    {
+      "phase": 2,
+      "start_updates": 68665,
+      "target_updates": 76294,
+      "review_after_training": false
+    },
+    {
+      "phase": 3,
+      "start_updates": 76294,
+      "target_updates": 83924,
+      "review_after_training": false
+    },
+    {
+      "phase": 4,
+      "start_updates": 83924,
+      "target_updates": 91553,
+      "review_after_training": true
+    }
+  ]
+}

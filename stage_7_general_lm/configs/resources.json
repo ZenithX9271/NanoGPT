@@ -1,0 +1,14 @@
+{
+  "status": "UNCONFIRMED; no main run authorized",
+  "total_gpu_hours": null,
+  "maximum_job_seconds": null,
+  "working_storage_bytes": null,
+  "retained_checkpoint_storage_bytes": null,
+  "a100_available": null,
+  "modern_hpc_runtime_available": null,
+  "proposed_shares": {"scratch_pretraining_max": 0.5, "adaptation_compression_min": 0.4, "contingency": 0.1},
+  "next_benchmark_request": {"gpu": "V100 32GB", "gpus": 1, "cpus": 4, "host_ram_gb": 20, "maximum_seconds": 900, "requested_gpu_hours": 0.25, "scratch_reserve_bytes": 4294967296, "submitted": false},
+  "main_token_budget": null,
+  "main_lr_horizon": null,
+  "stage8_delivery_target": "2026-11-29 Asia/Kolkata"
+}

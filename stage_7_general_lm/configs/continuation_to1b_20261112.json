@@ -1,0 +1,15 @@
+{
+  "authorization": "User approved backup, review and continuation to 1B cumulative tokens on 2026-11-12",
+  "maximum_additional_gpu_hours": 10,
+  "maximum_phase_seconds": 9000,
+  "prior_cumulative_gpu_hours": 8.908382907311122,
+  "initial_checkpoint_sha256": "c9eb7c507a874ad7d7db497282121617288f5e5dd50602e9ff78733443d8074e",
+  "final_target_positions": 1000013824,
+  "maximum_development_ce_regression": 0.05,
+  "phases": [
+    {"phase": 1, "start_updates": 30518, "target_updates": 38147, "review_before_training": true},
+    {"phase": 2, "start_updates": 38147, "target_updates": 45777, "review_before_training": false},
+    {"phase": 3, "start_updates": 45777, "target_updates": 53406, "review_before_training": true},
+    {"phase": 4, "start_updates": 53406, "target_updates": 61036, "review_before_training": false}
+  ]
+}

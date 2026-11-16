@@ -1,0 +1,118 @@
+{
+  "format": "stage7_500m_result_analysis_v1",
+  "verified_on": "2026-11-11",
+  "summary": {
+    "counters": {
+      "attempts": 30530,
+      "processed_positions": 500203520,
+      "successful_positions": 500006912,
+      "updates": 30518
+    },
+    "reason": "review_gate"
+  },
+  "checkpoint": {
+    "checkpoint": "/scratch/cse/btech/cs1230342/nanogpt_stage7/train_2b_first100m_1141598/review_u30518_positions_500006912.pt",
+    "checkpoint_bytes": 1472538167,
+    "checkpoint_sha256": "c9eb7c507a874ad7d7db497282121617288f5e5dd50602e9ff78733443d8074e",
+    "summary": {
+      "counters": {
+        "attempts": 30530,
+        "processed_positions": 500203520,
+        "successful_positions": 500006912,
+        "updates": 30518
+      },
+      "reason": "review_gate"
+    }
+  },
+  "remote_checkpoint_sha256_matched_record": true,
+  "remote_frozen_source_hashes_matched_launch": true,
+  "comparison": {
+    "6104": {
+      "train": {
+        "ce_reduction_percent": 13.739886535776636,
+        "perplexity_reduction_percent": 42.982498645879375
+      },
+      "dev": {
+        "ce_reduction_percent": 12.521202812276911,
+        "perplexity_reduction_percent": 40.53694897548985
+      },
+      "dev_domain:cosmopedia_v2": {
+        "ce_reduction_percent": 18.249138373101736,
+        "perplexity_reduction_percent": 46.93922964808669
+      },
+      "dev_domain:fineweb_edu": {
+        "ce_reduction_percent": 10.679994077031651,
+        "perplexity_reduction_percent": 36.20990922795063
+      }
+    },
+    "12208": {
+      "train": {
+        "ce_reduction_percent": 6.713266160916098,
+        "perplexity_reduction_percent": 22.417126769513786
+      },
+      "dev": {
+        "ce_reduction_percent": 6.143615284415405,
+        "perplexity_reduction_percent": 21.157661473436296
+      },
+      "dev_domain:cosmopedia_v2": {
+        "ce_reduction_percent": 8.867068380579358,
+        "perplexity_reduction_percent": 24.1356607727935
+      },
+      "dev_domain:fineweb_edu": {
+        "ce_reduction_percent": 5.575059600122334,
+        "perplexity_reduction_percent": 19.907936285994698
+      }
+    },
+    "21363": {
+      "train": {
+        "ce_reduction_percent": 2.5278259930024083,
+        "perplexity_reduction_percent": 8.741239734231844
+      },
+      "dev": {
+        "ce_reduction_percent": 2.2118200218176565,
+        "perplexity_reduction_percent": 7.885950727559809
+      },
+      "dev_domain:cosmopedia_v2": {
+        "ce_reduction_percent": 3.4289502846759023,
+        "perplexity_reduction_percent": 9.588816318742133
+      },
+      "dev_domain:fineweb_edu": {
+        "ce_reduction_percent": 1.8156771648911274,
+        "perplexity_reduction_percent": 6.716808394085461
+      }
+    }
+  },
+  "final_evaluation": {
+    "event": "evaluation",
+    "updates": 30518,
+    "scores": {
+      "train": {
+        "ce": 3.5271004736423492,
+        "perplexity": 34.02516757710415,
+        "positions": 16384
+      },
+      "dev": {
+        "ce": 3.6316635608673096,
+        "perplexity": 37.775606395930964,
+        "positions": 16384
+      },
+      "dev_domain:cosmopedia_v2": {
+        "ce": 2.8389374911785126,
+        "perplexity": 17.09758954306312,
+        "positions": 16384
+      },
+      "dev_domain:fineweb_edu": {
+        "ce": 3.7599087059497833,
+        "perplexity": 42.9445052219786,
+        "positions": 16384
+      }
+    },
+    "precision": "fp32"
+  },
+  "skipped_attempts": 12,
+  "nonfinite_losses": 0,
+  "evaluation_positions_per_stream": 16384,
+  "evaluation_sampling": "Same seeded windows at every training evaluation",
+  "larger_500m_evaluation_and_generation": "Not yet run",
+  "mac_500m_checkpoint_backup": "Not yet made"
+}

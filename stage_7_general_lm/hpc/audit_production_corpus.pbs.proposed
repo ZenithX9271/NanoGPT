@@ -1,0 +1,56 @@
+#!/bin/bash
+# Independent CPU audit of the completed Stage 7 packed corpus.
+#PBS -N nanogpt_s7audit
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=2:mem=8gb:centos=skylake
+#PBS -l walltime=02:00:00
+#PBS -j oe
+
+set -euo pipefail
+umask 077
+
+: "${PBS_JOBID:?PBS allocation required}"
+
+STAGE7_REPO=/home/cse/btech/cs1230342/zenithX9271/NanoGPT
+STAGE7_BASE=/scratch/cse/btech/cs1230342/nanogpt_stage7
+STAGE7_PREP_ENV="$STAGE7_BASE/prep_env_py39"
+STAGE7_PACKED="$STAGE7_BASE/packed_v1"
+STAGE7_REPORT="$STAGE7_PACKED/audit.json"
+
+cd "$STAGE7_REPO"
+
+test -x "$STAGE7_PREP_ENV/bin/python"
+test -f "$STAGE7_PACKED/manifest.json"
+test -f "$STAGE7_PACKED/COMPLETE.json"
+if [[ -e "$STAGE7_REPORT" ]]; then
+    echo "REFUSING_TO_OVERWRITE_EXISTING_PATH: $STAGE7_REPORT" >&2
+    exit 17
+fi
+
+module purge
+module load compiler/python/3.9.13/ucs4/gnu/447
+source "$STAGE7_PREP_ENV/bin/activate"
+unset PYTHONPATH
+export PYTHONPATH="$STAGE7_REPO"
+export OMP_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+
+echo "job_id=$PBS_JOBID"
+echo "host=$(hostname)"
+echo "python=$(python --version 2>&1)"
+
+python -B -m stage_7_general_lm.audit_corpus \
+    --manifest "$STAGE7_PACKED/manifest.json" \
+    --complete "$STAGE7_PACKED/COMPLETE.json" \
+    --config "$STAGE7_REPO/stage_7_general_lm/configs/production_sources_v1.json" \
+    --tokenizer "$STAGE7_REPO/stage_7_general_lm/artifacts/native_tokenizer/tokenizer.json" \
+    --report "$STAGE7_REPORT" \
+    --minimum-train-tokens 100000000 \
+    --minimum-domain-eval-tokens 1025
+
+test -f "$STAGE7_REPORT"
+echo "AUDIT_REPORT_SHA256"
+sha256sum "$STAGE7_REPORT"
+echo "STAGE7_CORPUS_AUDIT_JOB_PASS"

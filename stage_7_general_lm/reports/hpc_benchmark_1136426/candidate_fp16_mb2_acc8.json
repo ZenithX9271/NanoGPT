@@ -1,0 +1,43 @@
+{
+  "experiment": "stage7a_general_english_candidate",
+  "model": {
+    "vocab_size": 49152,
+    "n_layer": 12,
+    "n_embd": 768,
+    "n_head": 12,
+    "block_size": 1024,
+    "intermediate_size": 2048,
+    "dropout": 0.1,
+    "rope_theta": 10000
+  },
+  "training": {
+    "token_budget": null,
+    "micro_batch_size": 2,
+    "accumulation_steps": 8,
+    "warmup_updates": 200,
+    "peak_lr": 0.0003,
+    "min_lr": 3e-05,
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "grad_clip": 1.0,
+    "seed": 1337,
+    "precision": "fp16",
+    "eval_interval": 100,
+    "save_interval": 100
+  },
+  "evaluation": {
+    "seed": 2026,
+    "windows": 16,
+    "batch_size": 2
+  },
+  "resource_limits": {
+    "gpu_hours": null,
+    "maximum_job_seconds": null,
+    "disk_bytes": null,
+    "main_run_approved": false
+  },
+  "status": "V100 FP16 benchmark only; no quality training"
+}

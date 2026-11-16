@@ -91,6 +91,12 @@ NanoGPT/
 │   ├── evaluations/                # Complete +25M/+50M/+75M/+100M outputs
 │   ├── docs/                       # Results, validation, and transfer notes
 │   └── README.md                   # Stage 6 project map
+├── stage_7_general_lm/             # 122.7M decoder; completed 2B-position pretraining
+│   ├── model.py                    # RMSNorm, RoPE, SwiGLU and cached inference
+│   ├── train.py                    # Full-state restart and bounded training
+│   ├── configs/                    # Frozen training and corpus contracts
+│   ├── reports/                    # Training evidence, final metrics and reviews
+│   └── docs/                       # Comprehensive Stage 7A audit
 └── data/
     ├── raw/                       # Original TinyStories text files
     ├── tinystories/v2/            # Prepared JSONL splits and provenance
@@ -216,6 +222,22 @@ next-token prediction on the fixed windows, not a general narrative-quality clai
 human ratings remain blank.
 
 The experiment has reached its configured budget, so the retained PBS entry point
-is for reproducibility rather than a recommended new launch. Context 512, larger
-models, broader pretraining, SFT, preference learning, reasoning/tools and
-compression remain later controlled experiments.
+is for reproducibility rather than a recommended new launch. Larger models,
+broader pretraining, task adaptation and compression are separate experiments;
+the completed Stage 7A base-pretraining track is described below.
+
+## Stage 7A: completed general-language base model
+
+[Stage 7](stage_7_general_lm/README.md) trains a separate 122,702,592-parameter
+decoder from random initialization using a pinned 49,152-token tokenizer. The
+original 2B schedule completed at 122,071 successful updates / 2,000,011,264
+training positions. Matched development perplexity improved from 57.7174 at
+100M positions to 24.1660 at 2B; final sampled heldout perplexity is 24.1668.
+These are token-prediction results, not assistant-accuracy measurements.
+
+The [comprehensive audit](stage_7_general_lm/docs/STAGE_7A_COMPREHENSIVE_AUDIT.md)
+records 44 passing tests, verified GPU restart and checkpoint continuity,
+corpus/backup integrity and remaining quality limitations. Study-assistant
+evaluation, task adaptation and compression on the selected dense model remain
+separate workstreams. Trained checkpoints and production datasets are external
+artifacts; Git contains their identities and reproducibility source.

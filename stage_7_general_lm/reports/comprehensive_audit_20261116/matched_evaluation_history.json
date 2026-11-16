@@ -1,0 +1,274 @@
+{
+  "status": "PASS",
+  "matched_protocol": {
+    "dev": {
+      "seed": 20261112,
+      "windows": 512,
+      "positions": 524288
+    },
+    "dev_domain:cosmopedia_v2": {
+      "seed": 20261113,
+      "windows": 512,
+      "positions": 524288
+    },
+    "dev_domain:fineweb_edu": {
+      "seed": 20261114,
+      "windows": 512,
+      "positions": 524288
+    },
+    "train": {
+      "seed": 20261111,
+      "windows": 512,
+      "positions": 524288
+    }
+  },
+  "history": [
+    {
+      "milestone": "100M",
+      "positions": 100007936,
+      "scores": {
+        "dev": {
+          "ce": 4.055558010004461,
+          "perplexity": 57.717360876758164,
+          "positions": 524288,
+          "seed": 20261112,
+          "windows": 512
+        },
+        "dev_domain:cosmopedia_v2": {
+          "ce": 3.4779978217557073,
+          "perplexity": 32.39479694403981,
+          "positions": 524288,
+          "seed": 20261113,
+          "windows": 512
+        },
+        "dev_domain:fineweb_edu": {
+          "ce": 4.184664487838745,
+          "perplexity": 65.67146364535772,
+          "positions": 524288,
+          "seed": 20261114,
+          "windows": 512
+        },
+        "train": {
+          "ce": 4.039650364778936,
+          "perplexity": 56.80647778749731,
+          "positions": 524288,
+          "seed": 20261111,
+          "windows": 512
+        }
+      },
+      "source": "continuation_1141809/review.json"
+    },
+    {
+      "milestone": "200M",
+      "positions": 200015872,
+      "scores": {
+        "dev": {
+          "ce": 3.7718066098168492,
+          "perplexity": 43.4585065222649,
+          "positions": 524288,
+          "seed": 20261112,
+          "windows": 512
+        },
+        "dev_domain:cosmopedia_v2": {
+          "ce": 3.137410618364811,
+          "perplexity": 23.04411951789321,
+          "positions": 524288,
+          "seed": 20261113,
+          "windows": 512
+        },
+        "dev_domain:fineweb_edu": {
+          "ce": 3.9233973948284984,
+          "perplexity": 50.57196618650236,
+          "positions": 524288,
+          "seed": 20261114,
+          "windows": 512
+        },
+        "train": {
+          "ce": 3.7487545404583216,
+          "perplexity": 42.468156677778474,
+          "positions": 524288,
+          "seed": 20261111,
+          "windows": 512
+        }
+      },
+      "source": "continuation_1142015/review.json"
+    },
+    {
+      "milestone": "500M",
+      "positions": 500006912,
+      "scores": {
+        "dev": {
+          "ce": 3.5547745591029525,
+          "perplexity": 34.979933171210966,
+          "positions": 524288,
+          "seed": 20261112,
+          "windows": 512
+        },
+        "dev_domain:cosmopedia_v2": {
+          "ce": 2.882847242988646,
+          "perplexity": 17.865067020910335,
+          "positions": 524288,
+          "seed": 20261113,
+          "windows": 512
+        },
+        "dev_domain:fineweb_edu": {
+          "ce": 3.7161829490214586,
+          "perplexity": 41.10718603918238,
+          "positions": 524288,
+          "seed": 20261114,
+          "windows": 512
+        },
+        "train": {
+          "ce": 3.5099087487906218,
+          "perplexity": 33.44521572831202,
+          "positions": 524288,
+          "seed": 20261111,
+          "windows": 512
+        }
+      },
+      "source": "continuation_1144922/review.json"
+    },
+    {
+      "milestone": "750M",
+      "positions": 750010368,
+      "scores": {
+        "dev": {
+          "ce": 3.468441616743803,
+          "perplexity": 32.086700086132986,
+          "positions": 524288,
+          "seed": 20261112,
+          "windows": 512
+        },
+        "dev_domain:cosmopedia_v2": {
+          "ce": 2.781108803115785,
+          "perplexity": 16.136903681061025,
+          "positions": 524288,
+          "seed": 20261113,
+          "windows": 512
+        },
+        "dev_domain:fineweb_edu": {
+          "ce": 3.6355351684615016,
+          "perplexity": 37.922142202058964,
+          "positions": 524288,
+          "seed": 20261114,
+          "windows": 512
+        },
+        "train": {
+          "ce": 3.410482139326632,
+          "perplexity": 30.279839842157145,
+          "positions": 524288,
+          "seed": 20261111,
+          "windows": 512
+        }
+      },
+      "source": "continuation_to1b_20261112/continuation_1144924/review.json"
+    },
+    {
+      "milestone": "1B",
+      "positions": 1000013824,
+      "scores": {
+        "dev": {
+          "ce": 3.397967773489654,
+          "perplexity": 29.903268042065058,
+          "positions": 524288,
+          "seed": 20261112,
+          "windows": 512
+        },
+        "dev_domain:cosmopedia_v2": {
+          "ce": 2.694456723984331,
+          "perplexity": 14.797477454569671,
+          "positions": 524288,
+          "seed": 20261113,
+          "windows": 512
+        },
+        "dev_domain:fineweb_edu": {
+          "ce": 3.5714016361162066,
+          "perplexity": 35.56640939528187,
+          "positions": 524288,
+          "seed": 20261114,
+          "windows": 512
+        },
+        "train": {
+          "ce": 3.3364258790388703,
+          "perplexity": 28.11844815897276,
+          "positions": 524288,
+          "seed": 20261111,
+          "windows": 512
+        }
+      },
+      "source": "review_1b_20261112/results/review.json"
+    },
+    {
+      "milestone": "1.5B",
+      "positions": 1500004352,
+      "scores": {
+        "dev": {
+          "ce": 3.259002157486975,
+          "perplexity": 26.023556771228105,
+          "positions": 524288,
+          "seed": 20261112,
+          "windows": 512
+        },
+        "dev_domain:cosmopedia_v2": {
+          "ce": 2.5347894658334553,
+          "perplexity": 12.613774937873266,
+          "positions": 524288,
+          "seed": 20261113,
+          "windows": 512
+        },
+        "dev_domain:fineweb_edu": {
+          "ce": 3.438480923883617,
+          "perplexity": 31.139618770191202,
+          "positions": 524288,
+          "seed": 20261114,
+          "windows": 512
+        },
+        "train": {
+          "ce": 3.177263009827584,
+          "perplexity": 23.98102781029855,
+          "positions": 524288,
+          "seed": 20261111,
+          "windows": 512
+        }
+      },
+      "source": "continuation_to1p5b_20261113/continuation_1147661/review.json"
+    },
+    {
+      "milestone": "2B",
+      "positions": 2000011264,
+      "scores": {
+        "dev": {
+          "ce": 3.184947776608169,
+          "perplexity": 24.166026341028125,
+          "positions": 524288,
+          "seed": 20261112,
+          "windows": 512
+        },
+        "dev_domain:cosmopedia_v2": {
+          "ce": 2.4497266244143248,
+          "perplexity": 11.58517918113553,
+          "positions": 524288,
+          "seed": 20261113,
+          "windows": 512
+        },
+        "dev_domain:fineweb_edu": {
+          "ce": 3.3675614492967725,
+          "perplexity": 29.007703983116702,
+          "positions": 524288,
+          "seed": 20261114,
+          "windows": 512
+        },
+        "train": {
+          "ce": 3.0878867683932185,
+          "perplexity": 21.9306843574558,
+          "positions": 524288,
+          "seed": 20261111,
+          "windows": 512
+        }
+      },
+      "source": "continuation_to2b_20261115/continuation_1150579/review.json"
+    }
+  ],
+  "dev_perplexity_reduction_100m_to2b_percent": 58.13040309894109,
+  "dev_ce_reduction_100m_to2b": 0.8706102333962917
+}

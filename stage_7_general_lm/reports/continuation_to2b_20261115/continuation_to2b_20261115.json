@@ -1,0 +1,40 @@
+{
+  "authorization": "User approved the final 1.5B to 2B continuation on 2026-11-15, preserving the original training horizon and stopping at completion",
+  "maximum_additional_gpu_hours": 10,
+  "maximum_phase_seconds": 9000,
+  "maximum_run_disk_bytes": 34359738368,
+  "maximum_additional_disk_bytes": 8589934592,
+  "prior_cumulative_gpu_hours": 26.76684488660759,
+  "initial_checkpoint_sha256": "d641a56858874f563a55e84b8084aa199f6bef3af9e210d36957f7c72d5da642",
+  "initial_review_sha256": "f8ffcf3639a11b443222953f6e4bb892ac3d79b361554d7a5e531e7a02e3b881",
+  "final_target_positions": 2000011264,
+  "maximum_development_ce_regression": 0.05,
+  "automatic_continuation_beyond_2b": false,
+  "final_heldout_windows": 512,
+  "phases": [
+    {
+      "phase": 1,
+      "start_updates": 91553,
+      "target_updates": 99183,
+      "review_after_training": false
+    },
+    {
+      "phase": 2,
+      "start_updates": 99183,
+      "target_updates": 106812,
+      "review_after_training": false
+    },
+    {
+      "phase": 3,
+      "start_updates": 106812,
+      "target_updates": 114441,
+      "review_after_training": false
+    },
+    {
+      "phase": 4,
+      "start_updates": 114441,
+      "target_updates": 122071,
+      "review_after_training": true
+    }
+  ]
+}

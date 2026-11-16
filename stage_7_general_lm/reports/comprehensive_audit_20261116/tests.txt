@@ -1,0 +1,79 @@
+test_endpoint_export_survives_next_rolling_replacement (test_checkpoint_review.ReviewTests) ... STAGE7_SEGMENT_SAVED /var/folders/sp/vpfr_xb11wzfnrhwkz0k9fhc0000gp/T/tmposfowkkw/run/review_u12208_positions_200015872.pt
+ok
+test_helpers_are_outside_frozen_source_identity (test_checkpoint_review.ReviewTests) ... ok
+test_partial_segment_is_preserved_but_blocks_dependency (test_checkpoint_review.ReviewTests) ... STAGE7_SEGMENT_SAVED /var/folders/sp/vpfr_xb11wzfnrhwkz0k9fhc0000gp/T/tmp9yycre29/run/review_u13000_positions_212992000.pt
+ok
+test_reference_comparison_rejects_changed_probes_and_regression (test_checkpoint_review.ReviewTests) ... ok
+test_remainder_windows_and_independent_sampler (test_checkpoint_review.ReviewTests) ... ok
+test_sampled_cache_matches_full_prefix_sampling (test_checkpoint_review.ReviewTests) ... ok
+test_completed_review_scores_heldout_separately (test_completion_export.CompletionExportTests) ... /Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:50: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=t['precision'] == 'fp16')
+/Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:82: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=self.scaler.is_enabled()):
+/Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:50: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=t['precision'] == 'fp16')
+EXPANDED_EVALUATION train {"ce": 4.174625873565674, "perplexity": 65.01551108898018, "positions": 24, "windows": 3, "seed": 20261111}
+EXPANDED_EVALUATION dev {"ce": 4.1886569658915205, "perplexity": 65.93417961756032, "positions": 24, "windows": 3, "seed": 20261112}
+EXPANDED_EVALUATION dev_domain:fixture {"ce": 4.182436943054199, "perplexity": 65.52534032755969, "positions": 24, "windows": 3, "seed": 20261113}
+FINAL_HELDOUT_EVALUATION {"ce": 4.17932113011678, "perplexity": 65.32149336385876, "positions": 24, "windows": 3, "seed": 20261115}
+STAGE7_EXPANDED_REVIEW_PASS
+ok
+test_completed_without_original_horizon_authority_stays_blocked (test_completion_export.CompletionExportTests) ... STAGE7_SEGMENT_SAVED /var/folders/sp/vpfr_xb11wzfnrhwkz0k9fhc0000gp/T/tmp0geska4k/run/review_u122071_positions_2000011264.pt
+ok
+test_early_target_cannot_claim_original_completion (test_completion_export.CompletionExportTests) ... ok
+test_full_original_horizon_exports_completed (test_completion_export.CompletionExportTests) ... STAGE7_SEGMENT_SAVED /var/folders/sp/vpfr_xb11wzfnrhwkz0k9fhc0000gp/T/tmpqxjkpwsl/run/review_u122071_positions_2000011264.pt
+ok
+test_heldout_is_blocked_before_completed_horizon (test_completion_export.CompletionExportTests) ... ok
+test_partial_final_allocation_preserves_state_but_fails (test_completion_export.CompletionExportTests) ... STAGE7_SEGMENT_SAVED /var/folders/sp/vpfr_xb11wzfnrhwkz0k9fhc0000gp/T/tmpt24cq3a5/run/review_u122060_positions_1999831040.pt
+ok
+test_extract_and_pack_with_provenance_and_dedup (test_production_corpus.ProductionCorpusTests) ... /Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l1dcachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l2cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l3cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.optional.neon'. Detail: [errno 1] Operation not permitted
+ok
+test_extraction_rejects_wrong_source_hash (test_production_corpus.ProductionCorpusTests) ... ok
+test_each_file_rejects_modified_content_and_size (test_stage7.NativeTokenizerBundleIntegrityTests) ... ok
+test_checksum_mismatch_fails (test_stage7.NativeTokenizerFixtureTests) ... ok
+test_explicit_invalid_directory_fails (test_stage7.NativeTokenizerFixtureTests) ... ok
+test_incomplete_bundle_fails (test_stage7.NativeTokenizerFixtureTests) ... ok
+test_optional_unset_fixture_skips (test_stage7.NativeTokenizerFixtureTests) ... ok
+test_strict_unset_fixture_fails (test_stage7.NativeTokenizerFixtureTests) ... ok
+test_wrong_size_fails (test_stage7.NativeTokenizerFixtureTests) ... ok
+test_accumulation_weights_valid_positions (test_stage7.Stage7Tests) ... /Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:50: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=t['precision'] == 'fp16')
+/Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:82: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=self.scaler.is_enabled()):
+ok
+test_actual_native_chat_template_and_truncation (test_stage7.Stage7Tests) ... /Users/shash/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+ok
+test_boundary_checkpoint_rejects_masked_scratch_updates (test_stage7.Stage7Tests) ... /Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:50: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=t['precision'] == 'fp16')
+/Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:82: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=self.scaler.is_enabled()):
+ok
+test_bounded_sampler_and_dedup (test_stage7.Stage7Tests) ... ok
+test_cache_matches_full_and_overflow_refused (test_stage7.Stage7Tests) ... ok
+test_causality_and_tied_embedding (test_stage7.Stage7Tests) ... ok
+test_cross_shard_window_and_corruption (test_stage7.Stage7Tests) ... ok
+test_development_contract_and_exact_scoring (test_stage7.Stage7Tests) ... ok
+test_domain_scoring_and_domain_stream (test_stage7.Stage7Tests) ... ok
+test_dtype_65536_survives_storage (test_stage7.Stage7Tests) ... ok
+test_eval_does_not_advance_training_rng (test_stage7.Stage7Tests) ... ok
+test_fp16_cpu_refused (test_stage7.Stage7Tests) ... ok
+test_main_launch_is_blocked_without_resource_approval (test_stage7.Stage7Tests) ... ok
+test_padding_equals_eos_keeps_real_eos_label (test_stage7.Stage7Tests) ... ok
+test_padding_key_mask_and_ignored_labels (test_stage7.Stage7Tests) ... ok
+test_real_candidate_parameter_count (test_stage7.Stage7Tests) ... ok
+test_refusal_and_grouped_uncertainty (test_stage7.Stage7Tests) ... ok
+test_restart_exact_dropout_in_process (test_stage7.Stage7Tests) ... ok
+test_restart_in_three_fresh_processes (test_stage7.Stage7Tests) ... ok
+test_resume_rejects_changed_identity_and_bad_moments (test_stage7.Stage7Tests) ... ok
+test_sampler_read_limit_is_a_real_bound (test_stage7.Stage7Tests) ... ok
+test_source_group_and_content_leakage (test_stage7.Stage7Tests) ... ok
+test_token_bounds_and_cache_mask_bounds (test_stage7.Stage7Tests) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 10.672s
+
+OK

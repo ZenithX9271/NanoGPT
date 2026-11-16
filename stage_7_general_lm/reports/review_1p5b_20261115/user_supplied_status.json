@@ -1,0 +1,27 @@
+{
+  "provenance": "User-pasted HPC terminal output, received 2026-11-14; independent remote verification pending",
+  "successful_positions": 1500004352,
+  "updates": 91553,
+  "attempts": 91588,
+  "processed_positions": 1500577792,
+  "final_fixed_evaluation": {
+    "train": {
+      "ce": 3.138035863637924,
+      "perplexity": 23.058532249971602
+    },
+    "dev": {
+      "ce": 3.3253401815891266,
+      "perplexity": 27.808456958885362
+    },
+    "dev_domain:cosmopedia_v2": {
+      "ce": 2.5046616196632385,
+      "perplexity": 12.239416687067381
+    },
+    "dev_domain:fineweb_edu": {
+      "ce": 3.514804035425186,
+      "perplexity": 33.60934103831938
+    }
+  },
+  "all_four_reported_exit_zero": true,
+  "reported_total_walltime_seconds": 31907
+}

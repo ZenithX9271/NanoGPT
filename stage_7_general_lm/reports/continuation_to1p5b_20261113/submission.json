@@ -1,0 +1,44 @@
+{
+  "submitted_on": "2026-11-13",
+  "authorization": "User approved resuming verified 1B checkpoint to 1.5B cumulative tokens and reviewing before any further training, 2026-11-13",
+  "maximum_additional_gpu_hours": 10,
+  "final_target_positions": 1500004352,
+  "wrapper_sha256": "4a7e0cf3cf328cd719a5f33083e79fd5489b3bffc1ca4524bf0faa2256419ae0",
+  "jobs": [
+    {
+      "job_id": "1147658.pbshpc",
+      "phase": 1,
+      "start_updates": 61036,
+      "target_updates": 68665,
+      "target_positions": 1125007360,
+      "output_path": "/scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to1p5b_20261113/logs/phase_1.log"
+    },
+    {
+      "job_id": "1147659.pbshpc",
+      "phase": 2,
+      "start_updates": 68665,
+      "target_updates": 76294,
+      "target_positions": 1250000896,
+      "output_path": "/scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to1p5b_20261113/logs/phase_2.log"
+    },
+    {
+      "job_id": "1147660.pbshpc",
+      "phase": 3,
+      "start_updates": 76294,
+      "target_updates": 83924,
+      "target_positions": 1375010816,
+      "output_path": "/scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to1p5b_20261113/logs/phase_3.log"
+    },
+    {
+      "job_id": "1147661.pbshpc",
+      "phase": 4,
+      "start_updates": 83924,
+      "target_updates": 91553,
+      "target_positions": 1500004352,
+      "output_path": "/scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to1p5b_20261113/logs/phase_4.log"
+    }
+  ],
+  "all_jobs_verified": true,
+  "released": true,
+  "verification_note": "PBS returns numeric phase variables and reverse beforeok edges; all requested resources and forward afterok dependencies verified."
+}

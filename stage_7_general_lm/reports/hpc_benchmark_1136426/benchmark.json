@@ -1,0 +1,136 @@
+{
+  "checkpoint_bytes": 1472537399,
+  "checkpoint_probe_device": 3592384858,
+  "checkpoint_probe_parent": "/scratch/cse/btech/cs1230342/nanogpt_stage7/bench_1136426",
+  "code_identity": {
+    "__init__.py": "cff50ac02bea917ecf8d83a0bdfdf9b3177db98243958662b9a7d489ba42f038",
+    "common.py": "6d7f1e978bf3b394bc7816d33f746e4f1ddbe5f8958029e57fb708082e19f247",
+    "corpus.py": "53d934cad7efbeead1780b781871d49fdb11e9659ccd5804e44d047975118c7e",
+    "cost.py": "3e4d34e03ca9eff35e102dbe287bdf1a32219e1810e7db4a01c7e39b34a50061",
+    "data.py": "b4654868c417e1e98daac030527cc8caa0fbc1c6b5e82ce4939b6f89d6a6e041",
+    "evaluation.py": "5a4b99f87d06c1e150e01f50f743cfe56b8ad022e5a328f4c96ce88dc1f45423",
+    "fetch_sample.py": "efb3d18767972a89a087f99d7f52198f21903e4c68221cb61049486d811c3974",
+    "model.py": "c8a6a273a4f1576fee8c67ed75668841a24945b713efe98b165a1db35fb43166",
+    "pretrained.py": "9be4584e4821218826a96169a98a4ea57f298882e4cfab019a32ed3efbc2f464",
+    "runtime_probe.py": "d8eb06bd448427abf4f31805a87e4cb2e53c579cf4e417361ef3edd80308b1ed",
+    "train.py": "4bc8fe69515d2490dc590d34f3baaf8b1278442823537a411bd478cb8533028a"
+  },
+  "config": {
+    "benchmark_schedule_placeholder": true,
+    "evaluation": {
+      "batch_size": 2,
+      "seed": 2026,
+      "windows": 16
+    },
+    "experiment": "stage7a_general_english_candidate",
+    "model": {
+      "block_size": 1024,
+      "dropout": 0.1,
+      "intermediate_size": 2048,
+      "n_embd": 768,
+      "n_head": 12,
+      "n_layer": 12,
+      "rope_theta": 10000,
+      "vocab_size": 49152
+    },
+    "resource_limits": {
+      "disk_bytes": null,
+      "gpu_hours": null,
+      "main_run_approved": false,
+      "maximum_job_seconds": null
+    },
+    "status": "Benchmark candidate only: 122702592 parameters using the measured existing 49152-token tokenizer. This is provisional; batch/LR/main horizon and final tokenizer are unselected.",
+    "training": {
+      "accumulation_steps": 8,
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "eval_interval": 100,
+      "grad_clip": 1.0,
+      "micro_batch_size": 2,
+      "min_lr": 3e-05,
+      "peak_lr": 0.0003,
+      "precision": "fp32",
+      "save_interval": 100,
+      "seed": 1337,
+      "token_budget": 425984,
+      "warmup_updates": 200,
+      "weight_decay": 0.1
+    }
+  },
+  "data_identity": "6bc232a27f927555fe8374925a71411a9d4922563b95e676dd302b4486c0c177",
+  "evaluation": {
+    "event": "evaluation",
+    "precision": "fp32",
+    "scores": {
+      "dev": {
+        "ce": 8.202137112617493,
+        "perplexity": 3648.7397486658033,
+        "positions": 16384
+      },
+      "dev_domain:HuggingFaceFW/fineweb-edu/sample-10BT": {
+        "ce": 8.182118892669678,
+        "perplexity": 3576.424698018852,
+        "positions": 16384
+      },
+      "dev_domain:HuggingFaceTB/smollm-corpus/cosmopedia-v2": {
+        "available_tokens": 741,
+        "status": "insufficient_tokens"
+      },
+      "train": {
+        "ce": 7.140351712703705,
+        "perplexity": 1261.8721275172077,
+        "positions": 16384
+      }
+    },
+    "updates": 25
+  },
+  "evaluation_seconds": 1.9728848431259394,
+  "gpu_peak_allocated": 9378452992,
+  "gpu_peak_reserved": 9594470400,
+  "measured_optimizer_updates": 20,
+  "measured_processed_positions": 327680,
+  "measured_successful_positions": 327680,
+  "mode": "benchmark_only",
+  "parameters": 122702592,
+  "processed_tokens_per_second": 8833.782390554117,
+  "quality_training": false,
+  "restore_seconds": 2.051010625436902,
+  "runtime": {
+    "cuda_build": "11.0",
+    "device": "cuda",
+    "gpu": "Tesla V100-PCIE-32GB",
+    "numpy": "1.18.5",
+    "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-centos-7.9.2009-Core",
+    "python": "3.7.9",
+    "threads": 4,
+    "torch": "1.10.0a0+git36449ea"
+  },
+  "save_seconds": 2.9698118697851896,
+  "step_seconds": [
+    1.8516539186239243,
+    1.8580524194985628,
+    1.8535770494490862,
+    1.8507308959960938,
+    1.854836830869317,
+    1.8516757600009441,
+    1.8557400554418564,
+    1.8545290660113096,
+    1.8561105597764254,
+    1.8501872159540653,
+    1.857402227818966,
+    1.8527590036392212,
+    1.8578836433589458,
+    1.8545589409768581,
+    1.8588958717882633,
+    1.8504482563585043,
+    1.8522567059844732,
+    1.8595443200320005,
+    1.8554635047912598,
+    1.8576570767909288
+  ],
+  "tokens_per_update": 16384,
+  "total_seconds": 58.534211568534374,
+  "training_tokens_per_second": 8833.782390554117
+}

@@ -1,0 +1,12 @@
+{
+  "capability": "source-grounded English study assistant",
+  "primary_decoding": {"do_sample": false, "max_new_tokens": 128, "num_beams": 1},
+  "development_target": 50,
+  "sealed_test_target": 150,
+  "quotas": {"qa": [15, 45], "summary": [10, 30], "explanation": [8, 22], "missing_information": [7, 23], "state_tracking": [10, 30]},
+  "thresholds": {"status": "proposed_not_approved_for_model_selection", "qa_accuracy_min": 0.8, "state_accuracy_min": 0.8, "correct_uncertainty_min": 0.8, "over_refusal_max": 0.1, "unsupported_claim_rate_max": 0.05, "faithfulness_median_min": 3},
+  "ratings": "Human annotation required; draft references are assistant-authored and not human approval.",
+  "test_owner": null,
+  "sealed_test_sha256": null,
+  "model_selection_ready": false
+}

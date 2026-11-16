@@ -1,0 +1,9 @@
+{
+  "counters": {
+    "attempts": 53425,
+    "processed_positions": 875315200,
+    "successful_positions": 875003904,
+    "updates": 53406
+  },
+  "reason": "review_gate"
+}

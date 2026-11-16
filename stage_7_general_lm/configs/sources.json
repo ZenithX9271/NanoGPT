@@ -1,0 +1,14 @@
+{
+  "purpose": "24-document efficiency fixture, not the approved main corpus",
+  "max_network_bytes": 8388608,
+  "rows_per_source": 12,
+  "offset": 137,
+  "datasets": [
+    {"id": "HuggingFaceFW/fineweb-edu", "config": "sample-10BT", "observed_metadata_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9", "captured_response_sha256": "fe87124d523990ea8ddd4535c55a7f33a0219ed3da16ccb50ab1e94ae8b0af7b"},
+    {"id": "HuggingFaceTB/smollm-corpus", "config": "cosmopedia-v2", "observed_metadata_revision": "3ba9d605774198c5868892d7a8deda78031a781f", "captured_response_sha256": "e675123cec395b658dbf23f111e7441662f0318921634362beaf3eb8085d5291"}
+  ],
+  "tokenizer_model": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+  "tokenizer_revision": "31b70e2e869a7173562077fd711b654946d38674",
+  "tokenizer_sha256": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+  "limitation": "Viewer rows do not independently attest their dataset git revision; capture raw response hashes and refuse changes. Fetch pinned source files before a main-corpus claim. Synthetic parentage and semantic dedup remain incomplete."
+}

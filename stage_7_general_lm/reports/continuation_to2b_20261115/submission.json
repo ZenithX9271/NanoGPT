@@ -1,0 +1,46 @@
+{
+  "submitted_on": "2026-11-15",
+  "authorization": "User approved the final 1.5B to 2B continuation on 2026-11-15, preserving the original training horizon and stopping at completion",
+  "maximum_additional_gpu_hours": 10,
+  "final_target_positions": 2000011264,
+  "wrapper_sha256": "9a321f22fa5a851c72d0077f1888f89726207386d4481e302060b8af7ed9ea5e",
+  "helper_sha256": "35fe076df4c4e697a6d0a8b4b4fdbfc421ff6c7d86939a169252747fc5957bf0",
+  "automatic_continuation_beyond_2b": false,
+  "rerunnable": false,
+  "jobs": [
+    {
+      "job_id": "1150576.pbshpc",
+      "phase": 1,
+      "start_updates": 91553,
+      "target_updates": 99183,
+      "target_positions": 1625014272,
+      "output_path": "/scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to2b_20261115/logs/phase_1.log"
+    },
+    {
+      "job_id": "1150577.pbshpc",
+      "phase": 2,
+      "start_updates": 99183,
+      "target_updates": 106812,
+      "target_positions": 1750007808,
+      "output_path": "/scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to2b_20261115/logs/phase_2.log"
+    },
+    {
+      "job_id": "1150578.pbshpc",
+      "phase": 3,
+      "start_updates": 106812,
+      "target_updates": 114441,
+      "target_positions": 1875001344,
+      "output_path": "/scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to2b_20261115/logs/phase_3.log"
+    },
+    {
+      "job_id": "1150579.pbshpc",
+      "phase": 4,
+      "start_updates": 114441,
+      "target_updates": 122071,
+      "target_positions": 2000011264,
+      "output_path": "/scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to2b_20261115/logs/phase_4.log"
+    }
+  ],
+  "all_jobs_verified": true,
+  "released": true
+}

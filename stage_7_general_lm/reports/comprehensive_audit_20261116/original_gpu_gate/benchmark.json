@@ -1,0 +1,141 @@
+{
+  "checkpoint_bytes": 1472537975,
+  "checkpoint_probe_device": 3592384858,
+  "checkpoint_probe_parent": "/scratch/cse/btech/cs1230342/nanogpt_stage7/gpu_validation_1141598",
+  "code_identity": {
+    "__init__.py": "cff50ac02bea917ecf8d83a0bdfdf9b3177db98243958662b9a7d489ba42f038",
+    "audit_corpus.py": "967ea929c086708067d66a3dfe38fea3b866dc1d4a199819dd15706385467e62",
+    "common.py": "6d7f1e978bf3b394bc7816d33f746e4f1ddbe5f8958029e57fb708082e19f247",
+    "corpus.py": "53d934cad7efbeead1780b781871d49fdb11e9659ccd5804e44d047975118c7e",
+    "cost.py": "3e4d34e03ca9eff35e102dbe287bdf1a32219e1810e7db4a01c7e39b34a50061",
+    "data.py": "b4654868c417e1e98daac030527cc8caa0fbc1c6b5e82ce4939b6f89d6a6e041",
+    "evaluation.py": "5a4b99f87d06c1e150e01f50f743cfe56b8ad022e5a328f4c96ce88dc1f45423",
+    "extract_parquet.py": "3c7ed581b39a1d2786069698a3777f06becdcdfc6b5f1283ec669842bec3574d",
+    "fetch_sample.py": "efb3d18767972a89a087f99d7f52198f21903e4c68221cb61049486d811c3974",
+    "model.py": "c8a6a273a4f1576fee8c67ed75668841a24945b713efe98b165a1db35fb43166",
+    "pack_production.py": "e509d3f548ff9bf4a638aca4e3bfe163f7201c08c8ef835d86a962b019424583",
+    "pretrained.py": "9be4584e4821218826a96169a98a4ea57f298882e4cfab019a32ed3efbc2f464",
+    "runtime_probe.py": "d8eb06bd448427abf4f31805a87e4cb2e53c579cf4e417361ef3edd80308b1ed",
+    "train.py": "4bc8fe69515d2490dc590d34f3baaf8b1278442823537a411bd478cb8533028a",
+    "validate_restart.py": "53caa37320adf16c5363558ada9e74e7f818d821a0cdd139ceb98711e69c3b80"
+  },
+  "config": {
+    "benchmark_schedule_placeholder": true,
+    "evaluation": {
+      "batch_size": 2,
+      "seed": 2026,
+      "windows": 16
+    },
+    "experiment": "stage7a_general_english_2b_candidate",
+    "model": {
+      "block_size": 1024,
+      "dropout": 0.1,
+      "intermediate_size": 2048,
+      "n_embd": 768,
+      "n_head": 12,
+      "n_layer": 12,
+      "rope_theta": 10000,
+      "vocab_size": 49152
+    },
+    "resource_limits": {
+      "disk_bytes": null,
+      "gpu_hours": null,
+      "main_run_approved": false,
+      "maximum_job_seconds": null
+    },
+    "status": "Frozen validation candidate: 2B-position LR horizon with a future cumulative 100M-position review gate. Main launch remains blocked pending restart/benchmark evidence and explicit resource approval.",
+    "training": {
+      "accumulation_steps": 4,
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "eval_interval": 500,
+      "grad_clip": 1.0,
+      "micro_batch_size": 4,
+      "min_lr": 3e-05,
+      "peak_lr": 0.0003,
+      "precision": "fp16",
+      "save_interval": 500,
+      "seed": 1337,
+      "token_budget": 425984,
+      "warmup_updates": 2000,
+      "weight_decay": 0.1
+    }
+  },
+  "data_identity": "fa40be03f50c9d7bd4cd3bcf33df1538a55f62e9b7760b845ec17a04fe7ade65",
+  "evaluation": {
+    "event": "evaluation",
+    "precision": "fp32",
+    "scores": {
+      "dev": {
+        "ce": 7.932532489299774,
+        "perplexity": 2786.4745936174195,
+        "positions": 16384
+      },
+      "dev_domain:cosmopedia_v2": {
+        "ce": 8.084918320178986,
+        "perplexity": 3245.1547611177107,
+        "positions": 16384
+      },
+      "dev_domain:fineweb_edu": {
+        "ce": 7.825922191143036,
+        "perplexity": 2504.694853535508,
+        "positions": 16384
+      },
+      "train": {
+        "ce": 7.984644651412964,
+        "perplexity": 2935.533981276739,
+        "positions": 16384
+      }
+    },
+    "updates": 25
+  },
+  "evaluation_seconds": 2.787459472194314,
+  "gpu_peak_allocated": 14888008704,
+  "gpu_peak_reserved": 15883829248,
+  "measured_optimizer_updates": 20,
+  "measured_processed_positions": 327680,
+  "measured_successful_positions": 327680,
+  "mode": "benchmark_only",
+  "parameters": 122702592,
+  "processed_tokens_per_second": 18992.846881536927,
+  "quality_training": false,
+  "restore_seconds": 1.7119909282773733,
+  "runtime": {
+    "cuda_build": "11.0",
+    "device": "cuda",
+    "gpu": "Tesla V100-PCIE-32GB",
+    "numpy": "1.18.5",
+    "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-centos-7.9.2009-Core",
+    "python": "3.7.9",
+    "threads": 2,
+    "torch": "1.10.0a0+git36449ea"
+  },
+  "save_seconds": 2.4732817485928535,
+  "step_seconds": [
+    0.8630800601094961,
+    0.8625393621623516,
+    0.8624799642711878,
+    0.8638024553656578,
+    0.862507414072752,
+    0.8633506465703249,
+    0.8622649498283863,
+    0.8626783490180969,
+    0.8632741551846266,
+    0.8636483829468489,
+    0.8628109488636255,
+    0.8630332071334124,
+    0.8621813170611858,
+    0.8617184199392796,
+    0.8626494221389294,
+    0.8625207021832466,
+    0.8617805615067482,
+    0.8618099447339773,
+    0.8624449148774147,
+    0.8622359484434128
+  ],
+  "tokens_per_update": 16384,
+  "total_seconds": 35.51727723143995,
+  "training_tokens_per_second": 18992.846881536927
+}

@@ -1,0 +1,16 @@
+{
+  "status": "Recommendation only; not submitted",
+  "created_on": "2026-11-15",
+  "starting_positions": 1500004352,
+  "target_positions": 2000011264,
+  "target_updates": 122071,
+  "additional_positions": 500006912,
+  "estimated_v100_gpu_hours": 9,
+  "preserve_original_2b_lr_horizon": true,
+  "required_before_launch": [
+    "Verified full 1.5B Mac backup",
+    "Preserve checkpoint resume identities",
+    "Endpoint exporter must accept completed at the original horizon as well as intermediate review_gate"
+  ],
+  "automatic_continuation_beyond_2b": false
+}

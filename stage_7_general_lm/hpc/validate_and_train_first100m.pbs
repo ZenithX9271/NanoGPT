@@ -1,0 +1,17 @@
+#!/bin/bash
+# Validate and train in one allocation to avoid a second GPU queue wait.
+#PBS -N nanogpt_s7start
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=2:ngpus=1:mem=16gb:centos=skylake
+#PBS -l walltime=04:00:00
+#PBS -j oe
+set -euo pipefail
+umask 077
+: "${PBS_JOBID:?PBS allocation required}"
+export STAGE7_JOB_START=$(date +%s)
+STAGE7_REPO=/home/cse/btech/cs1230342/zenithX9271/NanoGPT
+cd "$STAGE7_REPO"
+bash stage_7_general_lm/hpc/validate_and_benchmark_production.pbs.proposed
+export STAGE7_GATE_TAG="${PBS_JOBID%%.*}"
+bash stage_7_general_lm/hpc/train_first100m.pbs

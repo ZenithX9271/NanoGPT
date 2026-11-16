@@ -1,0 +1,14 @@
+{
+  "cases": 20,
+  "groups": 10,
+  "review_status": {
+    "assistant_reviewed_human_review_pending": 20
+  },
+  "tasks": {
+    "explanation": 3,
+    "missing_information": 3,
+    "qa": 6,
+    "state_tracking": 4,
+    "summary": 4
+  }
+}

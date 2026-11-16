@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["observed", "unknown", "optional_modules", "production_class_small_config_forward_backward", "probe_is_not_candidate_throughput"],
+  "properties": {"observed": {"type": "object"}, "unknown": {"type": "array"}, "optional_modules": {"type": "object"}, "production_class_small_config_forward_backward": {"type": "boolean"}, "probe_is_not_candidate_throughput": {"const": true}}
+}

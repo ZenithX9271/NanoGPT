@@ -1,0 +1,36 @@
+/Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:50: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=t['precision'] == 'fp16')
+/Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:82: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=self.scaler.is_enabled()):
+./Users/shash/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+./Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:50: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=t['precision'] == 'fp16')
+/Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:82: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=self.scaler.is_enabled()):
+.............../Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:50: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=t['precision'] == 'fp16')
+/Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_7_general_lm/train.py:82: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=self.scaler.is_enabled()):
+.........../Users/shash/Library/CloudStorage/GoogleDrive-shash9271@gmail.com/My Drive/Currently Doing/NanoGPT/stage_8_compression/compress.py:99: DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. 
+For migrations of users: 
+1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead 
+2. FX graph mode quantization (torch.ao.quantization.quantize_fx.prepare_fx,torch.ao.quantization.quantize_fx.convert_fx, please migrate to use torchao pt2e quantization API instead (prepare_pt2e, convert_pt2e) 
+3. pt2e quantization has been migrated to torchao (https://github.com/pytorch/ao/tree/main/torchao/quantization/pt2e) 
+see https://github.com/pytorch/ao/issues/2259 for more details
+  result = torch.ao.quantization.quantize_dynamic(model.eval(), qconfig_spec=mapping, dtype=torch.qint8, inplace=False)
+/Users/shash/Library/Python/3.9/lib/python/site-packages/torch/ao/quantization/quantize.py:566: DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10. 
+For migrations of users: 
+1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead 
+2. FX graph mode quantization (torch.ao.quantization.quantize_fx.prepare_fx,torch.ao.quantization.quantize_fx.convert_fx, please migrate to use torchao pt2e quantization API instead (prepare_pt2e, convert_pt2e) 
+3. pt2e quantization has been migrated to torchao (https://github.com/pytorch/ao/tree/main/torchao/quantization/pt2e) 
+see https://github.com/pytorch/ao/issues/2259 for more details
+  convert(model, mapping, inplace=True)
+/Users/shash/Library/Python/3.9/lib/python/site-packages/torch/_utils.py:444: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  device=storage.device,
+[W1104 17:05:37.746859000 qlinear_dynamic.cpp:251] Warning: Currently, qnnpack incorrectly ignores reduce_range when it is set to true; this may change in a future release. (function operator())
+...
+----------------------------------------------------------------------
+Ran 31 tests in 7.695s
+
+OK

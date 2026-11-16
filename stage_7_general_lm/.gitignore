@@ -1,0 +1,16 @@
+__pycache__/
+runs/
+# Preserve the pinned tokenizer; checkpoints and local backup bundles stay local.
+/artifacts/*
+!/artifacts/native_tokenizer/
+/artifacts/native_tokenizer/*
+!/artifacts/native_tokenizer/config.json
+!/artifacts/native_tokenizer/special_tokens_map.json
+!/artifacts/native_tokenizer/tokenizer.json
+!/artifacts/native_tokenizer/tokenizer_config.json
+cache/
+*.bin
+
+# Every intermediate metrics file repeats earlier history. Publish the final full log.
+/reports/**/metrics.jsonl
+!/reports/continuation_to2b_20261115/continuation_1150579/metrics.jsonl

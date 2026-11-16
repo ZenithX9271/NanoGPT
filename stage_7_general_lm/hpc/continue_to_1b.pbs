@@ -1,0 +1,153 @@
+#!/bin/bash
+# Four dependent allocations, <=10 additional GPU hours total; stop at 1B.
+#PBS -N nanogpt_s7to1b
+#PBS -P biometric-security.spons
+#PBS -q standard
+#PBS -l select=1:ncpus=2:ngpus=1:mem=16gb:centos=skylake
+#PBS -l walltime=02:30:00
+#PBS -W sandbox=HOME
+#PBS -o /scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to1b_20261112/logs/
+#PBS -j oe
+set -euo pipefail
+umask 077
+: "${PBS_JOBID:?PBS allocation required}"
+: "${STAGE7_PHASE:?Submit one of four authorized phases}"
+export STAGE7_START=$(date +%s)
+export STAGE7_BASE=/scratch/cse/btech/cs1230342/nanogpt_stage7
+export STAGE7_REPO="$STAGE7_BASE/deploy_1b_20261112"
+export STAGE7_FLOW="$STAGE7_BASE/continuation_to1b_20261112"
+export STAGE7_RUN="$STAGE7_BASE/train_2b_first100m_1141598"
+export STAGE7_EVIDENCE="$STAGE7_FLOW/continuation_${PBS_JOBID%%.*}"
+export STAGE7_PLAN="$STAGE7_REPO/stage_7_general_lm/configs/continuation_to1b_20261112.json"
+STAGE7_HELPER="$STAGE7_REPO/stage_7_general_lm/hpc/review_segment.py"
+STAGE7_CONFIG="$STAGE7_REPO/stage_7_general_lm/configs/production_2b_first100m.json"
+STAGE7_MANIFEST="$STAGE7_BASE/packed_v1/manifest.json"
+case "$STAGE7_PHASE" in
+  1) export STAGE7_FROM=30518 STAGE7_TARGET=38147
+     export STAGE7_PRIOR_EVIDENCE="$STAGE7_FLOW/prior_500m" ;;
+  2|3|4)
+     : "${STAGE7_PRIOR_JOB:?Prior phase job required}"
+     : "${STAGE7_FIRST_JOB:?Initial review job required}"
+     [[ "$STAGE7_PRIOR_JOB" =~ ^[0-9]+\.pbshpc$ ]]
+     [[ "$STAGE7_FIRST_JOB" =~ ^[0-9]+\.pbshpc$ ]]
+     export STAGE7_PRIOR_EVIDENCE="$STAGE7_FLOW/continuation_${STAGE7_PRIOR_JOB%%.*}"
+     case "$STAGE7_PHASE" in
+       2) export STAGE7_FROM=38147 STAGE7_TARGET=45777 ;;
+       3) export STAGE7_FROM=45777 STAGE7_TARGET=53406 ;;
+       4) export STAGE7_FROM=53406 STAGE7_TARGET=61036 ;;
+     esac ;;
+  *) echo 'Only four phases authorized'; exit 2 ;;
+esac
+export STAGE7_CHECKPOINT="$STAGE7_RUN/review_u${STAGE7_FROM}_positions_$((STAGE7_FROM * 16384)).pt"
+cd "$STAGE7_REPO"
+exec 9>"$STAGE7_RUN/.continuation.lock"
+flock -n 9 || { echo 'Another continuation owns this run'; exit 19; }
+mkdir "$STAGE7_EVIDENCE"
+exec > >(tee "$STAGE7_EVIDENCE/job.log") 2>&1
+export XDG_CACHE_HOME="$STAGE7_EVIDENCE/cache" CUDA_CACHE_PATH="$STAGE7_EVIDENCE/cuda_cache"
+mkdir -p "$XDG_CACHE_HOME" "$CUDA_CACHE_PATH"
+module purge
+module load apps/pytorch/1.10.0/gpu/intelpython3.7
+export PYTHONPATH="$STAGE7_REPO${PYTHONPATH:+:$PYTHONPATH}"
+export CUBLAS_WORKSPACE_CONFIG=:4096:8 MKL_THREADING_LAYER=GNU
+export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 PYTHONUNBUFFERED=1
+
+record_exit() {
+    local result=$?
+    trap - EXIT
+    STAGE7_EXIT="$result" python -B - <<'PY'
+import json,os,time
+from pathlib import Path
+read=lambda p:json.loads(p.read_text())
+prior=read(Path(os.environ['STAGE7_PRIOR_EVIDENCE'])/'allocation.json')
+plan=read(Path(os.environ['STAGE7_PLAN']))
+elapsed=time.time()-int(os.environ['STAGE7_START'])
+total=prior['cumulative_gpu_hours_upper_bound']+elapsed/3600
+record=dict(job_id=os.environ['PBS_JOBID'],exit_code=int(os.environ['STAGE7_EXIT']),
+    allocation_seconds=elapsed,gpu_hours_upper_bound=elapsed/3600,
+    cumulative_gpu_hours_upper_bound=total,phase=int(os.environ['STAGE7_PHASE']),
+    authorized_additional_gpu_hours=10,additional_gpu_hours_since_500m=total-plan['prior_cumulative_gpu_hours'],
+    final_target_positions=plan['final_target_positions'],automatic_continuation_beyond_1b=False)
+with (Path(os.environ['STAGE7_EVIDENCE'])/'allocation.json').open('x') as f:json.dump(record,f,indent=2)
+print(json.dumps(record),flush=True)
+PY
+    exit "$result"
+}
+trap record_exit EXIT
+
+python -B - <<'PY'
+import json,os
+from pathlib import Path
+from stage_7_general_lm.common import sha,source_identity
+read=lambda p:json.loads(p.read_text())
+plan=read(Path(os.environ['STAGE7_PLAN']))
+phase=int(os.environ['STAGE7_PHASE'])
+entry=plan['phases'][phase-1]
+assert entry['phase']==phase
+assert entry['start_updates']==int(os.environ['STAGE7_FROM'])
+assert entry['target_updates']==int(os.environ['STAGE7_TARGET'])
+assert len(plan['phases'])*plan['maximum_phase_seconds']==plan['maximum_additional_gpu_hours']*3600
+assert plan['phases'][-1]['target_updates']*16384==1000013824
+prior=Path(os.environ['STAGE7_PRIOR_EVIDENCE'])
+allocation=read(prior/'allocation.json')
+assert allocation['exit_code']==0
+if phase>1: assert allocation['phase']==phase-1
+assert allocation['cumulative_gpu_hours_upper_bound']<=plan['prior_cumulative_gpu_hours']+(phase-1)*2.5
+receipt=read(Path(os.environ['STAGE7_FLOW'])/'prior_500m/mac_backup_verified.json')
+assert receipt['checkpoint_sha256']==plan['initial_checkpoint_sha256']
+record=read(prior/'checkpoint.json')
+run=Path(os.environ['STAGE7_RUN'])
+assert sha(Path(os.environ['STAGE7_CHECKPOINT']))==record['checkpoint_sha256']
+assert sha(run/'latest.pt')==record['checkpoint_sha256']
+assert read(run/'summary.json')==record['summary']
+assert record['summary']['reason']=='review_gate'
+assert record['summary']['counters']['updates']==entry['start_updates']
+assert read(prior/'launch.json')['code_identity']==source_identity()
+deployment=read(Path(os.environ['STAGE7_FLOW'])/'deployment.json')
+for relative,digest in deployment['files'].items():
+    assert sha(Path(os.environ['STAGE7_REPO'])/relative)==digest,relative
+if phase>1:
+    review=read(Path(os.environ['STAGE7_FLOW'])/('continuation_'+os.environ['STAGE7_FIRST_JOB'].split('.')[0])/'review.json')
+    assert review['status']=='PASS' and review['counters']['updates']==30518
+with (Path(os.environ['STAGE7_EVIDENCE'])/'launch.json').open('x') as f:
+    json.dump(dict(job_id=os.environ['PBS_JOBID'],phase=phase,source_checkpoint=record,
+        authorization=plan['authorization'],maximum_job_seconds=9000,
+        authorized_additional_gpu_hours=10,target_updates=entry['target_updates'],
+        target_positions=entry['target_updates']*16384,final_target_positions=1000013824,
+        config_sha256=sha(Path('stage_7_general_lm/configs/production_2b_first100m.json')),
+        plan_sha256=sha(Path(os.environ['STAGE7_PLAN'])),code_identity=source_identity(),
+        deployment=deployment),f,indent=2)
+print('CONTINUATION_IDENTITY_BACKUP_AND_BUDGET_PASS',flush=True)
+PY
+echo "job_id=$PBS_JOBID phase=$STAGE7_PHASE host=$(hostname) run=$STAGE7_RUN"
+nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
+if [ "$STAGE7_PHASE" = 1 ] || [ "$STAGE7_PHASE" = 3 ]; then
+    if [ "$STAGE7_PHASE" = 1 ]; then
+        STAGE7_REFERENCE="$STAGE7_REPO/stage_7_general_lm/hpc/reference_200m_review.json"
+    else
+        STAGE7_REFERENCE="$STAGE7_FLOW/continuation_${STAGE7_FIRST_JOB%%.*}/review.json"
+    fi
+    python -B "$STAGE7_HELPER" review --checkpoint "$STAGE7_CHECKPOINT" \
+        --checkpoint-record "$STAGE7_PRIOR_EVIDENCE/checkpoint.json" --config "$STAGE7_CONFIG" \
+        --manifest "$STAGE7_MANIFEST" --metrics "$STAGE7_RUN/metrics.jsonl" \
+        --probes "$STAGE7_REPO/stage_7_general_lm/hpc/completion_probes_v1.json" \
+        --output "$STAGE7_EVIDENCE/review.json" --windows 512 \
+        --reference-review "$STAGE7_REFERENCE" --max-dev-regression .05
+    (
+        module purge
+        module load compiler/python/3.9.13/ucs4/gnu/447
+        unset PYTHONPATH
+        "$STAGE7_BASE/prep_env_py39/bin/python" -B "$STAGE7_HELPER" decode \
+            --tokenizer "$STAGE7_REPO/stage_7_general_lm/artifacts/native_tokenizer/tokenizer.json" \
+            --input "$STAGE7_EVIDENCE/review.json" --output "$STAGE7_EVIDENCE/completions.json"
+    )
+fi
+# Tighten the frozen config's 4h process limit to 2.5h including review/startup,
+# leaving its existing five-minute checkpoint margin before PBS termination.
+STAGE7_BUDGET_EPOCH=$((STAGE7_START + 9000 - 14400))
+echo "RESUMING_FROM_UPDATE_$STAGE7_FROM TO_UPDATE_$STAGE7_TARGET"
+python -B -m stage_7_general_lm.train --mode train --device cuda --threads 2 \
+    --config "$STAGE7_CONFIG" --manifest "$STAGE7_MANIFEST" --run-dir "$STAGE7_RUN" \
+    --resume "$STAGE7_CHECKPOINT" --review-updates "$STAGE7_TARGET" --job-start-epoch "$STAGE7_BUDGET_EPOCH"
+python -B "$STAGE7_HELPER" finalize --run "$STAGE7_RUN" --output "$STAGE7_EVIDENCE" \
+    --start-updates "$STAGE7_FROM" --target-updates "$STAGE7_TARGET"

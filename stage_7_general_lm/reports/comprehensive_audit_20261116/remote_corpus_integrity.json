@@ -1,0 +1,48 @@
+{
+  "verified_at": "2026-11-16T10:28:03.018579+00:00",
+  "status": "PASS",
+  "manifest_sha256": "fa40be03f50c9d7bd4cd3bcf33df1538a55f62e9b7760b845ec17a04fe7ade65",
+  "corpus_matches_pretraining_audit": true,
+  "files": {
+    "dev_00.bin": {
+      "bytes": 19710720,
+      "sha256": "cfd4a9b894806a51cc58637eb70b6c0ca4f480b2841daa227674783b55591b7d"
+    },
+    "dev_01.bin": {
+      "bytes": 69643564,
+      "sha256": "47176995160d2cf28c0832eae04a5a52ee5852bf25277ea567baa710429d55b3"
+    },
+    "group_digests_dev.txt": {
+      "bytes": 3055715,
+      "sha256": "39e4201cabcc436c5ffe1dba9386ca3343a257e6f996ab3de935e2076548e5b4"
+    },
+    "heldout_00.bin": {
+      "bytes": 20006266,
+      "sha256": "524bf4663b7e06db67deb85d6382a73a05ce112212cd5fd07d44d844e763a779"
+    },
+    "heldout_01.bin": {
+      "bytes": 71455228,
+      "sha256": "9719da11875ba25f87c76668005644240bbc5937dae21bccdf74a42f356b37b6"
+    },
+    "group_digests_heldout.txt": {
+      "bytes": 3093480,
+      "sha256": "95c47f0727ecbcfbba164c31013d19bdb5bfbc3006c804ec7839e6ed20ac079a"
+    },
+    "train_00.bin": {
+      "bytes": 160283002,
+      "sha256": "3219562ef489ae05450f6ef48927abab813da4e735875a98a418a846af3c3002"
+    },
+    "train_01.bin": {
+      "bytes": 567292022,
+      "sha256": "969122d474f62184775e5429c14f120eabae49674fd0226262ed0f516076c613"
+    },
+    "group_digests_train.txt": {
+      "bytes": 24852035,
+      "sha256": "77b973855466bbb45ab7e53380c7b83f39d1c096217e721a993086db915bced2"
+    },
+    "documents.jsonl.gz": {
+      "bytes": 82089214,
+      "sha256": "c4e7e57c001a15b0c3e04969b0323bf500042a75492c8a7830552ec0ef7b2fb1"
+    }
+  }
+}

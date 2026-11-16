@@ -1,0 +1,24 @@
+{
+  "limitation": "Viewer rows do not independently attest their dataset git revision; capture raw response hashes and refuse changes. Fetch pinned source files before a main-corpus claim. Synthetic parentage and semantic dedup remain incomplete.",
+  "model_weights_downloaded": false,
+  "network_bytes": 2449515,
+  "network_cap_bytes": 8388608,
+  "seconds": 3.358069541,
+  "sources": [
+    {
+      "captured_response_sha256": "fe87124d523990ea8ddd4535c55a7f33a0219ed3da16ccb50ab1e94ae8b0af7b",
+      "config": "sample-10BT",
+      "documents": 12,
+      "id": "HuggingFaceFW/fineweb-edu",
+      "observed_metadata_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9"
+    },
+    {
+      "captured_response_sha256": "e675123cec395b658dbf23f111e7441662f0318921634362beaf3eb8085d5291",
+      "config": "cosmopedia-v2",
+      "documents": 12,
+      "id": "HuggingFaceTB/smollm-corpus",
+      "observed_metadata_revision": "3ba9d605774198c5868892d7a8deda78031a781f"
+    }
+  ],
+  "tokenizer_revision": "31b70e2e869a7173562077fd711b654946d38674"
+}

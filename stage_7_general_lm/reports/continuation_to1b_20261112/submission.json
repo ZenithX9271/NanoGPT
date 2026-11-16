@@ -1,0 +1,30 @@
+{
+  "status": "submitted",
+  "authorization": "User approved backup, review and continuation to 1B cumulative tokens on 2026-11-12",
+  "maximum_additional_gpu_hours": 10,
+  "final_target_positions": 1000013824,
+  "jobs": [
+    {
+      "phase": 1,
+      "job_id": "1144922.pbshpc",
+      "target_positions": 625000448
+    },
+    {
+      "phase": 2,
+      "job_id": "1144923.pbshpc",
+      "target_positions": 750010368
+    },
+    {
+      "phase": 3,
+      "job_id": "1144924.pbshpc",
+      "target_positions": 875003904
+    },
+    {
+      "phase": 4,
+      "job_id": "1144925.pbshpc",
+      "target_positions": 1000013824
+    }
+  ],
+  "evidence_base": "/scratch/cse/btech/cs1230342/nanogpt_stage7/continuation_to1b_20261112",
+  "deployment_root": "/scratch/cse/btech/cs1230342/nanogpt_stage7/deploy_1b_20261112"
+}
