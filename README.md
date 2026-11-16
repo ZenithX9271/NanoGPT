@@ -1,4 +1,4 @@
-# NanoGPT — Shashank's Language Model Training Journey
+# NanoGPT — Natural Language Model Training Journey
 
 A from-scratch implementation of GPT-style language models, following Andrej
 Karpathy's course and progressing from a character bigram to TinyStories training.
